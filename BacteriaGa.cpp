@@ -12,7 +12,7 @@ static float Rab = 0.1;
 //                                Constructors
 // ===========================================================================
 BacteriaGa::BacteriaGa(){
-  genotype_ = Bacteria::Genotype::Ga;
+  genotype_ = 'a';
 }
 // ===========================================================================
 //                                 Destructor

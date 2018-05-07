@@ -14,11 +14,6 @@
 
 class Bacteria {
 	public:
-    
-  enum class Genotype {
-    Ga,
-    Gb
-  };
   
 	// =========================================================================
   //                               Constructors
@@ -37,7 +32,7 @@ class Bacteria {
   float PROBA_DEATH() const;
   float FITNESS_MIN() const;
   std::vector<float> phenotype();
-  Genotype genotype() const;
+  char genotype() const;
 
   // =========================================================================
   //                                  Setters
@@ -66,7 +61,7 @@ class Bacteria {
   const float PROBA_DEATH_;
   const float PROBA_MUTE_;
   static float FITNESS_MIN_;
-  Genotype genotype_;
+  char genotype_;
 
 };
 
