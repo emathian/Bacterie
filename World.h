@@ -39,15 +39,30 @@ class World {
   // =========================================================================
   //                          Public Function members
   // =========================================================================
-
-	protected:
+  
+  World(Bacteria** population[], int length, int width, int height, float diffusion);
+  ~World();
+  void diffuse_concentration();
+  void competition();
+  /**void update();
+  void renew();
+  **/
+	private:
   // =========================================================================
-  //                        Protected Function members
+  //                        Private Function members
   // =========================================================================
 
   // =========================================================================
   //                               Data members
   // =========================================================================
+  // size of the world
+  int W_ ; 
+  int H_ ;
+  int D_ ; //diffusion coefficient
+  Bacteria* pop_[][];
+  float a_[][];
+  float b_[][];
+  float c_[][];
   
 };
 

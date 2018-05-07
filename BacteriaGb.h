@@ -39,6 +39,7 @@ class BacteriaGb: public Bacteria {
   //                          Public Function members
   // =========================================================================
   void metabolize(float b) override;
+  float get_fitness() ;  
 
 	protected:
   // =========================================================================
