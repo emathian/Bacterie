@@ -28,3 +28,7 @@ Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
 // ===========================================================================
 //                         Protected Function members
 // ===========================================================================
+
+void Bacteria::toString(){
+  std::cout << "Je suis une bactérie" << std::endl;
+}

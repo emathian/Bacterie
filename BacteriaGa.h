@@ -5,14 +5,13 @@
 //                                  Includes
 // ===========================================================================
 #include <iostream>
-
+#include "Bacteria.h"
 
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
-using namespace std;
 
-class BacteriaGa: public Bacteria {
+class BacteriaGa : public Bacteria {
 	public:
 	// =========================================================================
   //                               Constructors
@@ -45,7 +44,7 @@ class BacteriaGa: public Bacteria {
   // =========================================================================
   //                        Protected Function members
   // =========================================================================
-  void metabolize(float a);
+  void metabolize(float a) override;
 
   // =========================================================================
   //                               Data members
