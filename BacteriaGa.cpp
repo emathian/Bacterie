@@ -12,7 +12,7 @@ static float Rab = 0.1;
 //                                Constructors
 // ===========================================================================
 BacteriaGa::BacteriaGa(){
-  genotype_ = Bacteria::Genotype::GA;
+  genotype_ = Bacteria::Genotype::Ga;
 }
 // ===========================================================================
 //                                 Destructor
@@ -27,8 +27,8 @@ BacteriaGa::BacteriaGa(){
 // ===========================================================================
 void BacteriaGa::metabolize(float a){
   // update A  
-  phenotype[0] = a*Raa - phenotype[0]*Rab;
+  phenotype_[0] = a*Raa - phenotype_[0]*Rab;
 
   // update B 
-  phenotype[1] = phenotype[1]*Rab;
+  phenotype_[1] = phenotype_[1]*Rab;
 }

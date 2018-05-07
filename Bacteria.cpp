@@ -22,7 +22,7 @@ Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
 // ===========================================================================
 float Bacteria::PROBA_MUTE() const{
 	return PROBA_MUTE_;
-};
+}	
 float Bacteria::PROBA_DEATH() const{
 	return PROBA_DEATH_;
 };
@@ -38,3 +38,8 @@ float Bacteria::PROBA_DEATH() const{
 // ===========================================================================
 //                         Protected Function members
 // ===========================================================================
+/*
+void Bacteria::toString(){
+  std::cout << "Je suis une bactérie" << std::endl;
+  */
+}

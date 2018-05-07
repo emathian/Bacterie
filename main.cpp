@@ -4,7 +4,10 @@
 #include <cstdio>
 #include <iostream>
 
+
 #include "Bacteria.h"
+#include "BacteriaGa.h"
+#include "BacteriaGb.h"
 #include "World.h"
 
 
@@ -22,9 +25,22 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
+
     Bacteria B;
     cout << B.PROBA_DEATH() <<endl;
      
+
+    //Bacteria B;
+
+    BacteriaGa myGa;
+    BacteriaGb myGb;
+    
+    /*
+    myGa.toString();
+    myGb.toString();
+    */
+
+
     return EXIT_SUCCESS;
 }
 

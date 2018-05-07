@@ -12,7 +12,7 @@ static float Rbc = 0.1;
 //                                Constructors
 // ===========================================================================
 BacteriaGb::BacteriaGb(){
-  genotype_ = Bacteria::Genotype::GB;
+  genotype_ = Bacteria::Genotype::Gb;
 }
 
 // ===========================================================================
@@ -28,8 +28,8 @@ BacteriaGb::BacteriaGb(){
 // ===========================================================================
 void BacteriaGb::metabolize(float b){
   // update B
-  phenotype[0] = b*Rbb - phenotype[0]*Rbc;
+  phenotype_[0] = b*Rbb - phenotype_[0]*Rbc;
 
   // update C 
-  phenotype[1] = b*phenotype[1];
+  phenotype_[1] = b*phenotype_[1];
 }
