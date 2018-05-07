@@ -37,7 +37,7 @@ class Bacteria {
   float PROBA_DEATH() const;
   float FITNESS_MIN() const;
   std::vector<float> phenotype();
-
+  Genotype genotype() const;
 
   // =========================================================================
   //                                  Setters

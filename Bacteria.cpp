@@ -36,6 +36,10 @@ std::vector<float> Bacteria::phenotype() {
 	std::vector<float> phenotype (phenotype_);
 	return phenotype;
 }
+ Genotype genotype() const{
+ 	return genotype_
+ }
+
 // ===========================================================================
 //                               Setter
 // ===========================================================================
