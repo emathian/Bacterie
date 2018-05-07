@@ -24,19 +24,18 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-    //Bacteria B;
 
-    BacteriaGa myGa;
-    BacteriaGb myGb;
-    
-    
-    myGa.toString();
-    myGb.toString();
-    
-    cout << myGa.get_fitness() << endl;
-    cout << myGb.get_fitness() << endl;
 
-    return EXIT_SUCCESS;
+  BacteriaGa myGa;
+  BacteriaGb myGb;
+    
+  myGa.toString();
+  myGb.toString();
+    
+  cout << myGa.get_fitness() << endl;
+  cout << myGb.get_fitness() << endl;
+
+  return EXIT_SUCCESS;
 }
 
 

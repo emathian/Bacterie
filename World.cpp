@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-  World::World(int population, int width, int height, float diffusion){
+  World::World(Bacteria** population[], int width, int height, float diffusion){
     
     int i;
     int j;

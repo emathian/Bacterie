@@ -40,7 +40,7 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  World(Bacteria* population[], int length, int width, int height, float diffusion,);
+  World(Bacteria** population[], int length, int width, int height, float diffusion);
   ~World();
   /**void diffuse_concentration();
   void competition();
