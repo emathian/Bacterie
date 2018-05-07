@@ -5,8 +5,6 @@
 #include <iostream>
 
 #include "Bacteria.h"
-#include "BacteriaGa.h"
-#include "BacteriaGb.h"
 #include "World.h"
 
 
