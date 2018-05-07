@@ -26,8 +26,8 @@ using std::endl;
 // ===========================================================================
 int main(int argc, char* argv[]) {
 
-    Bacteria B;
-    cout << B.PROBA_DEATH() <<endl;
+   // Bacteria B;
+   // cout << B.PROBA_DEATH() <<endl;
      
 
     //Bacteria B;
@@ -35,10 +35,10 @@ int main(int argc, char* argv[]) {
     BacteriaGa myGa;
     BacteriaGb myGb;
     
-    /*
+    
     myGa.toString();
     myGb.toString();
-    */
+    
 
 
     return EXIT_SUCCESS;

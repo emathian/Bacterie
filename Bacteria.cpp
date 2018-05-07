@@ -2,6 +2,7 @@
 //                                  Includes
 // ===========================================================================
 #include "Bacteria.h"
+#include <iostream>
 // ===========================================================================
 //                       Definition of static attributes
 // ===========================================================================
@@ -38,8 +39,7 @@ float Bacteria::PROBA_DEATH() const{
 // ===========================================================================
 //                         Protected Function members
 // ===========================================================================
-/*
+
 void Bacteria::toString(){
-  std::cout << "Je suis une bactérie" << std::endl;
-  */
+  std::cout << "Je suis une bactérie de p_death " << PROBA_DEATH_ << " et de p_mut " << PROBA_MUTE_ << std::endl;
 }
