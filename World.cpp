@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-  World::World(Bacteria** population[], int width, int height, float diffusion){
+  World::World(Bacteria** population, int width, int height, float diffusion){
     
     int i;
     int j;
@@ -50,26 +50,56 @@
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
- /** void diffuse_concentration(){
-  int stockA = a_;
-    int stockB = a_;
-    int stockC = a_;
+  void diffuse_concentration(){
+    int stockA = a_;
+    int stockB = b_;
+    int stockC = c_;
     int x;
     int y;
-    for(x=0; i<W_; i++){
-      for(y=0; j<H_; j++){
-        a_[x][y]=50.0;
-        b_[x][y]=0.0;
-        c_[x][y]=0.0;
+    int i;
+    int j;
+    for(x = 0; i<W_; i++){
+      for(y = 0; j<H_; j++){
+        for(i = -1; i<1; i++){
+          for(j = -1; j<1; j++){
+            stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
+            stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
+            stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
+          }
+        }
+        stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
+        stockB[x][y] = stockA[x][y] - 9*D_*b_[x][y];
+        stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
       }
     }
+    a_ = stockA;
+    b_ = stockB;
+    c_ = stockC;
   }
+
   
   void competition(){
-  
+    int x;
+    int y;
+    int i;
+    int j;
+    for(x = 0; i<W_; i++){
+      for(y = 0; j<H_; j++){
+        for(i = -1; i<1; i++){
+          for(j = -1; j<1; j++){
+            stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
+            stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
+            stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
+          }
+        }
+        stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
+        stockB[x][y] = stockA[x][y] - 9*D_*b_[x][y];
+        stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
+      }
+    }  
   }
   
-  void update(){
+  /**void update(){
   
   }
   

@@ -42,9 +42,9 @@ class World {
   
   World(Bacteria** population[], int length, int width, int height, float diffusion);
   ~World();
-  /**void diffuse_concentration();
+  void diffuse_concentration();
   void competition();
-  void update();
+  /**void update();
   void renew();
   **/
 	private:
