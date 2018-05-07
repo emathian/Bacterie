@@ -10,16 +10,16 @@
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
-using namespace std;
+
 
 class Bacteria {
 	public:
-    /*
+    
   enum class Genotype {
     Ga,
     Gb
   };
-  */
+  
 	// =========================================================================
   //                               Constructors
   // =========================================================================
@@ -35,12 +35,14 @@ class Bacteria {
   // =========================================================================
   float PROBA_MUTE() const;
   float PROBA_DEATH() const;
+  float FITNESS_MIN() const;
+  std::vector<float> phenotype();
 
 
   // =========================================================================
   //                                  Setters
   // =========================================================================
-
+  void set_phenotype(std::vector<float> new_phenotype);
   // =========================================================================
   //                                 Operators
   // =========================================================================
@@ -60,10 +62,11 @@ class Bacteria {
   //                               Data members
   // =========================================================================
   //const int genotype_;
-  vector<float> phenotype_;
+  std::vector<float> phenotype_;
   const float PROBA_DEATH_;
   const float PROBA_MUTE_;
   static float FITNESS_MIN_;
+  Genotype genotype_;
 
 };
 

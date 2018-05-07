@@ -39,7 +39,7 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                          Public Function members
   // =========================================================================
-  void metabolize(float a) override;
+  //void metabolize(float a) override;
   float get_fitness() ;  
 
 	protected:

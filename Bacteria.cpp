@@ -28,6 +28,20 @@ float Bacteria::PROBA_DEATH() const{
 	return PROBA_DEATH_;
 };
 
+float Bacteria::FITNESS_MIN() const{
+	return FITNESS_MIN_;
+}
+
+std::vector<float> Bacteria::phenotype() {
+	std::vector<float> phenotype (phenotype_);
+	return phenotype;
+}
+// ===========================================================================
+//                               Setter
+// ===========================================================================
+  void Bacteria::set_phenotype(std::vector<float> new_phenotype){
+  	phenotype_ = new_phenotype;
+  }
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
