@@ -5,6 +5,8 @@
 #include <iostream>
 
 #include "Bacteria.h"
+#include "BacteriaGa.h"
+#include "BacteriaGb.h"
 #include "World.h"
 
 
@@ -27,10 +29,10 @@ int main(int argc, char* argv[]) {
     BacteriaGa myGa;
     BacteriaGb myGb;
     
-    /*
+    
     myGa.toString();
     myGb.toString();
-    */
+    
 
     return EXIT_SUCCESS;
 }
