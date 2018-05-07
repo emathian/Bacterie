@@ -22,8 +22,9 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-    
-    
+    Bacteria B;
+    cout << B.PROBA_DEATH_ <<endl;
+     
     return EXIT_SUCCESS;
 }
 

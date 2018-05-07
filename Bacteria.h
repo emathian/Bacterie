@@ -14,10 +14,16 @@ using namespace std;
 
 class Bacteria {
 	public:
+    /*
+  enum class Genotype {
+    Ga,
+    Gb
+  };
+  */
 	// =========================================================================
   //                               Constructors
   // =========================================================================
- 
+  Bacteria();
 
   // =========================================================================
   //                                Destructor
@@ -49,8 +55,11 @@ class Bacteria {
   // =========================================================================
   //                               Data members
   // =========================================================================
- 
-
+  //const int genotype_;
+  vector<float> phenotype_;
+  const float PROBA_DEATH_;
+  const float PROBA_MUTE_;
+  static float FITNESS_MIN_;
 
 };
 
