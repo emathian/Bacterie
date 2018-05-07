@@ -21,10 +21,6 @@ BacteriaGa::BacteriaGa(){
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
-
-// ===========================================================================
-//                         Protected Function members
-// ===========================================================================
 void BacteriaGa::metabolize(float a){
   // update A  
   phenotype_[0] = a*Raa - phenotype_[0]*Rab;
@@ -32,3 +28,13 @@ void BacteriaGa::metabolize(float a){
   // update B 
   phenotype_[1] = phenotype_[1]*Rab;
 }
+
+float BacteriaGa::get_fitness(){
+  return phenotype_[1]; // corresponds to B rate
+}
+
+
+// ===========================================================================
+//                         Protected Function members
+// ===========================================================================
+

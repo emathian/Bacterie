@@ -33,6 +33,8 @@ int main(int argc, char* argv[]) {
     myGa.toString();
     myGb.toString();
     
+    cout << myGa.get_fitness() << endl;
+    cout << myGb.get_fitness() << endl;
 
     return EXIT_SUCCESS;
 }
