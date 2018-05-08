@@ -6,6 +6,9 @@
 // ===========================================================================
 
 #include <vector>
+#include <stdlib.h> // rand
+
+
 
 // ===========================================================================
 //                             "using" statements
@@ -52,13 +55,14 @@ class Bacteria {
   //                        Protected Function members
   // =========================================================================
   virtual void metabolize(float z)=0;
- 
+
   virtual void kill_bacteria(float *a, float *b, float *c)=0;
+
 
   // =========================================================================
   //                               Data members
   // =========================================================================
-  //const int genotype_;
+  
   std::vector<float> phenotype_;
   const float PROBA_DEATH_;
   const float PROBA_MUTE_;

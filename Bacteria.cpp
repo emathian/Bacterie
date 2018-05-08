@@ -61,3 +61,5 @@ char Bacteria::genotype() const{
 void Bacteria::toString(){
   std::cout << "Je suis une bactérie de p_death " << PROBA_DEATH_ << " et de p_mut " << PROBA_MUTE_ << std::endl;
 }
+
+

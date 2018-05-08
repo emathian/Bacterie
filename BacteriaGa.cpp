@@ -43,6 +43,16 @@ void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
 	phenotype_ = {0,0};
 }
 
+BacteriaGa BacteriaGa::divide(){
+	BacteriaGa 	daugtherGa; 
+	 this -> phenotype_[0] = this-> phenotype_[0]/2;
+	 this -> phenotype_[1] = this-> phenotype_[1]/2;
+	 daugtherGa.phenotype_[0] = this-> phenotype_[0];
+	 daugtherGa.phenotype_[1] = this -> phenotype_[1];
+	 return daugtherGa;
+
+}
+
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================

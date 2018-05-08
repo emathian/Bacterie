@@ -55,13 +55,19 @@ int main(int argc, char* argv[]) {
     cout << myGa.get_fitness() << endl;
     cout << myGb.get_fitness() << endl;
 
-    // Test de KIll
-    // Sorry myGa
-    /*
+    // Test of KIll
+    // Sorry myGa 
+    /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected
     float cA =0.8 ; float cB = 0.9 ; float cC = 0;
     myGa.kill_bacteria(&cA , &cB , &cC);
      cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
      */
+
+    //TEst of divide
+   	/* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected					
+    BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
+     cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
+	*/
     return EXIT_SUCCESS;
 }
 

@@ -41,6 +41,16 @@ void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
 	phenotype_ = {0,0};
 }
 
+BacteriaGb BacteriaGb::divide(){
+	BacteriaGb	daugtherGb; 
+	 this -> phenotype_[0] = this-> phenotype_[0]/2;
+	 this -> phenotype_[1] = this-> phenotype_[1]/2;
+	 daugtherGb.phenotype_[0] = this-> phenotype_[0];
+	 daugtherGb.phenotype_[1] = this -> phenotype_[1];
+	 return daugtherGb;
+
+}
+
 // ===========================================================================
 //                         Protected Function members
 // ===========================================================================
