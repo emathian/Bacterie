@@ -45,7 +45,8 @@ class BacteriaGb: public Bacteria {
   // =========================================================================
   //                        Protected Function members
   // =========================================================================
-  void metabolize(float b);
+  virtual void metabolize(float b) override;
+  virtual void kill_bacteria(float *a, float *b, float *c) override;
   // =========================================================================
   //                               Data members
   // =========================================================================

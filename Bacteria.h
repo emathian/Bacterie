@@ -52,6 +52,8 @@ class Bacteria {
   //                        Protected Function members
   // =========================================================================
   virtual void metabolize(float z)=0;
+ 
+  virtual void kill_bacteria(float *a, float *b, float *c)=0;
 
   // =========================================================================
   //                               Data members

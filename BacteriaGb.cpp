@@ -34,6 +34,13 @@ float BacteriaGb::get_fitness(){
   return phenotype_[1]; // corresponds to C rate
 }
 
+void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
+	*a = *a;
+	*b = *b +  phenotype_[1];
+	*c = *c +  phenotype_[2];
+	phenotype_ = {0,0};
+}
+
 // ===========================================================================
 //                         Protected Function members
 // ===========================================================================

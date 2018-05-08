@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     cout <<"Default proba of death  " <<myGa.PROBA_DEATH()<<endl;
     cout <<"Default proba  "<< myGa.PROBA_MUTE()<<endl;
     cout <<"Default  FITNESS_MIN "<< myGa.FITNESS_MIN()<<endl;
-    cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
+    cout <<"Phenotype "<< myGa.phenotype()[0]<< "," <<myGa.phenotype()[1]<<endl;
     cout <<"Genotype "<< myGa.genotype()<<endl;
     // Test of settter :
     std::vector<float> update_phenotype = {0,1};
@@ -55,7 +55,13 @@ int main(int argc, char* argv[]) {
     cout << myGa.get_fitness() << endl;
     cout << myGb.get_fitness() << endl;
 
-
+    // Test de KIll
+    // Sorry myGa
+    /*
+    float cA =0.8 ; float cB = 0.9 ; float cC = 0;
+    myGa.kill_bacteria(&cA , &cB , &cC);
+     cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
+     */
     return EXIT_SUCCESS;
 }
 

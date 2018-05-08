@@ -18,9 +18,11 @@ BacteriaGa::BacteriaGa(){
 //                                 Destructor
 // ===========================================================================
 
+
 // ===========================================================================
-//                           Public Function members
+//                         Protected Function members
 // ===========================================================================
+
 void BacteriaGa::metabolize(float a){
   // update A  
   phenotype_[0] = a*Raa - phenotype_[0]*Rab;
@@ -34,7 +36,14 @@ float BacteriaGa::get_fitness(){
 }
 
 
+void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
+	*a = *a +  phenotype_[0];
+	*b = *b +  phenotype_[1];
+	*c = *c; 
+	phenotype_ = {0,0};
+}
+
 // ===========================================================================
-//                         Protected Function members
+//                           Public Function members
 // ===========================================================================
 
