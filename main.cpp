@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
 	
 	Bacteria** tableau[10][10];
 	
-	World myworld(tableau[0][0], 2, 2, 0.1);
+	World myworld(tableau[0][0], 10, 10, 0.1);
 	
 	
     return EXIT_SUCCESS;
