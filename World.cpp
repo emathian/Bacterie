@@ -14,15 +14,16 @@
 // ===========================================================================
 
 
-  World::World(Bacteria** population, int width, int height, float diffusion){
+  World::World(BacteriaGa** population, int width, int height, float diffusion){
     
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    pop_ = new Bacteria* [W_];
+    pop_ = new BacteriaGa* [W_];
     int i;
     for(int i = 0; i<W_; i++){
       pop_[i] = new BacteriaGa [H_];
+
      }
     int j;
     for(i = 0; i<width; i++){

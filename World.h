@@ -18,7 +18,7 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
-  World(Bacteria** population, int width, int height, float diffusion);
+  World(BacteriaGa** population, int width, int height, float diffusion);
  // ~World();
 
   // =========================================================================
@@ -67,7 +67,7 @@ class World {
   int H_ ;
   float D_ ; //diffusion coefficient
  
-  Bacteria** pop_;
+  BacteriaGa** pop_;
   float **a_;
   float **b_;
   float **c_;
