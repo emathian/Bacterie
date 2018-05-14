@@ -5,6 +5,7 @@
 #include "BacteriaGa.h"
 #include "World.h"
 #include <map>
+#include <iostream>
 
 // ===========================================================================
 //                       Definition of static attributes
@@ -20,8 +21,28 @@
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    Bacteria* tab[width][height];
-    pop_ = tab;
+    pop_ = new Bacteria* *[W_];
+    a_ = new float *[W_];
+    b_ = new float *[W_];
+    c_ = new float *[W_];
+
+    int i;
+    for(int i = 0; i<W_; i++){
+      pop_[i] = new Bacteria* [H_];
+      a_[i] = new float [H_];
+      b_[i] = new float [H_];
+      c_[i] = new float [H_];
+     }
+    int j;
+    for(i = 0; i<width; i++){
+      for(j = 0; j<height; j++){
+        BacteriaGa a;
+        pop_[i][j] = &a;
+        a_[i][j] = 50.0;
+        b_[i][j] = 0.0;
+        c_[i][j] = 0.0;
+      }
+    }
 
   }
 
@@ -103,6 +124,9 @@ void diffuse_concentration(){
         stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
       }
     }
+    a_ = stockA;
+    b_ = stockB;
+    c_ = stockC;
   }
 
 
@@ -163,6 +187,9 @@ void renew(int a_init){
 }
   **/
 
+// ===========================================================================
+//                                 Getters
+// ===========================================================================
 
  
   
