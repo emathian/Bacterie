@@ -3,10 +3,14 @@
 // ===========================================================================
 #include "Bacteria.h"
 #include "BacteriaGa.h"
-#include <stdlib.h>   
+#include "BacteriaGb.h"
 #include "World.h"
+
+
 #include <map>
 #include <iostream>
+#include <stdlib.h>     /* srand, rand */
+#include <stdio.h>
 
 // ===========================================================================
 //                       Definition of static attributes
@@ -17,27 +21,27 @@
 // ===========================================================================
 
 
-<<<<<<< HEAD
-  World::World(Bacteria* **population, int width, int height, float diffusion){
-=======
+
+
   World::World(int width, int height, float diffusion){
->>>>>>> refs/remotes/origin/master
+
     
     W_ = width;
     H_ = height;
     D_ = diffusion;
-<<<<<<< HEAD
+
+
     pop_ = new Bacteria** [W_];
-    int i;
-    for(int i = 0; i<W_; i++){
-
-      pop_[i] = new Bacteria* [H_];
-
-=======
-    pop_ = new Bacteria* *[W_];
     a_ = new float *[W_];
     b_ = new float *[W_];
     c_ = new float *[W_];
+
+    std::vector<int> rand_v;
+    for (int i = 0; i<W_*H_; i++){
+      int rand_type = rand()%2 ;
+      rand_v.push_back(rand_type);
+     } 
+
 
     int i;
     for(int i = 0; i<W_; i++){
@@ -45,31 +49,31 @@
       a_[i] = new float [H_];
       b_[i] = new float [H_];
       c_[i] = new float [H_];
->>>>>>> refs/remotes/origin/master
+
      }
+    int k=0;
     int j;
     for(i = 0; i<width; i++){
       for(j = 0; j<height; j++){
-        BacteriaGa a;
-        pop_[i][j] = &a;
+
+        if (rand_v[k]==0){
+          BacteriaGa add_a;
+          pop_[i][j] = &add_a;
+        }
+        else{
+          BacteriaGb add_b;
+          pop_[i][j] = &add_b;
+        }
+        
         a_[i][j] = 50.0;
         b_[i][j] = 0.0;
         c_[i][j] = 0.0;
+        ++k;
       }
+      
     }
 
   }
-
-
- std::vector<int> World::fill_world (){
-  std::std::vector<int> v;
-  for (int i = 0; i<W_*H_; i++){
-      int type = rand(0,1) ;
-      v.push_back(type);
-
-     }
-  return v;
- }
 
 
   

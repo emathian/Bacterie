@@ -11,7 +11,6 @@
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
-using namespace std;
 
 class World {
    
@@ -19,11 +18,10 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
-<<<<<<< HEAD
-  World(Bacteria* **population, int width, int height, float diffusion);
-=======
+
+
+
   World(int width, int height, float diffusion);
->>>>>>> refs/remotes/origin/master
  // ~World();
 
   // =========================================================================
@@ -55,7 +53,6 @@ class World {
 
   
   void renew();
-  std::vector<int> fill_world();
   void display();
 
 	private:
