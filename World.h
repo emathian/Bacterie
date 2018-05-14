@@ -53,6 +53,8 @@ class World {
   void renew();
   
 
+  void display();
+
 	private:
   // =========================================================================
   //                        Private Function members
