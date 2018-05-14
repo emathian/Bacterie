@@ -84,7 +84,9 @@ int main(int argc, char* argv[]) {
 
 	World myworld(2, 2, 0.1);
     cout<<""<<endl;
-    myworld.display(1);
+    myworld.display(3);
+
+    myworld.diffuse_concentration();
 	
 	
     return EXIT_SUCCESS;

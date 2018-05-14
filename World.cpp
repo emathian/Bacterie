@@ -104,21 +104,25 @@
 //                           Public Function members
 // ===========================================================================
  
- /*
  
-void diffuse_concentration(){
-  int stockA = a_;
-  int stockB = b_;
-  int stockC = c_;
+ 
+void World::diffuse_concentration(){
+  float** stockA = a_;
+  float** stockB = b_;
+  float** stockC = c_;
   int x;
   int y;
+  int xg;
+  int xd;
+  int yh;
+  int yb;
     for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
       for(y = 0; y<H_; y++){
-        if(x = 0){
+        if(x == 0){
           xg = W_ - 1;
           xd = x + 1;
         }else{
-          if(x = W_-1){
+          if(x == W_-1){
             xg = x - 1;
             xd = 0;
           }else{
@@ -126,11 +130,11 @@ void diffuse_concentration(){
             xd = x + 1;
           }
         }
-        if(y = 0){
+        if(y == 0){
           yh = H_ - 1;
           yb = y + 1;        
         }else{
-          if(y = H_-1){
+          if(y == H_-1){
             yh = y - 1;
             yb = 0; 
           }else{
@@ -157,7 +161,7 @@ void diffuse_concentration(){
     b_ = stockB;
     c_ = stockC;
   }
-*/
+
 /**
   void competition(){
     map<Bacteria *,float> neighborhood;
@@ -217,27 +221,32 @@ void renew(int a_init){
   **/
 
 void World::display(int choice){ // Just for tests
+
  
   if (choice == 1){
-    for (int i=0; i<W_ ; ++i)
-      for (int j=0; j<H_ ; ++j)
-    {
-      std::cout<< i << j<<'\t'<<*a_[i] <<std::endl;
+    for (int i=0; i<W_ ; ++i){
+      for (int j=0; j<H_ ; ++j){
+      std::cout<< i << j<<'\t'<<a_[i][j] <<std::endl;
+      }
     }
   }  
   else if (choice == 2){
-    for (int i=0; i<W_ ; ++i)
-       for (int j=0; j<H_ ; ++j)
-    {
-      std::cout<< i <<j <<'\t'<<*b_[i] <<std::endl;
+    for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<b_[i][j] <<std::endl;
     }
+   } 
   }
   else if (choice == 3){
-    for (int i=0; i<W_ ; ++i)
-       for (int j=0; j<H_ ; ++j)
-    {
-      std::cout<< i <<j <<'\t'<<*c_[i] <<std::endl;
+    for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<c_[i][j] <<std::endl; 
     }
+   } 
+  }
+
+  else{
+    std::cout<< "Waiting implementation" <<std::endl; 
   }
 
 }  

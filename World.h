@@ -46,7 +46,7 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-//  void diffuse_concentration();
+    void diffuse_concentration(); // A mettre en privé ?
 //  void competition();
 
  // void update();
