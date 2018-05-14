@@ -14,26 +14,13 @@
 // ===========================================================================
 
 
-  World::World(BacteriaGa** population, int width, int height, float diffusion){
+  World::World(int width, int height, float diffusion){
     
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    pop_ = new BacteriaGa* [W_];
-    int i;
-    for(int i = 0; i<W_; i++){
-      pop_[i] = new BacteriaGa [H_];
-
-     }
-    int j;
-    for(i = 0; i<width; i++){
-      for(j = 0; j<height; j++){
-        pop_[i][j] = population[i][j];
-        a_[i][j] = 50.0;
-        b_[i][j] = 0.0;
-        c_[i][j] = 0.0;
-      }
-    }
+    Bacteria* tab[width][height];
+    pop_ = tab;
 
   }
 
@@ -76,22 +63,47 @@ void diffuse_concentration(){
   int y;
   int i;
   int j;
-  for(x = 0; i<W_; i++){
-    for(y = 0; j<H_; j++){
-      for(i = -1; i<=1; i++){
-        for(j = -1; j<=1; j++){
-          stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
-          stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
-          stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
+    for(x = 0; i<W_; i++){
+      for(y = 0; j<H_; j++){
+        if(x = 0){
+          xg = W_ - 1;
+          xd = x + 1;
+        }else{
+          if(x = W_-1){
+            xg = x - 1;
+            xd = 0;
+          }else{
+            xg = x - 1;
+            xd = x + 1;
+          }
         }
+        if(y = 0){
+          yh = H_ - 1;
+          yb = y + 1;        
+        }else{
+          if(y = H_-1){
+            yh = y - 1;
+            yb = 0; 
+          }else{
+            yh = y - 1;
+            yb = y + 1;          
+          }
+        }
+        stockA[x][y] = stockA[x][y] + D_*(a_[xg][yh] + a_[x][yh] + a_[xd][yh]
+                                        + a_[xg][y] + a_[x][y] + a_[xd][y]
+                                        + a_[xg][yb] + a_[x][yb] + a_[xd][yb]);
+        stockA[x][y] = stockA[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
+                                        + b_[xg][yb] + b_[x][yb] + b_[xd][y]
+                                        + b_[xg][yb] + b_[x][yb] + b_[xd][yb]);
+        stockA[x][y] = stockA[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
+                                        + c_[xg][y] + c_[x][y] + c_[xd][y]
+                                        + c_[xg][yb] + c_[x][yb] + c_[xd][yb]);
+        
         stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
         stockB[x][y] = stockA[x][y] - 9*D_*b_[x][y];
         stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
       }
     }
-    a_ = stockA;
-    b_ = stockB;
-    c_ = stockC;
   }
 
 
@@ -101,21 +113,6 @@ void diffuse_concentration(){
     int y;
     int i;
     int j;
-    for(x = 0; i<W_; i++){
-      for(y = 0; j<H_; j++){
-        for(i = -1; i<1; i++){
-          for(j = -1; j<1; j++){
-            stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
-            stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
-            stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
-          }
-        }
-        stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
-        stockB[x][y] = stockA[x][y] - 9*D_*b_[x][y];
-        stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
-      }
-    }
-  }
     
 }
   
