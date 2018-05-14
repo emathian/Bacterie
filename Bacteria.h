@@ -22,6 +22,7 @@ class Bacteria {
   //                               Constructors
   // =========================================================================
   Bacteria();
+  Bacteria(const Bacteria& bact); 
 
   // =========================================================================
   //                                Destructor
@@ -64,8 +65,8 @@ class Bacteria {
   // =========================================================================
   
   std::vector<float> phenotype_;
-  const float PROBA_DEATH_;
-  const float PROBA_MUTE_;
+  float PROBA_DEATH_; // Voir pour le passer en static plus tard
+  float PROBA_MUTE_; // idem
   static float FITNESS_MIN_;
   char genotype_;
 

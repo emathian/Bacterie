@@ -13,6 +13,7 @@
 //                                Constructors
 // ===========================================================================
 
+
   World::World(Bacteria** population, int width, int height, float diffusion){
     
     W_ = width;
@@ -34,28 +35,15 @@
     }
   }
 
-World::World(Bacteria** population, int width, int height, float diffusion){
-    
-  int i;
-  int j;
-  for(i=0; i<width; i++){
-    for(j=0; j<height; j++){
-      pop_[i][j]=population[i][j];
-      a_[i][j]=50.0;
-      b_[i][j]=0.0;
-      c_[i][j]=0.0;
-    }
-  }
-  W_ = width;
-  H_ = height;
-  D_ = diffusion;
-}
+
+
+
   
   
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-  /**
+/**
 World::~World(){
   int i;
   for(i=0; i<W_; i++){
@@ -135,6 +123,7 @@ void competition(){
   }
   
 void renew(int a_init){
+ 
 }
   **/
 
