@@ -44,7 +44,7 @@
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-/*
+/**
 World::~World(){
   int i;
   for(i=0; i<W_; i++){
@@ -61,12 +61,12 @@ World::~World(){
   delete W_ ; 
   delete H_ ;
 }
-  */
- 
+  
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
- /*
+ 
+ 
 void diffuse_concentration(){
   int stockA = a_;
   int stockB = b_;
@@ -77,8 +77,8 @@ void diffuse_concentration(){
   int j;
   for(x = 0; i<W_; i++){
     for(y = 0; j<H_; j++){
-      for(i = -1; i<1; i++){
-        for(j = -1; j<1; j++){
+      for(i = -1; i<=1; i++){
+        for(j = -1; j<=1; j++){
           stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
           stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
           stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
@@ -102,10 +102,10 @@ void competition(){
   int y;
   int i;
   int j;
-  for(x = 0; i<W_; i++){
-    for(y = 0; j<H_; j++){
-      for(i = -1; i<1; i++){
-        for(j = -1; j<1; j++){
+  for(x = 0; i<W_-1; i++){
+    for(y = 0; j<H_-1; j++){
+      for(i = -1; i<=1; i++){
+        for(j = -1; j<=1; j++){
           stockA[x][y] = stockA[x][y] + D_*a_[x+i][y+j];
           stockB[x][y] = stockA[x][y] + D_*b_[x+i][y+j];
           stockC[x][y] = stockA[x][y] + D_*c_[x+i][y+j];
@@ -118,22 +118,16 @@ void competition(){
   }
     
 }
- */ 
-  /**void update(){
+  
+  void update(){
   
   }
-  **/
-/*
+  
 void renew(int a_init){
-  for(x = 0; i<W_; i++){
-    for(y = 0; j<H_; j++){
-      a_[i][j] = a_init;
-      b[i][j] = 0;
-    }
-  }
-  
+ 
 }
-*/
+  **/
+
 
  
   
