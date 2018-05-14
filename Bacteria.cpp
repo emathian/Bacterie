@@ -18,6 +18,14 @@ Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
 	phenotype_ = {0., 0.};
 
 }
+
+Bacteria::Bacteria(const Bacteria& bact) 
+{
+	this->PROBA_DEATH_ = bact.PROBA_DEATH_; 
+	this->phenotype_ = bact.phenotype_; 
+	this-> PROBA_MUTE_ = bact.PROBA_MUTE_;	
+
+}
 // ===========================================================================
 //                                Getter
 // ===========================================================================

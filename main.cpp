@@ -36,6 +36,10 @@ int main(int argc, char* argv[]) {
     BacteriaGa myGa;
     BacteriaGb myGb;
 
+    // Test of constructor copy
+    BacteriaGa myGa_copy(myGa);
+    BacteriaGb myGb_copy(myGb);
+
     // Test of getters  
     cout <<"Default proba of death  " <<myGa.PROBA_DEATH()<<endl;
     cout <<"Default proba  "<< myGa.PROBA_MUTE()<<endl;
@@ -68,6 +72,16 @@ int main(int argc, char* argv[]) {
     BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
      cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
 	*/
+	
+	//Testeurs de world
+	  
+	//test constructeur
+	
+	Bacteria** tableau[10][10];
+	
+	World myworld(tableau[0][0], 2, 2, 0.1);
+	
+	
     return EXIT_SUCCESS;
 }
 

@@ -5,6 +5,7 @@
 //                                  Includes
 // ===========================================================================
 #include "Bacteria.h"
+#include "BacteriaGa.h"
 #include <array>
 // ===========================================================================
 //                             "using" statements
@@ -17,7 +18,8 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
- 
+  World(Bacteria** population, int width, int height, float diffusion);
+ // ~World();
 
   // =========================================================================
   //                                Destructor
@@ -41,13 +43,15 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  World(Bacteria** population[], int length, int width, int height, float diffusion);
-  ~World();
+  
   void diffuse_concentration();
   void competition();
-  /**void update();
+
+ // void update();
+
+  
   void renew();
-  **/
+  
 
   void display();
 
@@ -63,9 +67,9 @@ class World {
   // size of the world
   int W_ ; 
   int H_ ;
-  int D_ ; //diffusion coefficient
+  float D_ ; //diffusion coefficient
  
-  Bacteria* **pop_;
+  Bacteria **pop_;
   float **a_;
   float **b_;
   float **c_;
