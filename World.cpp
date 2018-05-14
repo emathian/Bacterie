@@ -162,19 +162,23 @@ void World::diffuse_concentration(){
     c_ = stockC;
   }
 
-/**
-  void competition(){
+
+  void World::competition(){
     map<Bacteria *,float> neighborhood;
     int x;
     int y;
+    int xg;
+    int xd;
+    int yh;
+    int yb;
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
-        if(pop_[x][y] = NULL){
+        if(pop_[x][y] == NULL){
           if(x = 0){
             xg = W_ - 1;
             xd = x + 1;
           }else{
-            if(x = W_-1){
+            if(x == W_-1){
               xg = x - 1;
               xd = 0;
             }else{
@@ -182,11 +186,11 @@ void World::diffuse_concentration(){
               xd = x + 1;
             }
          }
-          if(y = 0){
+          if(y == 0){
             yh = H_ - 1;
            yb = y + 1;        
           }else{
-            if(y = H_-1){
+            if(y == H_-1){
               yh = y - 1;
               yb = 0; 
             }else{
@@ -210,7 +214,7 @@ void World::diffuse_concentration(){
       
     
 }
-  
+  /**
   void update(){
   
   }
