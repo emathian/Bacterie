@@ -19,7 +19,7 @@ class World {
   //                               Constructors
   // =========================================================================
   World(Bacteria** population, int width, int height, float diffusion);
-  ~World();
+ // ~World();
 
   // =========================================================================
   //                                Destructor
@@ -46,12 +46,10 @@ class World {
   
   void diffuse_concentration();
   void competition();
-<<<<<<< HEAD
+
  // void update();
-=======
+
   
-  /**void update();
->>>>>>> 2d96af31cd448bd8741b9251c9c2a8d04f4fba2b
   void renew();
   
 
