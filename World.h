@@ -53,7 +53,7 @@ class World {
 
   
   void renew();
-  void display();
+  void display(int choice);
 
 	private:
   // =========================================================================

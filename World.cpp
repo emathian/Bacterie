@@ -216,6 +216,32 @@ void renew(int a_init){
 }
   **/
 
+void World::display(int choice){ // Just for tests
+ 
+  if (choice == 1){
+    for (int i=0; i<W_ ; ++i)
+      for (int j=0; j<H_ ; ++j)
+    {
+      std::cout<< i << j<<'\t'<<*a_[i] <<std::endl;
+    }
+  }  
+  else if (choice == 2){
+    for (int i=0; i<W_ ; ++i)
+       for (int j=0; j<H_ ; ++j)
+    {
+      std::cout<< i <<j <<'\t'<<*b_[i] <<std::endl;
+    }
+  }
+  else if (choice == 3){
+    for (int i=0; i<W_ ; ++i)
+       for (int j=0; j<H_ ; ++j)
+    {
+      std::cout<< i <<j <<'\t'<<*c_[i] <<std::endl;
+    }
+  }
+
+}  
+
 // ===========================================================================
 //                                 Getters
 // ===========================================================================

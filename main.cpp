@@ -83,8 +83,8 @@ int main(int argc, char* argv[]) {
 
 
 	World myworld(2, 2, 0.1);
-  
-    //myworld.pop();
+    cout<<""<<endl;
+    myworld.display(1);
 	
 	
     return EXIT_SUCCESS;
