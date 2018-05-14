@@ -3,6 +3,7 @@
 // ===========================================================================
 #include <cstdio>
 #include <iostream>
+#include <vector>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -20,22 +21,54 @@
 using std::cout;
 using std::endl;
 
+
 // ===========================================================================
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
 
+   // Bacteria B;
+   // cout << B.PROBA_DEATH() <<endl;
+     
 
-  BacteriaGa myGa;
-  BacteriaGb myGb;
-    
-  myGa.toString();
-  myGb.toString();
-    
-  cout << myGa.get_fitness() << endl;
-  cout << myGb.get_fitness() << endl;
+    //Bacteria B;
 
-  return EXIT_SUCCESS;
+    BacteriaGa myGa;
+    BacteriaGb myGb;
+
+    // Test of getters  
+    cout <<"Default proba of death  " <<myGa.PROBA_DEATH()<<endl;
+    cout <<"Default proba  "<< myGa.PROBA_MUTE()<<endl;
+    cout <<"Default  FITNESS_MIN "<< myGa.FITNESS_MIN()<<endl;
+    cout <<"Phenotype "<< myGa.phenotype()[0]<< "," <<myGa.phenotype()[1]<<endl;
+    cout <<"Genotype "<< myGa.genotype()<<endl;
+    // Test of settter :
+    std::vector<float> update_phenotype = {0,1};
+    myGa.set_phenotype(update_phenotype);
+    cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
+
+
+    
+    myGa.toString();
+    myGb.toString();
+    
+    cout << myGa.get_fitness() << endl;
+    cout << myGb.get_fitness() << endl;
+
+    // Test of KIll
+    // Sorry myGa 
+    /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected
+    float cA =0.8 ; float cB = 0.9 ; float cC = 0;
+    myGa.kill_bacteria(&cA , &cB , &cC);
+     cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
+     */
+
+    //TEst of divide
+   	/* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected					
+    BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
+     cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
+	*/
+    return EXIT_SUCCESS;
 }
 
 
