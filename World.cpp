@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-
+/*
 World::World(Bacteria** population, int width, int height, float diffusion){
     
   int i;
@@ -27,12 +27,13 @@ World::World(Bacteria** population, int width, int height, float diffusion){
   H_ = height;
   D_ = diffusion;
 }
+*/
   
   
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-  
+/*  
 World::~World(){
   int i;
   for(i=0; i<W_; i++){
@@ -50,10 +51,11 @@ World::~World(){
   delete H_ ;
 }
   
+ */ 
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
- 
+ /*
 void diffuse_concentration(){
   int stockA = a_;
   int stockB = b_;
@@ -105,11 +107,12 @@ void competition(){
   }
     
 }
-  
+ */ 
   /**void update(){
   
   }
   **/
+/*
 void renew(int a_init){
   for(x = 0; i<W_; i++){
     for(y = 0; j<H_; j++){
@@ -119,7 +122,7 @@ void renew(int a_init){
   }
   
 }
-
+*/
 
  
   

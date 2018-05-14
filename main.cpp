@@ -36,6 +36,10 @@ int main(int argc, char* argv[]) {
     BacteriaGa myGa;
     BacteriaGb myGb;
 
+    // Test of constructor copy
+    BacteriaGa myGa_copy(myGa);
+    BacteriaGb myGb_copy(myGb);
+
     // Test of getters  
     cout <<"Default proba of death  " <<myGa.PROBA_DEATH()<<endl;
     cout <<"Default proba  "<< myGa.PROBA_MUTE()<<endl;

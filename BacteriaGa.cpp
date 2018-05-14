@@ -14,6 +14,10 @@ static float Rab = 0.1;
 BacteriaGa::BacteriaGa(){
   genotype_ = 'a';
 }
+
+BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
+	genotype_ = bactGa.genotype_;
+};
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================

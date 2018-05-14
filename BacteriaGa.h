@@ -17,6 +17,7 @@ class BacteriaGa : public Bacteria {
   //                               Constructors
   // =========================================================================
   BacteriaGa();
+  BacteriaGa(const BacteriaGa& bactGa);
 
   // =========================================================================
   //                                Destructor

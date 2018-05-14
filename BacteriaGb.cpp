@@ -15,6 +15,9 @@ BacteriaGb::BacteriaGb(){
   genotype_ = 'b';
 }
 
+BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
+	genotype_ = bactGb.genotype_;
+};
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================

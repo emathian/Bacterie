@@ -45,9 +45,9 @@ class World {
   ~World();
   void diffuse_concentration();
   void competition();
-  /**void update();
+ // void update();
   void renew();
-  **/
+  
 
 	private:
   // =========================================================================
