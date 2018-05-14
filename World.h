@@ -65,7 +65,7 @@ class World {
   int H_ ;
   float D_ ; //diffusion coefficient
  
-  Bacteria** pop_;
+  Bacteria **pop_;
   float **a_;
   float **b_;
   float **c_;
