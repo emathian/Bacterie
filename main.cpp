@@ -76,12 +76,11 @@ int main(int argc, char* argv[]) {
 	//Testeurs de world
 	  
 	//test constructeur
-	
-	Bacteria** tableau[2][2];
-	
-	//World myworld(tableau[0][0], 2, 2, 0.1);
 
-    
+
+	World myworld(2, 2, 0.1);
+  
+  myworld.pop();
 	
 	
     return EXIT_SUCCESS;

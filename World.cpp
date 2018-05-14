@@ -5,6 +5,8 @@
 #include "BacteriaGa.h"
 #include "World.h"
 
+#include <iostream>
+
 // ===========================================================================
 //                       Definition of static attributes
 // ===========================================================================
@@ -14,21 +16,28 @@
 // ===========================================================================
 
 
-  World::World(BacteriaGa** population, int width, int height, float diffusion){
+  World::World(int width, int height, float diffusion){
     
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    pop_ = new BacteriaGa* [W_];
+    pop_ = new Bacteria* *[W_];
+    a_ = new float *[W_];
+    b_ = new float *[W_];
+    c_ = new float *[W_];
+
     int i;
     for(int i = 0; i<W_; i++){
-      pop_[i] = new BacteriaGa [H_];
-
+      pop_[i] = new Bacteria* [H_];
+      a_[i] = new float [H_];
+      b_[i] = new float [H_];
+      c_[i] = new float [H_];
      }
     int j;
     for(i = 0; i<width; i++){
       for(j = 0; j<height; j++){
-        pop_[i][j] = population[i][j];
+        BacteriaGa a;
+        pop_[i][j] = &a;
         a_[i][j] = 50.0;
         b_[i][j] = 0.0;
         c_[i][j] = 0.0;
@@ -128,8 +137,18 @@ void renew(int a_init){
 }
   **/
 
+// ===========================================================================
+//                                 Getters
+// ===========================================================================
 
- 
+void World::pop(){
+  for(int i = 0; i<W_; i++){
+      for(int j = 0; j<H_; j++){
+        std::cout << "Adresse : " << pop_[i][j] << "///";
+        // pop_[i][j]->toString();
+      }
+  }
+}
   
   
 
