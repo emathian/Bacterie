@@ -7,6 +7,7 @@
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include <array>
+#include <vector>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -18,7 +19,7 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
-  World(BacteriaGa** population, int width, int height, float diffusion);
+  World(Bacteria* **population, int width, int height, float diffusion);
  // ~World();
 
   // =========================================================================
@@ -43,16 +44,14 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  
-  void diffuse_concentration();
-  void competition();
+//  void diffuse_concentration();
+//  void competition();
 
  // void update();
 
   
   void renew();
-  
-
+  std::vector<int> fill_world();
   void display();
 
 	private:
@@ -69,11 +68,9 @@ class World {
   int H_ ;
   float D_ ; //diffusion coefficient
  
-<<<<<<< HEAD
-  BacteriaGa** pop_;
-=======
-  Bacteria **pop_;
->>>>>>> 6fa4dbe6cf1c5229576c6bf8bcb67fc0d9e43494
+
+  Bacteria* **pop_;
+
   float **a_;
   float **b_;
   float **c_;

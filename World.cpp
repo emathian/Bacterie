@@ -3,6 +3,7 @@
 // ===========================================================================
 #include "Bacteria.h"
 #include "BacteriaGa.h"
+#include <stdlib.h>   
 #include "World.h"
 
 // ===========================================================================
@@ -14,15 +15,16 @@
 // ===========================================================================
 
 
-  World::World(BacteriaGa** population, int width, int height, float diffusion){
+  World::World(Bacteria* **population, int width, int height, float diffusion){
     
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    pop_ = new BacteriaGa* [W_];
+    pop_ = new Bacteria** [W_];
     int i;
     for(int i = 0; i<W_; i++){
-      pop_[i] = new BacteriaGa [H_];
+
+      pop_[i] = new Bacteria* [H_];
 
      }
     int j;
@@ -38,6 +40,15 @@
   }
 
 
+ std::vector<int> World::fill_world (){
+  std::std::vector<int> v;
+  for (int i = 0; i<W_*H_; i++){
+      int type = rand(0,1) ;
+      v.push_back(type);
+
+     }
+  return v;
+ }
 
 
   
@@ -62,11 +73,13 @@
     delete W_ ; 
     delete H_ ;
   }
+  */
 
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
  
+ /*
  
 void diffuse_concentration(){
   int stockA = a_;
@@ -93,8 +106,8 @@ void diffuse_concentration(){
     b_ = stockB;
     c_ = stockC;
   }
-
-
+*/
+/**
   void competition(){
     
     int x;
