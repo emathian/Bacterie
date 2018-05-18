@@ -27,11 +27,15 @@ using std::endl;
 // ===========================================================================
 int main(int argc, char* argv[]) {
   /*
+  //----------------------
+  //Testeurs de Bacteria
+  //----------------------
+
   // Bacteria B;
   // cout << B.PROBA_DEATH() <<endl;
     
 
-   //Bacteria B;
+  //Bacteria B;
   BacteriaGa myGa;
   BacteriaGb myGb;
 
@@ -49,9 +53,7 @@ int main(int argc, char* argv[]) {
   std::vector<float> update_phenotype = {0,1};
   myGa.set_phenotype(update_phenotype);
   cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
-
-
-    
+ 
   myGa.toString();
   myGb.toString();
     
@@ -72,38 +74,34 @@ int main(int argc, char* argv[]) {
   BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
   cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
 	*/
-	
-	//Testeurs de world
-	  
-	//test constructeur
-	
-	// Bacteria** tableau[2][2];
-	
-	
 
+  //----------------------
+  //Testeurs de World
+  //----------------------
 
+  //test constructeur
 	World myworld(2, 2, 0.1);
-<<<<<<< HEAD
+
   //cout<<""<<endl;
   //myworld.display(3);
 
   //myworld.diffuse_concentration();
-	
-	
-  return EXIT_SUCCESS;
-=======
-    cout<<"Display A before diffusion "<<endl;
-    myworld.display(1);
 
-    myworld.diffuse_concentration();
-    cout<<"Display A after diffusion "<<endl;
-    myworld.display(1);
+  cout<<"Display A before diffusion "<<endl;
+  myworld.display(1);
+
+  myworld.diffuse_concentration();
+  cout<<"Display A after diffusion "<<endl;
+  myworld.display(1);
 	
-    myworld.renew(30);
-    myworld.display(1);
+  /*
+  myworld.renew(30);
+  myworld.display(1);
 	myworld.display(2);
-    return EXIT_SUCCESS;
->>>>>>> 360abf7244581f1388cd25fb80471adb16649a07
+  */
+
+  return EXIT_SUCCESS;
+
 }
 
 
