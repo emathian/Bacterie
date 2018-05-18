@@ -83,6 +83,7 @@ int main(int argc, char* argv[]) {
 
 
 	World myworld(2, 2, 0.1);
+<<<<<<< HEAD
   //cout<<""<<endl;
   //myworld.display(3);
 
@@ -90,6 +91,19 @@ int main(int argc, char* argv[]) {
 	
 	
   return EXIT_SUCCESS;
+=======
+    cout<<"Display A before diffusion "<<endl;
+    myworld.display(1);
+
+    myworld.diffuse_concentration();
+    cout<<"Display A after diffusion "<<endl;
+    myworld.display(1);
+	
+    myworld.renew(30);
+    myworld.display(1);
+	myworld.display(2);
+    return EXIT_SUCCESS;
+>>>>>>> 360abf7244581f1388cd25fb80471adb16649a07
 }
 
 

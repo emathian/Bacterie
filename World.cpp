@@ -96,8 +96,6 @@ World::~World(){
 //                           Public Function members
 // ===========================================================================
  
- 
- 
 void World::diffuse_concentration(){
   float** stockA = a_;
   float** stockB = b_;
@@ -166,7 +164,7 @@ void World::diffuse_concentration(){
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
         if(pop_[x][y] == NULL){
-          if(x = 0){
+          if(x == 0){
             xg = W_ - 1;
             xd = x + 1;
           }else{
@@ -211,7 +209,14 @@ void World::diffuse_concentration(){
   
   }
   
-void renew(int a_init){
+void World::renew(int a_init){
+  for (int i=0; i<W_ ; ++i){
+    for (int j=0; j<H_ ; ++j){
+      b_[i][j]=0;
+      c_[i][j]=0;
+      a_[i][j]= a_init;
+    }
+  }
  
 }
   **/
@@ -242,7 +247,11 @@ void World::display(int choice){ // Just for tests
   }
 
   else{
-    std::cout<< "Waiting implementation" <<std::endl; 
+   for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<pop_[i][j]->genotype() <<std::endl; 
+    }
+   } 
   }
 
 }  

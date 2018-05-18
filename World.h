@@ -11,6 +11,7 @@
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
+using namespace std;
 
 class World {
    
@@ -46,13 +47,18 @@ class World {
   //                          Public Function members
   // =========================================================================
   
+<<<<<<< HEAD
     void diffuse_concentration(); // A mettre en privé ?
   //void competition();
+=======
+  void diffuse_concentration(); // A mettre en privé ?
+  void competition();
+>>>>>>> 360abf7244581f1388cd25fb80471adb16649a07
 
  // void update();
 
   
-  void renew();
+  void renew(int a_init);
   void display(int choice);
 
 	private:
