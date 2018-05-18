@@ -11,6 +11,7 @@
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
+using namespace std;
 
 class World {
    
@@ -22,7 +23,7 @@ class World {
 
 
   World(int width, int height, float diffusion);
- // ~World();
+  ~World();
 
   // =========================================================================
   //                                Destructor
@@ -46,12 +47,9 @@ class World {
   //                          Public Function members
   // =========================================================================
   
+  //void competition();
   void diffuse_concentration(); // A mettre en privé ?
-  void competition();
-
- // void update();
-
-  
+  void update(int tours_max);
   void renew(int a_init);
   void display(int choice);
 

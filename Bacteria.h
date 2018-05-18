@@ -49,15 +49,16 @@ class Bacteria {
   //                          Public Function members
   // =========================================================================
   virtual void toString();
+  
+  virtual void metabolize(float * a, float * b);
+
+  virtual void kill_bacteria(float *a, float *b, float *c);
 
 
 	protected:
   // =========================================================================
   //                        Protected Function members
   // =========================================================================
-  virtual void metabolize(float z)=0;
-
-  virtual void kill_bacteria(float *a, float *b, float *c)=0;
 
 
   // =========================================================================

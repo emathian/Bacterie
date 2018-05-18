@@ -29,10 +29,10 @@ BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
 //                         Protected Function members
 // ===========================================================================
 
-void BacteriaGa::metabolize(float a){
+void BacteriaGa::metabolize(float * a, float * b){
   // update A  
-  phenotype_[0] = a*Raa - phenotype_[0]*Rab;
-
+  phenotype_[0] = *a*Raa - phenotype_[0]*Rab;
+  *a = *a - *a*Raa;
   // update B 
   phenotype_[1] = phenotype_[1]*Rab;
 }

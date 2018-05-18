@@ -22,7 +22,7 @@
 // ===========================================================================
 
 
-  World::World(int width, int height, float diffusion){
+World::World(int width, int height, float diffusion){
     
     W_ = width;
     H_ = height;
@@ -67,14 +67,14 @@
           pop_[i][j] = p_add_b;
         }
         
-        a_[i][j] = 50.0;
-        b_[i][j] = 0.0;
-        c_[i][j] = 0.0;
-        ++k;
-      }
+      a_[i][j] = 50.0;
+      b_[i][j] = 0.0;
+      c_[i][j] = 0.0;
+      ++k;
     }
 
   }
+}
 
 
 
@@ -85,30 +85,24 @@
 //                                 Destructor
 // ===========================================================================
   /*
-  World::~World(){
-    int i;
-    for(i=0; i<W_; i++){
-      delete[] pop_[i];
-      delete[] a_[i];
-      delete[] b_[i];
-      delete[] c_[i];
-    }
-    delete pop_[];
-    delete[] a_;
-    delete[] b_;
-    delete[] c_;
+World::~World(){
+  int i;
+  for(i=0; i<W_; i++){
+    delete[] a_[i];
+    delete[] b_[i];
+    delete[] c_[i];
+    delete[] pop_[i];
+  }  
+  delete[] a_;
+  delete[] b_;
+  delete[] c_;
+  delete[] pop_;
+}
 
-    delete D_ ;
-    delete W_ ; 
-    delete H_ ;
-  }
- */ 
 
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
- 
- 
  
 void World::diffuse_concentration(){
   float** stockA = a_;
@@ -165,10 +159,10 @@ void World::diffuse_concentration(){
     b_ = stockB;
     c_ = stockC;
   }
+/**
 
-/*
   void World::competition(){
-    std::map<Bacteria *,float> neighborhood;
+    map<Bacteria *,float> neighborhood;
     int x;
     int y;
     int xg;
@@ -219,9 +213,37 @@ void World::diffuse_concentration(){
     
 }
   **/
-  void update(){
-  
+    
+void World::update(int tours_max){
+  int tours;
+  int x;
+  int y;
+  float death = pop_[0][0]->PROBA_DEATH();
+  float random_nb;
+  for( tours = 0; tours < tours_max; tours++){
+    if(tours%7==0){
+      //this->renew();
+      }
+    this-> diffuse_concentration();
+    //death of the bacteries
+    for(x = 0; x <W_; x++){
+      for(y = 0; y< H_; y++){
+        random_nb = ((float)(rand()%101))/100.0;
+        if(random_nb < death){
+          pop_[x][y]-> kill_bacteria(&a_[x][y],&b_[x][y],&c_[x][y]);
+          pop_[x][y]= NULL;
+        }
+      }
+    }
+    //this-> competition();
+    //metabolize
+    for(x = 0; x <W_; x++){
+      for(y = 0; y< H_; y++){
+        pop_[x][y]->metabolize(&a_[x][y],&b_[x][y]);
+      }
+    }
   }
+}
   
 void World::renew(int a_init){
   for (int i=0; i<W_ ; ++i){
@@ -233,7 +255,7 @@ void World::renew(int a_init){
   }
  
 }
-  
+
 
 void World::display(int choice){ // Just for tests
 
