@@ -7,10 +7,10 @@
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include <array>
+#include <vector>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
-using namespace std;
 
 class World {
    
@@ -18,6 +18,9 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
+
+
+
   World(int width, int height, float diffusion);
  // ~World();
 
@@ -43,17 +46,14 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  
-  void diffuse_concentration();
-  void competition();
+    void diffuse_concentration(); // A mettre en privé ?
+//  void competition();
 
  // void update();
 
   
   void renew();
-  
-
-  void display();
+  void display(int choice);
 
 	private:
   // =========================================================================
