@@ -26,7 +26,7 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-
+  /*
   // Bacteria B;
   // cout << B.PROBA_DEATH() <<endl;
     
@@ -57,7 +57,8 @@ int main(int argc, char* argv[]) {
     
   cout << myGa.get_fitness() << endl;
   cout << myGb.get_fitness() << endl;
-
+  */
+  
   // Test of KIll
   // Sorry myGa 
   /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected
@@ -76,16 +77,16 @@ int main(int argc, char* argv[]) {
 	  
 	//test constructeur
 	
-	Bacteria** tableau[2][2];
+	// Bacteria** tableau[2][2];
 	
 	
 
 
 	World myworld(2, 2, 0.1);
-  cout<<""<<endl;
-  myworld.display(3);
+  //cout<<""<<endl;
+  //myworld.display(3);
 
-  myworld.diffuse_concentration();
+  //myworld.diffuse_concentration();
 	
 	
   return EXIT_SUCCESS;

@@ -21,54 +21,52 @@
 // ===========================================================================
 
 
-  World::World(int width, int height, float diffusion){
+World::World(int width, int height, float diffusion){
     
-    W_ = width;
-    H_ = height;
-    D_ = diffusion;
+  W_ = width;
+  H_ = height;
+  D_ = diffusion;
 
 
-    pop_ = new Bacteria** [W_];
-    a_ = new float *[W_];
-    b_ = new float *[W_];
-    c_ = new float *[W_];
+  pop_ = new Bacteria** [W_];
+  a_ = new float *[W_];
+  b_ = new float *[W_];
+  c_ = new float *[W_];
 
-    std::vector<int> rand_v;
-    for (int i = 0; i<W_*H_; i++){
-      int rand_type = rand()%2 ;
-      rand_v.push_back(rand_type);
-     } 
+  std::vector<int> rand_v;
+  for (int i = 0; i<W_*H_; i++){
+    int rand_type = rand()%2 ;
+    rand_v.push_back(rand_type);
+   } 
 
 
-    int i;
-    for(int i = 0; i<W_; i++){
-      pop_[i] = new Bacteria* [H_];
-      a_[i] = new float [H_];
-      b_[i] = new float [H_];
-      c_[i] = new float [H_];
-     }
-    int k=0;
-    int j;
-    for(i = 0; i<width; i++){
-      for(j = 0; j<height; j++){
-
-        if (rand_v[k]==0){
-          BacteriaGa add_a;
-          pop_[i][j] = &add_a;
-        }
-        else{
-          BacteriaGb add_b;
-          pop_[i][j] = &add_b;
-        }
-        
-        a_[i][j] = 50.0;
-        b_[i][j] = 0.0;
-        c_[i][j] = 0.0;
-        ++k;
+  int i;
+  for(int i = 0; i<W_; i++){
+    pop_[i] = new Bacteria* [H_];
+    a_[i] = new float [H_];
+    b_[i] = new float [H_];
+    c_[i] = new float [H_];
+   }
+  int k=0;
+  int j;
+  for(i = 0; i<width; i++){
+    for(j = 0; j<height; j++){
+      if (rand_v[k]==0){
+        BacteriaGa add_a;
+        pop_[i][j] = &add_a;
       }
+      else{
+        BacteriaGb add_b;
+        pop_[i][j] = &add_b;
+      }
+        
+      a_[i][j] = 50.0;
+      b_[i][j] = 0.0;
+      c_[i][j] = 0.0;
+      ++k;
     }
-
   }
+}
 
 
 
@@ -78,24 +76,21 @@
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-  /*
-  World::~World(){
-    int i;
-    for(i=0; i<W_; i++){
-      delete[] pop_[i];
-      delete[] a_[i];
-      delete[] b_[i];
-      delete[] c_[i];
-    }
-    delete pop_[];
-    delete[] a_;
-    delete[] b_;
-    delete[] c_;
-    delete D_ ;
-    delete W_ ; 
-    delete H_ ;
-  }
-  */
+
+World::~World(){
+  int i;
+  for(i=0; i<W_; i++){
+    delete[] a_[i];
+    delete[] b_[i];
+    delete[] c_[i];
+    delete[] pop_[i];
+  }  
+  delete[] a_;
+  delete[] b_;
+  delete[] c_;
+  delete[] pop_;
+}
+
 
 // ===========================================================================
 //                           Public Function members
@@ -159,7 +154,7 @@ void World::diffuse_concentration(){
     c_ = stockC;
   }
 
-
+  /*
   void World::competition(){
     map<Bacteria *,float> neighborhood;
     int x;
@@ -208,9 +203,9 @@ void World::diffuse_concentration(){
         }      
       }
     }
-      
-    
 }
+*/
+
   /**
   void update(){
   

@@ -22,7 +22,7 @@ class World {
 
 
   World(int width, int height, float diffusion);
- // ~World();
+  ~World();
 
   // =========================================================================
   //                                Destructor
@@ -47,7 +47,7 @@ class World {
   // =========================================================================
   
     void diffuse_concentration(); // A mettre en privé ?
-//  void competition();
+  //void competition();
 
  // void update();
 
