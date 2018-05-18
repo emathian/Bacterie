@@ -80,20 +80,40 @@ int main(int argc, char* argv[]) {
   //----------------------
 
   //test constructeur
-	World myworld(2, 2, 0.1);
+	World myworld(2,3 , 0.1);
 
-  //cout<<""<<endl;
-  //myworld.display(3);
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
+  // Tests de la méthode diffuse
+  myworld.diffuse_concentration();
+  cout<< endl;
 
-  //myworld.diffuse_concentration();
-
+  cout<< "Après diffusion : " << endl;  
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
+  /*
   cout<<"Display A before diffusion "<<endl;
   myworld.display(1);
 
   myworld.diffuse_concentration();
   cout<<"Display A after diffusion "<<endl;
   myworld.display(1);
-	
+	*/
+
   /*
   myworld.renew(30);
   myworld.display(1);

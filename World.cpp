@@ -28,10 +28,10 @@ World::World(int width, int height, float diffusion){
   D_ = diffusion;
 
 
-  pop_ = new Bacteria** [W_];
-  a_ = new float *[W_];
-  b_ = new float *[W_];
-  c_ = new float *[W_];
+  pop_ = new Bacteria** [H_];
+  a_ = new float *[H_];
+  b_ = new float *[H_];
+  c_ = new float *[H_];
 
   std::vector<int> rand_v;
   for (int i = 0; i<W_*H_; i++){
@@ -41,16 +41,16 @@ World::World(int width, int height, float diffusion){
 
 
   int i;
-  for(int i = 0; i<W_; i++){
-    pop_[i] = new Bacteria* [H_];
-    a_[i] = new float [H_];
-    b_[i] = new float [H_];
-    c_[i] = new float [H_];
+  for(int i = 0; i<H_; i++){
+    pop_[i] = new Bacteria* [W_];
+    a_[i] = new float [W_];
+    b_[i] = new float [W_];
+    c_[i] = new float [W_];
    }
   int k=0;
   int j;
-  for(i = 0; i<width; i++){
-    for(j = 0; j<height; j++){
+  for(i = 0; i< H_ ; i++){
+    for(j = 0; j< W_ ; j++){
       if (rand_v[k]==0){
         BacteriaGa add_a;
         pop_[i][j] = &add_a;
@@ -59,12 +59,16 @@ World::World(int width, int height, float diffusion){
         BacteriaGb add_b;
         pop_[i][j] = &add_b;
       }
-        
-      a_[i][j] = 50.0;
+      // Tests for diffuse
+      a_[i][j] = 0.0; // to suppress
+      //a_[i][j] = 50.0; // to uncomment
+
       b_[i][j] = 0.0;
       c_[i][j] = 0.0;
       ++k;
     }
+    // Tests for diffuse
+    //a_[1][1]=50.0; // to suppress
   }
 }
 
@@ -79,7 +83,7 @@ World::World(int width, int height, float diffusion){
 
 World::~World(){
   int i;
-  for(i=0; i<W_; i++){
+  for(i=0; i<H_; i++){
     delete[] a_[i];
     delete[] b_[i];
     delete[] c_[i];
@@ -108,14 +112,14 @@ void World::diffuse_concentration(){
   int yb;
     for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
       for(y = 0; y<H_; y++){
-        if(x == 0){
+        if(x == 0){ // cas cellule sur bord gauche
           xg = W_ - 1;
           xd = x + 1;
         }else{
-          if(x == W_-1){
+          if(x == W_-1){ // cas cellule sur bord bas
             xg = x - 1;
             xd = 0;
-          }else{
+          }else{ //
             xg = x - 1;
             xd = x + 1;
           }
@@ -135,16 +139,16 @@ void World::diffuse_concentration(){
         stockA[x][y] = stockA[x][y] + D_*(a_[xg][yh] + a_[x][yh] + a_[xd][yh]
                                         + a_[xg][y] + a_[x][y] + a_[xd][y]
                                         + a_[xg][yb] + a_[x][yb] + a_[xd][yb]);
-        stockA[x][y] = stockA[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
+        stockB[x][y] = stockB[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
                                         + b_[xg][yb] + b_[x][yb] + b_[xd][y]
                                         + b_[xg][yb] + b_[x][yb] + b_[xd][yb]);
-        stockA[x][y] = stockA[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
+        stockC[x][y] = stockC[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
                                         + c_[xg][y] + c_[x][y] + c_[xd][y]
                                         + c_[xg][yb] + c_[x][yb] + c_[xd][yb]);
         
         stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
-        stockB[x][y] = stockA[x][y] - 9*D_*b_[x][y];
-        stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
+        stockB[x][y] = stockB[x][y] - 9*D_*b_[x][y];
+        stockC[x][y] = stockC[x][y] - 9*D_*c_[x][y]; 
       }
     }
     a_ = stockA;
@@ -153,6 +157,7 @@ void World::diffuse_concentration(){
   }
 
   /*
+  // ATTENTION W ET H A INVERSER
   void World::competition(){
     map<Bacteria *,float> neighborhood;
     int x;
@@ -210,8 +215,8 @@ void World::diffuse_concentration(){
   }
   
 void World::renew(int a_init){
-  for (int i=0; i<W_ ; ++i){
-    for (int j=0; j<H_ ; ++j){
+  for (int i=0; i<H_ ; ++i){
+    for (int j=0; j<W_ ; ++j){
       b_[i][j]=0;
       c_[i][j]=0;
       a_[i][j]= a_init;
@@ -225,33 +230,33 @@ void World::display(int choice){ // Just for tests
 
  
   if (choice == 1){
-    for (int i=0; i<W_ ; ++i){
-      for (int j=0; j<H_ ; ++j){
+    for (int i=0; i<H_ ; ++i){
+      for (int j=0; j<W_ ; ++j){
       std::cout<< i << j<<'\t'<<a_[i][j] <<std::endl;
       }
     }
   }  
   else if (choice == 2){
-    for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
+    for (int i=0; i<H_ ; ++i){
+       for (int j=0; j<W_ ; ++j){
       std::cout<< i <<j <<'\t'<<b_[i][j] <<std::endl;
     }
    } 
   }
   else if (choice == 3){
-    for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
+    for (int i=0; i<H_ ; ++i){
+       for (int j=0; j<W_ ; ++j){
       std::cout<< i <<j <<'\t'<<c_[i][j] <<std::endl; 
     }
    } 
   }
 
   else{
-   for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
-      std::cout<< i <<j <<'\t'<<pop_[i][j]->genotype() <<std::endl; 
-    }
-   } 
+    for (int i=0; i<H_ ; ++i){
+      for (int j=0; j<W_ ; ++j){
+        std::cout<< i <<j <<'\t'<<pop_[i][j]->genotype() <<std::endl; 
+      }
+    } 
   }
 
 }  
@@ -261,8 +266,8 @@ void World::display(int choice){ // Just for tests
 // ===========================================================================
 
 void World::pop(){
-  for(int i = 0; i<W_; i++){
-      for(int j = 0; j<H_; j++){
+  for(int i = 0; i<H_; i++){
+      for(int j = 0; j<W_; j++){
         std::cout << "Adresse : " << pop_[i][j] << "///";
         pop_[i][j]->toString();
       }
