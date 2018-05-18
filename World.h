@@ -47,13 +47,13 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-    void diffuse_concentration(); // A mettre en privé ?
-//  void competition();
+  void diffuse_concentration(); // A mettre en privé ?
+  void competition();
 
  // void update();
 
   
-  void renew();
+  void renew(int a_init);
   void display(int choice);
 
 	private:

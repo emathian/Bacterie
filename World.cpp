@@ -49,16 +49,19 @@
      }
     int k=0;
     int j;
-    for(i = 0; i<width; i++){
-      for(j = 0; j<height; j++){
+    for(i = 0; i<W_; i++){
+      for(j = 0; j<H_; j++){
 
         if (rand_v[k]==0){
-          BacteriaGa add_a;
-          pop_[i][j] = &add_a;
+          Bacteria* p_add_a = new BacteriaGa();
+          pop_[i][j] = p_add_a;
+          //std::cout<< p_add_a <<std::endl;
+          //std::cout<< pop_[i][j]->genotype() <<std::endl;
+          //std::cout<< p_add_a->genotype() <<std::endl;
         }
         else{
-          BacteriaGb add_b;
-          pop_[i][j] = &add_b;
+          Bacteria* p_add_b = new BacteriaGb();
+          pop_[i][j] = p_add_b;
         }
         
         a_[i][j] = 50.0;
@@ -91,11 +94,12 @@
     delete[] a_;
     delete[] b_;
     delete[] c_;
+
     delete D_ ;
     delete W_ ; 
     delete H_ ;
   }
-  */
+ */
 
 // ===========================================================================
 //                           Public Function members
@@ -170,7 +174,7 @@ void World::diffuse_concentration(){
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
         if(pop_[x][y] == NULL){
-          if(x = 0){
+          if(x == 0){
             xg = W_ - 1;
             xd = x + 1;
           }else{
@@ -215,7 +219,14 @@ void World::diffuse_concentration(){
   
   }
   
-void renew(int a_init){
+void World::renew(int a_init){
+  for (int i=0; i<W_ ; ++i){
+    for (int j=0; j<H_ ; ++j){
+      b_[i][j]=0;
+      c_[i][j]=0;
+      a_[i][j]= a_init;
+    }
+  }
  
 }
   **/
@@ -246,7 +257,11 @@ void World::display(int choice){ // Just for tests
   }
 
   else{
-    std::cout<< "Waiting implementation" <<std::endl; 
+   for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<pop_[i][j]->genotype() <<std::endl; 
+    }
+   } 
   }
 
 }  
