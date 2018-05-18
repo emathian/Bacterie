@@ -4,11 +4,14 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>   
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include "BacteriaGb.h"
 #include "World.h"
+
 
 
 // ===========================================================================
@@ -26,7 +29,7 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-
+    srand(time(NULL));
    // Bacteria B;
    // cout << B.PROBA_DEATH() <<endl;
      
@@ -86,13 +89,23 @@ int main(int argc, char* argv[]) {
     cout<<"Display A before diffusion "<<endl;
     myworld.display(1);
 
+
     myworld.diffuse_concentration();
     cout<<"Display A after diffusion "<<endl;
     myworld.display(1);
+    cout<<""<<endl;
+    myworld.display(4);
 	
     myworld.renew(30);
     myworld.display(1);
 	myworld.display(2);
+
+    std::cout << rand() <<std::endl; 
+
+
+    std::cout << rand() <<std::endl;
+
+    std::cout << rand() <<std::endl;
     return EXIT_SUCCESS;
 }
 

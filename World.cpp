@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <stdio.h>
+#include <algorithm>  /*shufle */
 
 // ===========================================================================
 //                       Definition of static attributes
@@ -34,11 +35,13 @@
     c_ = new float *[W_];
 
     std::vector<int> rand_v;
-    for (int i = 0; i<W_*H_; i++){
-      int rand_type = rand()%2 ;
-      rand_v.push_back(rand_type);
-     } 
-
+    for (int i = 0; i<W_*H_/2; i++){     
+      rand_v.push_back(0);
+    } 
+    for (int j = W_*H_/2; j<W_*H_; j++){     
+      rand_v.push_back(1);
+    } 
+    std::random_shuffle( rand_v.begin(), rand_v.end() );
 
     int i;
     for(int i = 0; i<W_; i++){

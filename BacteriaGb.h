@@ -6,6 +6,7 @@
 // ===========================================================================
 #include <iostream>
 #include "Bacteria.h"
+#include "BacteriaGa.h"
 // ===========================================================================
 //                             "using" statements
 
@@ -62,7 +63,7 @@ equal to her parent. (WARNING) This function must be use after decided if the da
 ther'll be mute or not. 
 */
  
-   BacteriaGb divide();
+   Bacteria* divide();
   // =========================================================================
   //                               Data members
   // =========================================================================
