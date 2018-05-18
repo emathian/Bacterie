@@ -21,23 +21,23 @@
 // ===========================================================================
 
 
-  World::World(int width, int height, float diffusion){
+World::World(int width, int height, float diffusion){
     
-    W_ = width;
-    H_ = height;
-    D_ = diffusion;
+  W_ = width;
+  H_ = height;
+  D_ = diffusion;
 
 
-    pop_ = new Bacteria** [W_];
-    a_ = new float *[W_];
-    b_ = new float *[W_];
-    c_ = new float *[W_];
+  pop_ = new Bacteria** [W_];
+  a_ = new float *[W_];
+  b_ = new float *[W_];
+  c_ = new float *[W_];
 
-    std::vector<int> rand_v;
-    for (int i = 0; i<W_*H_; i++){
-      int rand_type = rand()%2 ;
-      rand_v.push_back(rand_type);
-     } 
+  std::vector<int> rand_v;
+  for (int i = 0; i<W_*H_; i++){
+    int rand_type = rand()%2 ;
+    rand_v.push_back(rand_type);
+   } 
 
 
     int i;
@@ -64,14 +64,14 @@
           pop_[i][j] = p_add_b;
         }
         
-        a_[i][j] = 50.0;
-        b_[i][j] = 0.0;
-        c_[i][j] = 0.0;
-        ++k;
-      }
+      a_[i][j] = 50.0;
+      b_[i][j] = 0.0;
+      c_[i][j] = 0.0;
+      ++k;
     }
 
   }
+}
 
 
 
@@ -82,24 +82,20 @@
 //                                 Destructor
 // ===========================================================================
   /*
-  World::~World(){
-    int i;
-    for(i=0; i<W_; i++){
-      delete[] pop_[i];
-      delete[] a_[i];
-      delete[] b_[i];
-      delete[] c_[i];
-    }
-    delete pop_[];
-    delete[] a_;
-    delete[] b_;
-    delete[] c_;
+World::~World(){
+  int i;
+  for(i=0; i<W_; i++){
+    delete[] a_[i];
+    delete[] b_[i];
+    delete[] c_[i];
+    delete[] pop_[i];
+  }  
+  delete[] a_;
+  delete[] b_;
+  delete[] c_;
+  delete[] pop_;
+}
 
-    delete D_ ;
-    delete W_ ; 
-    delete H_ ;
-  }
- */
 
 // ===========================================================================
 //                           Public Function members
@@ -156,12 +152,11 @@ void World::diffuse_concentration(){
         stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
       }
     }
-  a_ = stockA;
-  b_ = stockB;
-  c_ = stockC;
-}
+    a_ = stockA;
+    b_ = stockB;
+    c_ = stockC;
+  }
 /**
-
 
   void World::competition(){
     map<Bacteria *,float> neighborhood;
