@@ -29,7 +29,7 @@ class World {
   // =========================================================================
   //                                  Getters
   // =========================================================================
-  void pop();
+ 
 
   // =========================================================================
   //                                  Setters
@@ -43,15 +43,16 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  
+  /**
   void diffuse_concentration();
+  
   void competition();
 
  // void update();
 
   
   void renew();
-  
+  **/
 
   void display();
 
@@ -69,9 +70,7 @@ class World {
   int H_ ;
   float D_ ; //diffusion coefficient
  
-
-  Bacteria* **pop_;
-
+  Bacteria *pop_;
   float **a_;
   float **b_;
   float **c_;

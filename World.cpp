@@ -76,7 +76,7 @@
 //                           Public Function members
 // ===========================================================================
  
- 
+ **/
 void diffuse_concentration(){
   int stockA = a_;
   int stockB = b_;
@@ -128,7 +128,7 @@ void diffuse_concentration(){
     b_ = stockB;
     c_ = stockC;
   }
-
+/**
 
   void competition(){
     map<Bacteria *,float> neighborhood;
