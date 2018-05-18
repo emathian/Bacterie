@@ -25,12 +25,13 @@ BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
-void BacteriaGb::metabolize(float b){
+void BacteriaGb::metabolize(float *a,float * b){
   // update B
-  phenotype_[0] = b*Rbb - phenotype_[0]*Rbc;
+  phenotype_[0] = *b*Rbb - phenotype_[0]*Rbc;
+  *b = *b - *b*Rbb;
 
   // update C 
-  phenotype_[1] = b*phenotype_[1];
+  phenotype_[1] = *b*phenotype_[1];
 }
 
 float BacteriaGb::get_fitness(){

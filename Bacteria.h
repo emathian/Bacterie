@@ -33,7 +33,6 @@ class Bacteria {
   //                                  Getters
   // =========================================================================
   float PROBA_MUTE() const;
-  float PROBA_DEATH() const;
   float FITNESS_MIN() const;
   std::vector<float> phenotype();
   char genotype() const;
@@ -55,7 +54,7 @@ class Bacteria {
   // =========================================================================
   //                        Protected Function members
   // =========================================================================
-  virtual void metabolize(float z)=0;
+  virtual void metabolize(float * a, float b*);
 
   virtual void kill_bacteria(float *a, float *b, float *c)=0;
 

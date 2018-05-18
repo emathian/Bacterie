@@ -46,7 +46,7 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                        Protected Function members
   // =========================================================================
-  virtual void metabolize(float a) override;
+  virtual void metabolize(float *a,float * b) override;
 
 /* The method kill_bacteria allows to update metabolites concentration in a cell
 after the death of a bacteria. Like this the concentration in a cell are setted 

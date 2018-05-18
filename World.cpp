@@ -156,10 +156,10 @@ void World::diffuse_concentration(){
         stockC[x][y] = stockA[x][y] - 9*D_*c_[x][y]; 
       }
     }
-    a_ = stockA;
-    b_ = stockB;
-    c_ = stockC;
-  }
+  a_ = stockA;
+  b_ = stockB;
+  c_ = stockC;
+}
 /**
 
 
@@ -214,10 +214,39 @@ void World::diffuse_concentration(){
       
     
 }
-  
-  void update(){
-  
+  **/
+    
+void World::update(int = tours_max){
+  int tours;
+  int x;
+  int y;
+  float death = pop_[0][0].PROBA_DEATH();
+  float random_nb;
+  for( tours = 0; tours < tours_max; tours++){
+    if(tours%7==0){
+      //this->renew();
+      }
+    this-> diffuse_concentration();
+    //death of the bacteries
+    for(x = 0; x <W_; x++){
+      for(y = 0; y< H_; y++){
+        random_nb = ((float)rand()%101)/100.0;
+        if(random_nb < death){
+          pop_[x][y] = kill_bacteria(a_[x][y]*,b_[x][y]*,c_[x][y]*);
+          pop_[x][y] = NULL;
+        }
+      }
+    }
+    //this-> competition();
+    //metabolize
+    for(x = 0; x <W_; x++){
+      for(y = 0; y< H_; y++){
+        pop_[x][y].metabolize(*a_[x][y],*b_[x][y]);
+        }
+      }
+    }
   }
+}
   
 void World::renew(int a_init){
   for (int i=0; i<W_ ; ++i){
@@ -229,7 +258,7 @@ void World::renew(int a_init){
   }
  
 }
-  **/
+
 
 void World::display(int choice){ // Just for tests
 
