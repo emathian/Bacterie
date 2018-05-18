@@ -145,7 +145,7 @@ void World::pop(){
   for(int i = 0; i<W_; i++){
       for(int j = 0; j<H_; j++){
         std::cout << "Adresse : " << pop_[i][j] << "///";
-        // pop_[i][j]->toString();
+        pop_[i][j]->toString();
       }
   }
 }
