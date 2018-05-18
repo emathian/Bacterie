@@ -216,11 +216,11 @@ void World::diffuse_concentration(){
 }
   **/
     
-void World::update(int = tours_max){
+void World::update(int tours_max){
   int tours;
   int x;
   int y;
-  float death = pop_[0][0].PROBA_DEATH();
+  float death = pop_[0][0]->PROBA_DEATH();
   float random_nb;
   for( tours = 0; tours < tours_max; tours++){
     if(tours%7==0){
@@ -230,10 +230,10 @@ void World::update(int = tours_max){
     //death of the bacteries
     for(x = 0; x <W_; x++){
       for(y = 0; y< H_; y++){
-        random_nb = ((float)rand()%101)/100.0;
+        random_nb = ((float)(rand()%101))/100.0;
         if(random_nb < death){
-          pop_[x][y] = kill_bacteria(a_[x][y]*,b_[x][y]*,c_[x][y]*);
-          pop_[x][y] = NULL;
+          pop_[x][y]-> kill_bacteria(&a_[x][y],&b_[x][y],&c_[x][y]);
+          pop_[x][y]= NULL;
         }
       }
     }
@@ -241,8 +241,7 @@ void World::update(int = tours_max){
     //metabolize
     for(x = 0; x <W_; x++){
       for(y = 0; y< H_; y++){
-        pop_[x][y].metabolize(*a_[x][y],*b_[x][y]);
-        }
+        pop_[x][y]->metabolize(&a_[x][y],&b_[x][y]);
       }
     }
   }

@@ -49,7 +49,7 @@ class World {
   
   void diffuse_concentration(); // A mettre en privé ?
   void competition();
-  void update(int = tours_max);
+  void update(int tours_max);
   void renew(int a_init);
   void display(int choice);
 
