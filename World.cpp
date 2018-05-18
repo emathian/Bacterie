@@ -21,10 +21,7 @@
 // ===========================================================================
 
 
-
-
   World::World(int width, int height, float diffusion){
-
     
     W_ = width;
     H_ = height;
@@ -49,7 +46,6 @@
       a_[i] = new float [H_];
       b_[i] = new float [H_];
       c_[i] = new float [H_];
-
      }
     int k=0;
     int j;
@@ -73,10 +69,11 @@
         c_[i][j] = 0.0;
         ++k;
       }
-      
     }
 
   }
+
+
 
 
   
@@ -274,7 +271,14 @@ void World::display(int choice){ // Just for tests
 //                                 Getters
 // ===========================================================================
 
- 
+void World::pop(){
+  for(int i = 0; i<W_; i++){
+      for(int j = 0; j<H_; j++){
+        std::cout << "Adresse : " << pop_[i][j] << "///";
+        pop_[i][j]->toString();
+      }
+  }
+}
   
   
 
