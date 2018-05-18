@@ -3,9 +3,14 @@
 // ===========================================================================
 #include "Bacteria.h"
 #include "BacteriaGa.h"
+#include "BacteriaGb.h"
 #include "World.h"
+
+
 #include <map>
 #include <iostream>
+#include <stdlib.h>     /* srand, rand */
+#include <stdio.h>
 
 // ===========================================================================
 //                       Definition of static attributes
@@ -21,10 +26,19 @@
     W_ = width;
     H_ = height;
     D_ = diffusion;
-    pop_ = new Bacteria* *[W_];
+
+
+    pop_ = new Bacteria** [W_];
     a_ = new float *[W_];
     b_ = new float *[W_];
     c_ = new float *[W_];
+
+    std::vector<int> rand_v;
+    for (int i = 0; i<W_*H_; i++){
+      int rand_type = rand()%2 ;
+      rand_v.push_back(rand_type);
+     } 
+
 
     int i;
     for(int i = 0; i<W_; i++){
@@ -33,14 +47,24 @@
       b_[i] = new float [H_];
       c_[i] = new float [H_];
      }
+    int k=0;
     int j;
     for(i = 0; i<width; i++){
       for(j = 0; j<height; j++){
-        BacteriaGa a;
-        pop_[i][j] = &a;
+
+        if (rand_v[k]==0){
+          BacteriaGa add_a;
+          pop_[i][j] = &add_a;
+        }
+        else{
+          BacteriaGb add_b;
+          pop_[i][j] = &add_b;
+        }
+        
         a_[i][j] = 50.0;
         b_[i][j] = 0.0;
         c_[i][j] = 0.0;
+        ++k;
       }
     }
 
@@ -71,25 +95,29 @@
     delete W_ ; 
     delete H_ ;
   }
+  */
 
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
  
- **/
-void diffuse_concentration(){
-  int stockA = a_;
-  int stockB = b_;
-  int stockC = c_;
+void World::diffuse_concentration(){
+  float** stockA = a_;
+  float** stockB = b_;
+  float** stockC = c_;
   int x;
   int y;
+  int xg;
+  int xd;
+  int yh;
+  int yb;
     for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
       for(y = 0; y<H_; y++){
-        if(x = 0){
+        if(x == 0){
           xg = W_ - 1;
           xd = x + 1;
         }else{
-          if(x = W_-1){
+          if(x == W_-1){
             xg = x - 1;
             xd = 0;
           }else{
@@ -97,11 +125,11 @@ void diffuse_concentration(){
             xd = x + 1;
           }
         }
-        if(y = 0){
+        if(y == 0){
           yh = H_ - 1;
           yb = y + 1;        
         }else{
-          if(y = H_-1){
+          if(y == H_-1){
             yh = y - 1;
             yb = 0; 
           }else{
@@ -130,18 +158,23 @@ void diffuse_concentration(){
   }
 /**
 
-  void competition(){
+
+  void World::competition(){
     map<Bacteria *,float> neighborhood;
     int x;
     int y;
+    int xg;
+    int xd;
+    int yh;
+    int yb;
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
-        if(pop_[x][y] = NULL){
+        if(pop_[x][y] == NULL){
           if(x = 0){
             xg = W_ - 1;
             xd = x + 1;
           }else{
-            if(x = W_-1){
+            if(x == W_-1){
               xg = x - 1;
               xd = 0;
             }else{
@@ -149,11 +182,11 @@ void diffuse_concentration(){
               xd = x + 1;
             }
          }
-          if(y = 0){
+          if(y == 0){
             yh = H_ - 1;
            yb = y + 1;        
           }else{
-            if(y = H_-1){
+            if(y == H_-1){
               yh = y - 1;
               yb = 0; 
             }else{
@@ -187,11 +220,49 @@ void renew(int a_init){
 }
   **/
 
+void World::display(int choice){ // Just for tests
+
+ 
+  if (choice == 1){
+    for (int i=0; i<W_ ; ++i){
+      for (int j=0; j<H_ ; ++j){
+      std::cout<< i << j<<'\t'<<a_[i][j] <<std::endl;
+      }
+    }
+  }  
+  else if (choice == 2){
+    for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<b_[i][j] <<std::endl;
+    }
+   } 
+  }
+  else if (choice == 3){
+    for (int i=0; i<W_ ; ++i){
+       for (int j=0; j<H_ ; ++j){
+      std::cout<< i <<j <<'\t'<<c_[i][j] <<std::endl; 
+    }
+   } 
+  }
+
+  else{
+    std::cout<< "Waiting implementation" <<std::endl; 
+  }
+
+}  
+
 // ===========================================================================
 //                                 Getters
 // ===========================================================================
 
- 
+void World::pop(){
+  for(int i = 0; i<W_; i++){
+      for(int j = 0; j<H_; j++){
+        std::cout << "Adresse : " << pop_[i][j] << "///";
+        pop_[i][j]->toString();
+      }
+  }
+}
   
   
 

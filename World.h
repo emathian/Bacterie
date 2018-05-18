@@ -7,6 +7,7 @@
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include <array>
+#include <vector>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -18,6 +19,9 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
+
+
+
   World(int width, int height, float diffusion);
  // ~World();
 
@@ -29,7 +33,7 @@ class World {
   // =========================================================================
   //                                  Getters
   // =========================================================================
- 
+  void pop();
 
   // =========================================================================
   //                                  Setters
@@ -43,18 +47,14 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  /**
-  void diffuse_concentration();
-  
-  void competition();
+    void diffuse_concentration(); // A mettre en privé ?
+//  void competition();
 
  // void update();
 
   
   void renew();
-  **/
-
-  void display();
+  void display(int choice);
 
 	private:
   // =========================================================================
@@ -70,7 +70,9 @@ class World {
   int H_ ;
   float D_ ; //diffusion coefficient
  
-  Bacteria *pop_;
+
+  Bacteria* **pop_;
+
   float **a_;
   float **b_;
   float **c_;

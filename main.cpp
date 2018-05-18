@@ -79,9 +79,14 @@ int main(int argc, char* argv[]) {
 	
 	Bacteria** tableau[2][2];
 	
-	World myworld(2, 2, 0.1);
+	
 
-    
+
+	World myworld(2, 2, 0.1);
+    cout<<""<<endl;
+    myworld.display(3);
+
+    myworld.diffuse_concentration();
 	
 	
     return EXIT_SUCCESS;

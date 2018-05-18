@@ -18,6 +18,8 @@ BacteriaGa::BacteriaGa(){
 BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
 	genotype_ = bactGa.genotype_;
 };
+
+
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
@@ -36,7 +38,7 @@ void BacteriaGa::metabolize(float a){
 }
 
 float BacteriaGa::get_fitness(){
-  return phenotype_[1]; // corresponds to B rate
+  return phenotype_[1]; 
 }
 
 
