@@ -68,7 +68,7 @@ World::World(int width, int height, float diffusion){
       ++k;
     }
     // Tests for diffuse
-    //a_[1][1]=50.0; // to suppress
+    a_[1][1]=50.0; // to suppress
   }
 }
 
@@ -101,63 +101,85 @@ World::~World(){
 // ===========================================================================
  
 void World::diffuse_concentration(){
-  float** stockA = a_;
+  
+  float** stockA = new float *[H_];
+  for(int i = 0; i<W_; i++){ //differents cas pour la forme toroïdale
+    stockA[i] = new float [W_];
+    for(int j = 0; j<H_; j++){
+      stockA[i][j] = a_[i][j];
+    }
+  }
+  
+  // A modifier de la même façon (pas de copie globale)
   float** stockB = b_;
   float** stockC = c_;
+
   int x;
   int y;
   int xg;
   int xd;
   int yh;
   int yb;
-    for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
-      for(y = 0; y<H_; y++){
-        if(x == 0){ // cas cellule sur bord gauche
-          xg = W_ - 1;
+  for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
+    for(y = 0; y<H_; y++){
+      if(x == 0){ // cas cellule sur bord gauche
+        xg = W_ - 1;
+        xd = x + 1;
+      }else{
+        if(x == W_-1){ // cas cellule sur bord droit
+          xg = x - 1;
+          xd = 0;
+        }else{ // cas cellule pas sur les bords G/D
+          xg = x - 1;
           xd = x + 1;
-        }else{
-          if(x == W_-1){ // cas cellule sur bord bas
-            xg = x - 1;
-            xd = 0;
-          }else{ //
-            xg = x - 1;
-            xd = x + 1;
-          }
         }
-        if(y == 0){
-          yh = H_ - 1;
-          yb = y + 1;        
-        }else{
-          if(y == H_-1){
-            yh = y - 1;
-            yb = 0; 
-          }else{
-            yh = y - 1;
-            yb = y + 1;          
-          }
-        }
-        stockA[x][y] = stockA[x][y] + D_*(a_[xg][yh] + a_[x][yh] + a_[xd][yh]
-                                        + a_[xg][y] + a_[x][y] + a_[xd][y]
-                                        + a_[xg][yb] + a_[x][yb] + a_[xd][yb]);
-        stockB[x][y] = stockB[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
-                                        + b_[xg][yb] + b_[x][yb] + b_[xd][y]
-                                        + b_[xg][yb] + b_[x][yb] + b_[xd][yb]);
-        stockC[x][y] = stockC[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
-                                        + c_[xg][y] + c_[x][y] + c_[xd][y]
-                                        + c_[xg][yb] + c_[x][yb] + c_[xd][yb]);
-        
-        stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
-        stockB[x][y] = stockB[x][y] - 9*D_*b_[x][y];
-        stockC[x][y] = stockC[x][y] - 9*D_*c_[x][y]; 
       }
+      if(y == 0){ // cas cellule sur bord haut
+        yh = H_ - 1;
+        yb = y + 1;
+      }else{
+        if(y == H_-1){ // cas cellule sur bord bas
+          yh = y - 1;
+          yb = 0; 
+        }else{ // cas cellule pas sur bords H/B
+          yh = y - 1;
+          yb = y + 1;          
+        }
+      }
+      stockA[x][y] = stockA[x][y] + D_*(a_[xg][yh] + a_[x][yh] + a_[xd][yh]
+                                      + a_[xg][y] + a_[x][y] + a_[xd][y]
+                                      + a_[xg][yb] + a_[x][yb] + a_[xd][yb]);
+      stockB[x][y] = stockB[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
+                                      + b_[xg][yb] + b_[x][yb] + b_[xd][y]
+                                      + b_[xg][yb] + b_[x][yb] + b_[xd][yb]);
+      stockC[x][y] = stockC[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
+                                      + c_[xg][y] + c_[x][y] + c_[xd][y]
+                                      + c_[xg][yb] + c_[x][yb] + c_[xd][yb]);
+        
+      stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
+      stockB[x][y] = stockB[x][y] - 9*D_*b_[x][y];
+      stockC[x][y] = stockC[x][y] - 9*D_*c_[x][y]; 
     }
-    a_ = stockA;
-    b_ = stockB;
-    c_ = stockC;
   }
+  //a_ = stockA;
+
+  int i;
+  int j;
+  for(i = 0; i<H_; i++){ //differents cas pour la forme toroïdale
+    for(j = 0; j<W_; j++){
+      a_[i][j] = stockA[i][j];   
+    }
+    delete[] stockA[i];
+  }
+  delete[] stockA;
+
+  // A recopier de la même façon que a_
+  b_ = stockB;
+  c_ = stockC;
+}
 
   /*
-  // ATTENTION W ET H A INVERSER
+  // ATTENTION W ET H A INVERSER ? (j'ai pas checké)
   void World::competition(){
     map<Bacteria *,float> neighborhood;
     int x;

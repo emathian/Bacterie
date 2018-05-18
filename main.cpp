@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
   //----------------------
 
   //test constructeur
-	World myworld(2,3 , 0.1);
+	World myworld(3,3 , 0.1);
 
   cout<< "Pop : " << endl;
   myworld.display(4);
