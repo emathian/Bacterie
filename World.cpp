@@ -60,8 +60,10 @@ World::World(int width, int height, float diffusion){
       for(j = 0; j<H_; j++){
 
         if (rand_v[k]==0){
+          std::vector<int> current_pos ={i,j};		
           Bacteria* p_add_a = new BacteriaGa();
           pop_[i][j] = p_add_a;
+          pop_[i][j]->set_pos(current_pos);
           //std::cout<< p_add_a <<std::endl;
           //std::cout<< pop_[i][j]->genotype() <<std::endl;
           //std::cout<< p_add_a->genotype() <<std::endl;
@@ -166,14 +168,16 @@ void World::diffuse_concentration(){
 
 
   void World::competition(){
-    /* Il faut vecteur de mortes ?*/
-    /*
-    Bacteria* will_dead_one = pop_[0][0];
-    Bacteria* will_dead_two = pop_[1][0];
+    /* Problème mm si la case n'est pas vide je crée un dico ce qui est long !*/
+    
+    //Bacteria* will_dead_one = pop_[0][0];
+    //Bacteria* will_dead_two = pop_[1][0];
+  
     pop_[0][0] = NULL;
     pop_[1][0] = NULL;
-    */
+    srand(time(NULL));
     std::map<Bacteria *,float> neighborhood;
+    std::vector< std::pair<int,int>  > v_possible_pos;
     Bacteria* best_fitness;
     int x;
     int y;
@@ -264,7 +268,7 @@ void World::diffuse_concentration(){
             best_fitness = next_it->first;
            }
           else{
-            srand(time(NULL));
+           
             int fight = rand() % 100;
              if (fight < 50){
               best_fitness = it->first;
@@ -281,14 +285,41 @@ void World::diffuse_concentration(){
 
         /* Divide bacteria and choose randomly the best place in the case there is more than one gap*/     
         /*Il faudrait retenir l'adresse des mortes */
-        best_fitness->divide();
+
+       
+        int pos_best_fitness_x = best_fitness->pos()[0];
+        int pos_best_fitness_y = best_fitness->pos()[1];
+        if (pop_[pos_best_fitness_x -1][pos_best_fitness_y] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x -1,pos_best_fitness_y));
+        }
+        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1,pos_best_fitness_y));
+        }
+        else if (pop_[pos_best_fitness_x][pos_best_fitness_y+1] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x ,pos_best_fitness_y+1));
+        }
+        else if (pop_[pos_best_fitness_x][pos_best_fitness_y-1] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x ,pos_best_fitness_y-1));
+        }
+        else if (pop_[pos_best_fitness_x -1][pos_best_fitness_y-1] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x -1 ,pos_best_fitness_y-1));
+        }
+        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y+1] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1 ,pos_best_fitness_y+1));
+        }
+        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y-1] ==NULL){
+        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1 ,pos_best_fitness_y-1));
+        }
+        //int rand_pos = rand() % v_possible_pos.size();
+
+        //pop_[v_possible_pos[rand_pos].first][v_possible_pos[rand_pos].second] = best_fitness->divide();
 
        } // for j
       }// for i
-      std::cout<<"Winner :"<<best_fitness<<std::endl;
-      for (std::map<Bacteria *,float>::const_iterator it = neighborhood.begin(); it !=neighborhood.end() ; ++it ){
-        std::cout <<it->first <<" :  " << it->second<<std::endl;
-      }
+      
+      //for (int i=0; i<v_possible_pos.size(); ++i){
+        //std::cout <v_possible_pos[i][0]<<" :  " << v_possible_pos[i].second<<std::endl;
+     // }
 
      
 
