@@ -54,7 +54,7 @@ class World {
   void update(int tours_max);
   void renew(int a_init);
   void display(int choice);
-  std::map<int,float> find_neighborhood(Bacteria *B);
+  std::map<int,float> find_neighborhood(int i, int j);
 
 	private:
   // =========================================================================

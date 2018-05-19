@@ -164,9 +164,9 @@ void World::diffuse_concentration(){
     c_ = stockC;
   }
 
-  std::map<int,float> World::find_neighborhood(Bacteria* B){
-  	int x = B->pos()[0];
-  	int y = B->pos()[1];
+  std::map<int,float> World::find_neighborhood(int i, int j){
+  	int x = i;
+  	int y = j;
     int xg;
     int xd;
     int yh;
