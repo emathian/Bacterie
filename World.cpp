@@ -12,6 +12,9 @@
 #include <stdlib.h>     /* srand, rand */
 #include <stdio.h>
 #include <algorithm>  /*shufle */
+#include <iomanip>     // std::setprecision
+
+
 
 // ===========================================================================
 //                       Definition of static attributes
@@ -98,7 +101,7 @@ World::~World(){
   delete[] c_;
   delete[] pop_;
 }
-
+*/
 
 // ===========================================================================
 //                           Public Function members
@@ -258,39 +261,82 @@ void World::renew(int a_init){
 
 
 void World::display(int choice){ // Just for tests
-
- 
+  float **p;
+  char which_concentration = '\0';
+  
   if (choice == 1){
+    p= a_;
+    which_concentration ='a';
+  }
+  else if (choice == 2){
+    p = b_;
+    which_concentration ='b';
+  }
+  else if(choice == 3){
+    p= c_;
+    which_concentration ='c';
+  }
+
+  if (choice == 1|| choice==2||choice==3){
+   std::cout <<"Concentration metabolites "<< which_concentration <<" : "<<std::endl;
+   std::cout <<'\n';
     for (int i=0; i<W_ ; ++i){
       for (int j=0; j<H_ ; ++j){
-      std::cout<< i << j<<'\t'<<a_[i][j] <<std::endl;
+        if (p[i][j]<10){
+        std::cout <<"   "<< std::fixed<< std::setprecision(3)<<p[i][j]<<" |";
+       }
+       else if (p[i][j]<100){
+        std::cout <<"  "<< std::fixed<< std::setprecision(3)<<p[i][j]<<" |";
+       }
+      else if (p[i][j]<1000){
+        std::cout <<" "<< std::fixed<< std::setprecision(3)<<p[i][j]<<" |";
+       }
+      }
+       std::cout <<'\n';
+    }
+  }
+
+  
+  else if (choice ==4){
+   std::cout <<"genotype  : "<<std::endl;
+   std::cout <<'\n';
+   for (int i=0; i<W_ ; ++i){
+     for (int j=0; j<H_ ; ++j){
+        std::cout <<"   "<<pop_[i][j]->genotype() <<"  |";
+        }
+        std::cout <<'\n';
       }
     }
-  }  
-  else if (choice == 2){
-    for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
-      std::cout<< i <<j <<'\t'<<b_[i][j] <<std::endl;
-    }
-   } 
-  }
-  else if (choice == 3){
-    for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
-      std::cout<< i <<j <<'\t'<<c_[i][j] <<std::endl; 
-    }
-   } 
-  }
 
-  else{
-   for (int i=0; i<W_ ; ++i){
-       for (int j=0; j<H_ ; ++j){
-      std::cout<< i <<j <<'\t'<<pop_[i][j]->genotype() <<std::endl; 
+   else if (choice==5) {
+      std::cout <<"concentration of substrat  : "<<std::endl;
+      std::cout <<'\n';
+      for (int i=0; i<W_ ; ++i){
+        for (int j=0; j<H_ ; ++j){
+          std::cout <<"   "<<pop_[i][j]->phenotype()[0] <<"  |";
+        }
+      std::cout <<'\n';
+      } 
     }
-   } 
-  }
+    
+    else if (choice == 5){
+      std::cout <<"concentration of metabolite  : "<<std::endl;
+      std::cout <<'\n';
+      for (int i=0; i<W_ ; ++i){
+        for (int j=0; j<H_ ; ++j){
+          std::cout <<"   "<<pop_[i][j]->phenotype()[1] <<"  |";
+        }
+      std::cout <<'\n';
+      }
+    }
+    else {
+      std::cout<<"Choice impossible !"<<std::endl;
+    }
+}
+    
 
-}  
+
+
 
 // ===========================================================================
 //                                 Getters

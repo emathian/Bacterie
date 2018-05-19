@@ -8,6 +8,7 @@
 #include "BacteriaGa.h"
 #include <array>
 #include <vector>
+#include <string.h> 
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -23,7 +24,7 @@ class World {
 
 
   World(int width, int height, float diffusion);
-  ~World();
+ // ~World();
 
   // =========================================================================
   //                                Destructor

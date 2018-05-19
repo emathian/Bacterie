@@ -50,9 +50,9 @@ class Bacteria {
   // =========================================================================
   virtual void toString();
   
-  virtual void metabolize(float * a, float * b);
+  virtual void metabolize(float * a, float * b)=0;
 
-  virtual void kill_bacteria(float *a, float *b, float *c);
+  virtual void kill_bacteria(float *a, float *b, float *c)=0;
 
 
 	protected:
