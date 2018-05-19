@@ -27,6 +27,7 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
+	srand(time(NULL));
   /*
   // Bacteria B;
   // cout << B.PROBA_DEATH() <<endl;
@@ -105,6 +106,11 @@ int main(int argc, char* argv[]) {
 		
 	myworld.display(6);   
     myworld.competition();
+
+    int s = 15/4;
+    cout<<s<<endl;
+
+
     
     //myworld.display(4);
 

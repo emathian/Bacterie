@@ -5,15 +5,13 @@
 #include "BacteriaGa.h"
 #include "BacteriaGb.h"
 #include "World.h"
-
-
-#include <map>
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <stdio.h>
 #include <algorithm>  /*shufle */
 #include <iomanip>     // std::setprecision
-#include <iterator>  
+#include <iterator>
+
 
 
 
@@ -166,6 +164,82 @@ void World::diffuse_concentration(){
     c_ = stockC;
   }
 
+  std::map<int,float> World::find_neighborhood(Bacteria* B){
+  	int x = B->pos()[0];
+  	int y = B->pos()[1];
+    int xg;
+    int xd;
+    int yh;
+    int yb;
+  	std::map<int,float> neighborhood;
+  	if(x == 0){
+      xg = W_ - 1;
+      xd = x + 1;
+      }else{
+        if(x == W_-1){
+          xg = x - 1;
+          xd = 0;
+        }else{
+          xg = x - 1;
+          xd = x + 1;
+        }
+      }
+      if(y == 0){
+         yh = H_ - 1;
+         yb = y + 1;        
+        }else{
+          if(y == H_-1){
+            yh = y - 1;
+            yb = 0; 
+         }else{
+           yh = y - 1;
+            yb = y + 1;          
+         }
+        }
+        
+        if (pop_[xg][yh] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xg +yh, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xg+yh,pop_[xg][yh]->get_fitness()) );
+        }
+        if (pop_[xg][y] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xg+y, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xg+y,pop_[xg][y]->get_fitness()) );
+        }     
+         if (pop_[xg][yb] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xg+yb, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xg+yb,pop_[xg][yb]->get_fitness()) );
+        }     
+        if (pop_[xd][yh] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xd+yh, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xd+yh,pop_[xd][yh]->get_fitness()) );
+        } 
+        if (pop_[xd][y] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xd+y, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xd+y,pop_[xd][y]->get_fitness()) );
+        } 
+        if (pop_[xd][yb] == NULL){
+          neighborhood.insert ( std::pair<int,float>(xd+yb, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(xd+yb,pop_[xd][yb]->get_fitness()) );
+        } 
+        if (pop_[x][yh] == NULL){
+          neighborhood.insert ( std::pair<int,float>(x+yh, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(x+yh,pop_[x][yh]->get_fitness()) );
+        } 
+       if (pop_[x][yb] == NULL){
+          neighborhood.insert ( std::pair<int,float>(x+yb, -1) );
+        }else{
+          neighborhood.insert ( std::pair<int,float>(x+yb,pop_[x][yb]->get_fitness()) );
+        } 
+    return neighborhood;    
+
+  }
 
   void World::competition(){
     /* Problème mm si la case n'est pas vide je crée un dico ce qui est long !*/
@@ -175,10 +249,16 @@ void World::diffuse_concentration(){
   
     pop_[0][0] = NULL;
     pop_[1][0] = NULL;
+    std::multimap< int,int> test;
+    test = find_neighborhood(pop_[0][0]);
+
     srand(time(NULL));
     std::map<Bacteria *,float> neighborhood;
-    std::vector< std::pair<int,int>  > v_possible_pos;
+    std::multimap< int,int> possible_pos;
     Bacteria* best_fitness;
+    std::map<int,float> neighborhood_best_fitness;
+    std::vector<int> v_pos;
+
     int x;
     int y;
     int xg;
@@ -187,6 +267,7 @@ void World::diffuse_concentration(){
     int yb;
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
+      	
        //if(pop_[x][y] == NULL){
           if(x == 0){
             xg = W_ - 1;
@@ -253,8 +334,10 @@ void World::diffuse_concentration(){
         }else{
           neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yb],pop_[x][yb]->get_fitness()) );
         } 
-
+        
+     
         /* Search the best bacteria and choose randomly the best one in case of equality*/
+
         best_fitness = neighborhood.begin()->first;
         std::map<Bacteria *,float>::const_iterator it = neighborhood.begin();
         std::map<Bacteria *,float>::const_iterator next_it = std::next(neighborhood.begin());
@@ -289,42 +372,28 @@ void World::diffuse_concentration(){
        
         int pos_best_fitness_x = best_fitness->pos()[0];
         int pos_best_fitness_y = best_fitness->pos()[1];
-        if (pop_[pos_best_fitness_x -1][pos_best_fitness_y] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x -1,pos_best_fitness_y));
+        neighborhood_best_fitness = find_neighborhood(best_fitness);
+        for ( std::map<int,float>::const_iterator it= neighborhood_best_fitness.begin(); it!=neighborhood_best_fitness.end();++it){
+        	if (it->second == -1){
+        		v_pos.push_back(it->first);
+        	}
         }
-        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1,pos_best_fitness_y));
-        }
-        else if (pop_[pos_best_fitness_x][pos_best_fitness_y+1] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x ,pos_best_fitness_y+1));
-        }
-        else if (pop_[pos_best_fitness_x][pos_best_fitness_y-1] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x ,pos_best_fitness_y-1));
-        }
-        else if (pop_[pos_best_fitness_x -1][pos_best_fitness_y-1] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x -1 ,pos_best_fitness_y-1));
-        }
-        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y+1] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1 ,pos_best_fitness_y+1));
-        }
-        else if (pop_[pos_best_fitness_x +1][pos_best_fitness_y-1] ==NULL){
-        	v_possible_pos.push_back(std::make_pair(pos_best_fitness_x +1 ,pos_best_fitness_y-1));
-        }
-        //int rand_pos = rand() % v_possible_pos.size();
+        int destination = rand()%v_pos.size();
+        int daugther_pos_y = destination/W_;
+        int daugther_pos_x = destination%W_;
 
-        //pop_[v_possible_pos[rand_pos].first][v_possible_pos[rand_pos].second] = best_fitness->divide();
+       // Bacteria* daugther = new Bacteria; 
+       	Bacteria* daugther = best_fitness->divide(); // Help me problem of memory
+       	pop_[daugther_pos_x][daugther_pos_y] = daugther;
+        
 
-       } // for j
-      }// for i
+       } 
+      }
       
-      //for (int i=0; i<v_possible_pos.size(); ++i){
-        //std::cout <v_possible_pos[i][0]<<" :  " << v_possible_pos[i].second<<std::endl;
-     // }
-
+    }
      
 
-}// competition
-     
+
 
    
 
