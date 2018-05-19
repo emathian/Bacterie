@@ -244,8 +244,6 @@ void World::diffuse_concentration(){
   void World::competition(){
    
     srand(time(NULL));
-    std::map<Bacteria *,float> neighborhood;
-    std::multimap< int,int> possible_pos;
     Bacteria* best_fitness;
     std::map<int,float> neighborhood_best_fitness;
     std::map<int,float> current_neighborhood;
