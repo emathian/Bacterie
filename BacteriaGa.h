@@ -27,7 +27,7 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                                  Getters
   // =========================================================================
-  float get_fitness() ;  
+  float get_fitness() override;  
   // =========================================================================
   //                                  Setters
   // =========================================================================
@@ -61,7 +61,7 @@ equal to her parent. (WARNING) This function must be use after decided if the da
 ther'll be mutated or not. 
 */
   
-  Bacteria* divide();
+  Bacteria* divide() override;
 
   // =========================================================================
   //                               Data members

@@ -24,13 +24,13 @@ class World {
 
 
   World(int width, int height, float diffusion);
- // ~World();
+ 
 
   // =========================================================================
   //                                Destructor
   // =========================================================================
  
-
+ ~World();
   // =========================================================================
   //                                  Getters
   // =========================================================================
@@ -48,7 +48,7 @@ class World {
   //                          Public Function members
   // =========================================================================
   
-  //void competition();
+  void competition();
   void diffuse_concentration(); // A mettre en privé ?
   void update(int tours_max);
   void renew(int a_init);

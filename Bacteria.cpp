@@ -16,7 +16,7 @@ float Bacteria::FITNESS_MIN_ =0.001;
 //                                Constructors
 // ===========================================================================
 Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
-	phenotype_ = {0., 0.};
+	phenotype_ = {0.3, 0.5};
 
 }
 

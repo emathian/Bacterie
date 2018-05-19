@@ -82,16 +82,17 @@ int main(int argc, char* argv[]) {
 	
 	
 
-
-	World myworld(12, 11, 0.1);
+	
+	World myworld(2, 2, 0.1);
+	
     cout<<"Display A before diffusion "<<endl;
-    myworld.display(4);
+    myworld.display(1);
 
 
     myworld.diffuse_concentration();
     cout<<"Display A after diffusion "<<endl;
     myworld.display(1);
-    /*
+    
     cout<<""<<endl;
     myworld.display(4);
 	
@@ -99,13 +100,15 @@ int main(int argc, char* argv[]) {
     myworld.display(1);
 	myworld.display(2);
 
-    std::cout << rand() <<std::endl; 
+	 cout<<"genotype "<<endl;
+    myworld.display(4);
+		
+	myworld.display(6);   
+    myworld.competition();
+    
+    //myworld.display(4);
 
 
-    std::cout << rand() <<std::endl;
-
-    std::cout << rand() <<std::endl;
-    */
     return EXIT_SUCCESS;
 }
 

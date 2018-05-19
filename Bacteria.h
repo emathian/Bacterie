@@ -36,6 +36,7 @@ class Bacteria {
   float FITNESS_MIN() const;
   std::vector<float> phenotype();
   char genotype() const;
+  virtual float get_fitness()=0;
 
   // =========================================================================
   //                                  Setters
@@ -53,6 +54,8 @@ class Bacteria {
   virtual void metabolize(float * a, float * b)=0;
 
   virtual void kill_bacteria(float *a, float *b, float *c)=0;
+
+  virtual Bacteria* divide()=0;
 
 
 	protected:

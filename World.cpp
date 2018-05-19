@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <algorithm>  /*shufle */
 #include <iomanip>     // std::setprecision
+#include <iterator>  
 
 
 
@@ -87,7 +88,7 @@ World::World(int width, int height, float diffusion){
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
-  /*
+  
 World::~World(){
   int i;
   for(i=0; i<W_; i++){
@@ -101,7 +102,7 @@ World::~World(){
   delete[] c_;
   delete[] pop_;
 }
-*/
+
 
 // ===========================================================================
 //                           Public Function members
@@ -162,10 +163,18 @@ void World::diffuse_concentration(){
     b_ = stockB;
     c_ = stockC;
   }
-/**
+
 
   void World::competition(){
-    map<Bacteria *,float> neighborhood;
+    /* Il faut vecteur de mortes ?*/
+    /*
+    Bacteria* will_dead_one = pop_[0][0];
+    Bacteria* will_dead_two = pop_[1][0];
+    pop_[0][0] = NULL;
+    pop_[1][0] = NULL;
+    */
+    std::map<Bacteria *,float> neighborhood;
+    Bacteria* best_fitness;
     int x;
     int y;
     int xg;
@@ -174,7 +183,7 @@ void World::diffuse_concentration(){
     int yb;
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
-        if(pop_[x][y] == NULL){
+       //if(pop_[x][y] == NULL){
           if(x == 0){
             xg = W_ - 1;
             xd = x + 1;
@@ -199,23 +208,96 @@ void World::diffuse_concentration(){
               yb = y + 1;          
             }
           }
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yh],pop_[xg][yh].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][y],pop_[xg][y].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yb],pop_[xg][yb].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yh],pop_[xd][yh].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][y],pop_[xd][y].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yb],pop_[xd][yb].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yh],pop_[x][yh].get_fitness()) );
-        neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yb],pop_[x][yb].get_fitness()) );
-        std::map<Bacteria *,float>::iterator it = neighborhood.begin();
-        // faire divide ici
-        }      
+        
+        if (pop_[xg][yh] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yh], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yh],pop_[xg][yh]->get_fitness()) );
+        }
+        if (pop_[xg][y] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][y], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][y],pop_[xg][y]->get_fitness()) );
+        }     
+         if (pop_[xg][yb] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yb], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xg][yb],pop_[xg][yb]->get_fitness()) );
+        }     
+        if (pop_[xd][yh] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yh], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yh],pop_[xd][yh]->get_fitness()) );
+        } 
+        if (pop_[xd][y] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][y], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][y],pop_[xd][y]->get_fitness()) );
+        } 
+        if (pop_[xd][yb] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yb], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[xd][yb],pop_[xd][yb]->get_fitness()) );
+        } 
+        if (pop_[x][yh] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yh], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yh],pop_[x][yh]->get_fitness()) );
+        } 
+       if (pop_[x][yb] == NULL){
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yb], -1) );
+        }else{
+          neighborhood.insert ( std::pair<Bacteria *,float>(pop_[x][yb],pop_[x][yb]->get_fitness()) );
+        } 
+
+        /* Search the best bacteria and choose randomly the best one in case of equality*/
+        best_fitness = neighborhood.begin()->first;
+        std::map<Bacteria *,float>::const_iterator it = neighborhood.begin();
+        std::map<Bacteria *,float>::const_iterator next_it = std::next(neighborhood.begin());
+        int c = 0;
+        while(c < neighborhood.size() -1)
+        {
+          if (it->second > next_it->second ){
+            best_fitness = it->first;
+          }
+          else if (it->second < next_it->second ){
+            best_fitness = next_it->first;
+           }
+          else{
+            srand(time(NULL));
+            int fight = rand() % 100;
+             if (fight < 50){
+              best_fitness = it->first;
+             }
+            else{
+              best_fitness = next_it->first;
+              }
+           }
+          ++c;
+          ++it;
+          ++next_it;
+
+        }// while
+
+        /* Divide bacteria and choose randomly the best place in the case there is more than one gap*/     
+        /*Il faudrait retenir l'adresse des mortes */
+        best_fitness->divide();
+
+       } // for j
+      }// for i
+      std::cout<<"Winner :"<<best_fitness<<std::endl;
+      for (std::map<Bacteria *,float>::const_iterator it = neighborhood.begin(); it !=neighborhood.end() ; ++it ){
+        std::cout <<it->first <<" :  " << it->second<<std::endl;
       }
-    }
-      
-    
-}
-  **/
+
+     
+
+}// competition
+     
+
+   
+
+  
     
 void World::update(int tours_max){
   int tours;
@@ -228,13 +310,13 @@ void World::update(int tours_max){
       //this->renew();
       }
     this-> diffuse_concentration();
-    //death of the bacteries
+    //death of the bacteries // Bizzard elles ont une proba de mourir 
     for(x = 0; x <W_; x++){
       for(y = 0; y< H_; y++){
         random_nb = ((float)(rand()%101))/100.0;
         if(random_nb < death){
           pop_[x][y]-> kill_bacteria(&a_[x][y],&b_[x][y],&c_[x][y]);
-          pop_[x][y]= NULL;
+          pop_[x][y]= NULL; 
         }
       }
     }
@@ -319,7 +401,7 @@ void World::display(int choice){ // Just for tests
       } 
     }
     
-    else if (choice == 5){
+    else if (choice == 6){
       std::cout <<"concentration of metabolite  : "<<std::endl;
       std::cout <<'\n';
       for (int i=0; i<W_ ; ++i){

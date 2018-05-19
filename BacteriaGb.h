@@ -40,7 +40,7 @@ class BacteriaGb: public Bacteria {
   //                          Public Function members
   // =========================================================================
   void metabolize(float *a,float * b) override;
-  float get_fitness() ;  
+  float get_fitness() override ;  
   void kill_bacteria(float *a, float *b, float *c) override;
 
 	protected:
@@ -62,7 +62,7 @@ equal to her parent. (WARNING) This function must be use after decided if the da
 ther'll be mute or not. 
 */
  
-   Bacteria* divide();
+   Bacteria* divide() override;
   // =========================================================================
   //                               Data members
   // =========================================================================
