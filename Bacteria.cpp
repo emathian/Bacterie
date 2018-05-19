@@ -17,7 +17,7 @@ float Bacteria::FITNESS_MIN_ =0.001;
 // ===========================================================================
 Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
 	phenotype_ = {0., 0.};
-	pos_ = {0, 0};
+	
 
 }
 
@@ -47,10 +47,7 @@ std::vector<float> Bacteria::phenotype() {
 	return phenotype;
 }
 
-std::vector<int> Bacteria::pos() {
-	std::vector<int> pos (pos_);
-	return pos;
-}
+
 
 char Bacteria::genotype() const{
  	return genotype_;
@@ -62,9 +59,7 @@ char Bacteria::genotype() const{
   void Bacteria::set_phenotype(std::vector<float> new_phenotype){
   	phenotype_ = new_phenotype;
   }
-  void Bacteria::set_pos(std::vector<int> update_pos){
-  	pos_ = update_pos;
-  }
+
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================

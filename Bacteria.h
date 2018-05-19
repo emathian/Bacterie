@@ -35,7 +35,7 @@ class Bacteria {
   float PROBA_DEATH() const;
   float FITNESS_MIN() const;
   std::vector<float> phenotype();
-  std::vector<int> pos();
+
   char genotype() const;
   virtual float get_fitness()=0;
 
@@ -43,7 +43,7 @@ class Bacteria {
   //                                  Setters
   // =========================================================================
   void set_phenotype(std::vector<float> new_phenotype);
-  void set_pos(std::vector<int> update_pos);
+ 
   // =========================================================================
   //                                 Operators
   // =========================================================================
@@ -71,7 +71,6 @@ class Bacteria {
   // =========================================================================
   
   std::vector<float> phenotype_;
-  std::vector<int> pos_;
   float PROBA_DEATH_; // Voir pour le passer en static plus tard
   float PROBA_MUTE_; // idem
   static float FITNESS_MIN_;
