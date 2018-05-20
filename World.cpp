@@ -164,14 +164,16 @@ void World::diffuse_concentration(){
     c_ = stockC;
   }
 
-  std::map<int,float> World::find_neighborhood(int i, int j){
-  	int x = i;
-  	int y = j;
+  std::map<int,float> World::find_neighborhood(int i, int j){ 
+  	int x = i; // row position
+  	int y = j; // column position
     int xg;
     int xd;
     int yh;
     int yb;
-  	std::map<int,float> neighborhood;
+  	std::map<int,float> neighborhood;   // Initialisation of the returned map
+  	/* Find indexes of cell contained in the Moore Neighborhood according Toroid
+  	grid's constraints.	*/ 
   	if(x == 0){
       xg = W_ - 1;
       xd = x + 1;
@@ -196,7 +198,7 @@ void World::diffuse_concentration(){
             yb = y + 1;          
          }
         }
-        
+        // Fill the returned map according filling conditions.
         if (pop_[xg][yh] == NULL){
           neighborhood.insert ( std::pair<int,float>(xg +yh, -1) );
         }else{
@@ -243,7 +245,7 @@ void World::diffuse_concentration(){
 
   void World::competition(){
    
-    srand(time(NULL));
+    srand(time(NULL)); 
     Bacteria* best_fitness;
     std::map<int,float> neighborhood_best_fitness;
     std::map<int,float> current_neighborhood;
@@ -254,10 +256,7 @@ void World::diffuse_concentration(){
 
     int x;
     int y;
-    int xg;
-    int xd;
-    int yh;
-    int yb;
+  
     for(x = 0; x< W_; x++){
       for(y = 0; y< H_; y++){
 
@@ -296,8 +295,6 @@ void World::diffuse_concentration(){
         }
         // Divide bacteria and choose randomly the best place in the case there is more than one gap     
         
-
-
         if (pos_best_fitness!=0){
        		best_pos_y = pos_best_fitness/W_;
        	 	 best_pos_x = pos_best_fitness%W_;
