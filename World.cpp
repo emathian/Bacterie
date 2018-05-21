@@ -95,7 +95,7 @@ World::~World(){
   int j;
   for(i = 0; i<W_; i++){ // suppress bacterias*
     for(j = 0; j<H_; j++){
-      delete[] pop_[i][j];
+      delete pop_[i][j];
     }
   }
   for(i=0; i<W_; i++){ // suppress pointer to float* / batcteria*
