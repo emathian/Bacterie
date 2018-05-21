@@ -89,15 +89,23 @@ World::World(int width, int height, float diffusion){
 //                                 Destructor
 // ===========================================================================
   
-World::~World(){
+World::~World(){ 
+  // TO CHANGE WHEN W AND H WILL BE INVERTED
   int i;
-  for(i=0; i<W_; i++){
+  int j;
+  for(i = 0; i<W_; i++){ // suppress bacterias*
+    for(j = 0; j<H_; j++){
+      delete[] pop_[i][j];
+    }
+  }
+  for(i=0; i<W_; i++){ // suppress pointer to float* / batcteria*
     delete[] a_[i];
     delete[] b_[i];
     delete[] c_[i];
     delete[] pop_[i];
-  }  
-  delete[] a_;
+  } 
+    
+  delete[] a_; // suppress 1D table
   delete[] b_;
   delete[] c_;
   delete[] pop_;
