@@ -118,7 +118,6 @@ World::~World(){
 // ===========================================================================
  
 void World::diffuse_concentration(){
-  // BUGGY WHEN WORLD IS NOT SQUARE
   float** stockA = new float *[H_];
   float** stockB = new float *[H_];
   float** stockC = new float *[H_];
@@ -151,8 +150,8 @@ void World::diffuse_concentration(){
   int yh;
   int yb;
 
-  for(x = 0; x<H_; x++){ //differents cas pour la forme toroïdale
-    for(y = 0; y<W_; y++){
+  for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
+    for(y = 0; y<H_; y++){
       if(x == 0){ // cas cellule sur bord gauche
         xg = W_ - 1;
         xd = x + 1;
@@ -177,19 +176,20 @@ void World::diffuse_concentration(){
           yb = y + 1;          
         } 
       } //endelse
-      stockA[x][y] = stockA[x][y] + D_*(a_[xg][yh] + a_[x][yh] + a_[xd][yh]
-                                      + a_[xg][y] + a_[x][y] + a_[xd][y]
-                                      + a_[xg][yb] + a_[x][yb] + a_[xd][yb]);
-      stockB[x][y] = stockB[x][y] + D_*(b_[xg][yh] + b_[x][yh] + b_[xd][yh]
-                                      + b_[xg][yb] + b_[x][yb] + b_[xd][y]
-                                      + b_[xg][yb] + b_[x][yb] + b_[xd][yb]);
-      stockC[x][y] = stockC[x][y] + D_*(c_[xg][yh] + c_[x][yh] + c_[xd][yh]
-                                      + c_[xg][y] + c_[x][y] + c_[xd][y]
-                                      + c_[xg][yb] + c_[x][yb] + c_[xd][yb]);
-        
-      stockA[x][y] = stockA[x][y] - 9*D_*a_[x][y];
-      stockB[x][y] = stockB[x][y] - 9*D_*b_[x][y];
-      stockC[x][y] = stockC[x][y] - 9*D_*c_[x][y];      
+      // Attention dans les coordonnees, x et y sont inversés par rapport à l'ordre habituel
+      stockA[y][x] = stockA[y][x] + D_*(a_[yh][xg] + a_[yh][x] + a_[yh][xd]
+                                      + a_[y][xg] + a_[y][x] + a_[y][xd]
+                                      + a_[yb][xg] + a_[yb][x] + a_[yb][xd]);
+      stockB[y][x] = stockB[y][x] + D_*(b_[yh][xg] + b_[yh][x] + b_[yh][xd]
+                                      + b_[y][xg] + b_[y][x] + b_[y][xd]
+                                      + b_[yb][xg] + b_[yb][x] + b_[yb][xd]);
+      stockC[y][x] = stockC[y][x] + D_*(c_[yh][xg] + c_[yh][x] + c_[yh][xd]
+                                      + c_[y][xg] + c_[y][x] + c_[y][xd]
+                                      + c_[yb][xg] + c_[yb][x] + c_[yb][xd]);
+
+      stockA[y][x] = stockA[y][x] - 9*D_*a_[y][x]; 
+      stockB[y][x] = stockB[y][x] - 9*D_*b_[y][x];
+      stockC[y][x] = stockC[y][x] - 9*D_*c_[y][x];      
     } 
   } //endfor différents cas
 
@@ -219,81 +219,6 @@ void World::diffuse_concentration(){
     delete[] stockC[i];
   }
   delete[] stockC;
-
-  // Essai de généralisation avec un vecteur (ne marche pas)
-  /*
-  // Copy of medium
-  for(std::vector<float**>::iterator it1 = stock.begin() ; it1 != stock.end() ; ++it1){
-    for(int i = 0; i<W_; i++){ 
-      (*it1)[i] = new float [W_];
-      for(int j = 0; j<H_; j++){
-        (*it1)[i][j] = a_[i][j];
-      }
-    } 
-  } */ // end of copy
-
-  /*
-  // Create a container for copies
-  std::vector<float**> stock;
-  stock.push_back(stockA);
-  stock.push_back(stockB);
-  stock.push_back(stockC);  
-
-  // Create a container for medium
-  std::vector<float**> medium;
-  medium.push_back(a_);
-  medium.push_back(b_);
-  medium.push_back(c_); 
-  */    
-  /*
-  // initialize iterators for mediums and copies
-  std::vector<float**>::iterator it = stock.begin();
-  std::vector<float**>::iterator itt = medium.begin();
-  
-  while(it != stock.end()){
-    float** current_stock =*it;
-    float** current_medium =*itt;
-  
-    for(x = 0; x<W_; x++){ //differents cas pour la forme toroïdale
-      for(y = 0; y<H_; y++){
-        if(x == 0){ // cas cellule sur bord gauche
-          xg = W_ - 1;
-          xd = x + 1;
-        }else{ //endif
-          if(x == W_-1){ // cas cellule sur bord droit
-            xg = x - 1;
-            xd = 0;
-          }else{ // cas cellule pas sur les bords G/D
-            xg = x - 1;
-            xd = x + 1;
-          }
-        } //endelse
-        if(y == 0){ // cas cellule sur bord haut
-          yh = H_ - 1;
-          yb = y + 1;
-        }else{ //endif
-          if(y == H_-1){ // cas cellule sur bord bas
-            yh = y - 1;
-            yb = 0; 
-          }else{ // cas cellule pas sur bords H/B
-            yh = y - 1;
-            yb = y + 1;          
-          }
-        } //endelse
-      } 
-    } //endfor différents cas
-
-    current_stock[x][y] = current_stock[x][y] + D_*(current_medium[xg][yh] + current_medium[x][yh] 
-                                      + current_medium[xd][yh]
-                                      + current_medium[xg][y] + current_medium[x][y] 
-                                      + current_medium[xd][y]
-                                      + current_medium[xg][yb] + current_medium[x][yb] 
-                                      + current_medium[xd][yb]);
-    
-    ++it;
-    ++itt;
-  }
-  */
 }
 
 std::map<int,float> World::find_neighborhood(int i, int j){ 
