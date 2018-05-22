@@ -29,10 +29,10 @@ BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
 //                         Protected Function members
 // ===========================================================================
 
-void BacteriaGa::metabolize(float a){
+void BacteriaGa::metabolize(float * a, float * b){
   // update A  
-  phenotype_[0] = a*Raa - phenotype_[0]*Rab;
-
+  phenotype_[0] = *a*Raa - phenotype_[0]*Rab;
+  *a = *a - *a*Raa;
   // update B 
   phenotype_[1] = phenotype_[1]*Rab;
 }
@@ -49,13 +49,26 @@ void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
 	phenotype_ = {0,0};
 }
 
-BacteriaGa BacteriaGa::divide(){
-	BacteriaGa 	daugtherGa; 
-	 this -> phenotype_[0] = this-> phenotype_[0]/2;
-	 this -> phenotype_[1] = this-> phenotype_[1]/2;
-	 daugtherGa.phenotype_[0] = this-> phenotype_[0];
-	 daugtherGa.phenotype_[1] = this -> phenotype_[1];
-	 return daugtherGa;
+Bacteria* BacteriaGa::divide(){
+	srand(time(NULL));
+	double rand_mute;
+	rand_mute = ((double) rand() / (RAND_MAX)); 
+	std::cout << rand_mute <<std::endl; 
+	Bacteria* daugther;
+	if (rand_mute< this->PROBA_MUTE_)
+	{
+	 	daugther =new BacteriaGb();
+	}
+	else 	
+	{
+		daugther =new BacteriaGa();
+	}
+	 
+	this -> phenotype_[0] = this-> phenotype_[0]/2;
+	this -> phenotype_[1] = this-> phenotype_[1]/2;
+	std::vector<float> new_phenotype = {this-> phenotype_[0] , this->phenotype_[1] };
+	daugther->set_phenotype(new_phenotype);
+	return daugther;
 
 }
 

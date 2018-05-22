@@ -3,6 +3,7 @@
 // ===========================================================================
 #include "Bacteria.h"
 #include <iostream>
+#include <stdlib.h> 
 // ===========================================================================
 //                       Definition of static attributes
 // ===========================================================================
@@ -16,6 +17,7 @@ float Bacteria::FITNESS_MIN_ =0.001;
 // ===========================================================================
 Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
 	phenotype_ = {0., 0.};
+	
 
 }
 
@@ -44,6 +46,9 @@ std::vector<float> Bacteria::phenotype() {
 	std::vector<float> phenotype (phenotype_);
 	return phenotype;
 }
+
+
+
 char Bacteria::genotype() const{
  	return genotype_;
  }
@@ -54,6 +59,7 @@ char Bacteria::genotype() const{
   void Bacteria::set_phenotype(std::vector<float> new_phenotype){
   	phenotype_ = new_phenotype;
   }
+
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
@@ -69,5 +75,4 @@ char Bacteria::genotype() const{
 void Bacteria::toString(){
   std::cout << "Je suis une bactérie de p_death " << PROBA_DEATH_ << " et de p_mut " << PROBA_MUTE_ << std::endl;
 }
-
 
