@@ -250,12 +250,14 @@ std::map<int,float> World::find_neighborhood(int i, int j){
           if(y == H_-1){
             yh = y - 1;
             yb = 0; 
-         }else{
-           yh = y - 1;
-            yb = y + 1;          
-         }
+        }else{
+          yh = y - 1;
+          yb = y + 1;    
         }
+      }
         // Fill the returned map according filling conditions.
+      // ATTENTION XG ET YH... etc A INVERSER (A VERIFIER MAIS JE CROIS)
+      // if (pop_[YH][YG] == NULL){
         if (pop_[xg][yh] == NULL){
           neighborhood.insert ( std::pair<int,float>(xg +yh, -1) );
         }else{
@@ -325,64 +327,63 @@ void World::competition(){
        		/* Find maximal fitness */
         	while(c < current_neighborhood.size() -1){
          		if (it->second > next_it->second ){
-            		pos_best = it->first;
-          		}
+            	pos_best = it->first;
+          	}
          		else if (it->second < next_it->second ){
-           			pos_best = next_it->first;
-           		}
-          		else{ // In case of equality
+           		pos_best = next_it->first;
+           	}
+          	else{ // In case of equality
          			int fight = rand() % 100;
-             		if (fight < 50){
-              			pos_best = it->first;
-            		}
-           			else{
-              			pos_best = next_it->first;
-              		}
-          		}
-          		++c;
+             	if (fight < 50){
+             		pos_best = it->first;
+            	}
+           		else{
+              	pos_best = next_it->first;
+              }
+          	}
+          	++c;
          		++it;
-          		++next_it;
-			}
-				if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
-        		// Find the best bacteria according its key of in the dicionnary
-					if (pos_best!=0){
-       					best_pos_y = pos_best/W_;
-       	 	 			best_pos_x = pos_best%W_;
-		 				best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
-       				}
-       				else{ // Case of impossible operation
-       					best_pos_y = 0;
-       					best_pos_x = 0;
-       					best = pop_[0][0]; // The best one has as coordinate (0,0)
-       				}
-       				// Find available gaps
+          	++next_it;
+			    }
+				  if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
+        	// Find the best bacteria according its key of in the dicionnary
+					  if (pos_best!=0){
+       				best_pos_y = pos_best/W_;
+       	 	 		best_pos_x = pos_best%W_;
+		 				  best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
+       			}
+       			else{ // Case of impossible operation
+       				best_pos_y = 0;
+       				best_pos_x = 0;
+       				best = pop_[0][0]; // The best one has as coordinate (0,0)
+       			}
+       			// Find available gaps
      				//neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
      				for ( std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
-        				if (it->second == -1){
-        					v_pos.push_back(it->first);
-        				}
-      				}		
-        			// Choose randomly one gap
-        			if (v_pos.size()!=0){ // Prevent impossible operation
-        				int random_destination = rand()%v_pos.size();
-       					int destination = v_pos[random_destination];
-        				if (destination !=0){ // Prevent impossible operation
-       						int daugther_pos_y = destination/W_;
-        					int daugther_pos_x = destination%W_;
-							// Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
-       						Bacteria* daugther = best->divide(); 
-       						pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
-       					}
-       					else { 
-       						Bacteria* daugther = best->divide(); // Help me problem of 
+        			if (it->second == -1){
+        				v_pos.push_back(it->first);
+        			}
+      			}		
+        		// Choose randomly one gap
+        		if (v_pos.size()!=0){ // Prevent impossible operation
+        			int random_destination = rand()%v_pos.size();
+       				int destination = v_pos[random_destination];
+        			if (destination !=0){ // Prevent impossible operation
+       					int daugther_pos_y = destination/W_;
+        				int daugther_pos_x = destination%W_;
+							  // Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
+       					Bacteria* daugther = best->divide(); 
+       					pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
+       				}
+       				else { 
+       					Bacteria* daugther = best->divide(); // Help me problem of 
        						pop_[0][0] = daugther; // Fill the gap in position (0,0)
-       					}
-					}
-				} // End of condition of the presence
-			} // End of gap condition 
-      	} // for y
+       				}
+					  }
+				  } // End of condition of the presence
+			  } // End of gap condition 
+      } // for y
    	} // for x  	
-
 }
      
 
