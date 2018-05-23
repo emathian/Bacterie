@@ -4,6 +4,9 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include <map>
+
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -109,11 +112,6 @@ int main(int argc, char* argv[]) {
 
     int s = 15/4;
     cout<<s<<endl;
-
-
-    
-    //myworld.display(4);
-
 
     return EXIT_SUCCESS;
 }
