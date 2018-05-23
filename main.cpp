@@ -32,11 +32,15 @@ using std::endl;
 int main(int argc, char* argv[]) {
 	srand(time(NULL));
   /*
+  //----------------------
+  //Testeurs de Bacteria
+  //----------------------
+
   // Bacteria B;
   // cout << B.PROBA_DEATH() <<endl;
     
 
-   //Bacteria B;
+  //Bacteria B;
   BacteriaGa myGa;
   BacteriaGb myGb;
 
@@ -54,9 +58,7 @@ int main(int argc, char* argv[]) {
   std::vector<float> update_phenotype = {0,1};
   myGa.set_phenotype(update_phenotype);
   cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
-
-
-    
+ 
   myGa.toString();
   myGb.toString();
     
@@ -77,43 +79,84 @@ int main(int argc, char* argv[]) {
   BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
   cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
 	*/
-	
-	//Testeurs de world
-	  
-	//test constructeur
-	
-	// Bacteria** tableau[2][2];
-	
-	
 
-	
-	World myworld(2, 2, 0.1);
-	
-    cout<<"Display A before diffusion "<<endl;
-    myworld.display(1);
+  //----------------------
+  //Testeurs de World
+  //----------------------
 
+  //test constructeur
+	World myworld(4,3,0.1);
+  
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
+  
+  // Tests de la méthode diffuse
+  /* Tests réalisés en modifiant le constructeur pour avoir une seule case remplie en a_ 
+  Bord g/d : done
+  Bord h/b : done
+  coin hg : done
+  coin hd : done
+  coin bg : done
+  coin bd : done
+  */
 
-    myworld.diffuse_concentration();
-    cout<<"Display A after diffusion "<<endl;
-    myworld.display(1);
+  myworld.diffuse_concentration();
+  cout<< endl;
+
+  cout<< "Après diffusion : " << endl; 
+  
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  
+  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
     
-    cout<<""<<endl;
-    myworld.display(4);
+  cout<<""<<endl;
+  myworld.display(4);
 	
-    myworld.renew(30);
-    myworld.display(1);
+
+  
+  myworld.renew(30);
+  myworld.display(1);
 	myworld.display(2);
 
-	 cout<<"genotype "<<endl;
-    myworld.display(4);
+	cout<<"genotype "<<endl;
+  myworld.display(4);
 		
 	myworld.display(6);   
-    myworld.competition();
+  //myworld.competition();
 
-    int s = 15/4;
-    cout<<s<<endl;
-
+<<<<<<< HEAD
     return EXIT_SUCCESS;
+=======
+  int s = 15/4;
+  cout<<s<<endl;
+  
+  
+  myworld.renew(30);
+  myworld.display(1);
+	myworld.display(2);
+  
+
+    
+  //myworld.display(4);
+
+
+  return EXIT_SUCCESS;
+>>>>>>> f6be2eb32eba2e4c85de531af6cfd2ac27d3d743
 }
 
 
