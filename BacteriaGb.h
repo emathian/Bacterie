@@ -12,8 +12,8 @@
 
 
 class BacteriaGb: public Bacteria {
-	public:
-	// =========================================================================
+  public:
+  // =========================================================================
   //                               Constructors
   // =========================================================================
   BacteriaGb();
@@ -43,7 +43,7 @@ class BacteriaGb: public Bacteria {
   float get_fitness() override ;  
   void kill_bacteria(float *a, float *b, float *c) override;
 
-	protected:
+  protected:
   // =========================================================================
   //                        Protected Function members
   // =========================================================================

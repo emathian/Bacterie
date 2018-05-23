@@ -4,9 +4,6 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
-#include <iterator>
-#include <map>
-
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -30,20 +27,20 @@ using std::endl;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-	srand(time(NULL));
+  srand(time(NULL));
   /*
+  //----------------------
+  //Testeurs de Bacteria
+  //----------------------
   // Bacteria B;
   // cout << B.PROBA_DEATH() <<endl;
     
-
-   //Bacteria B;
+  //Bacteria B;
   BacteriaGa myGa;
   BacteriaGb myGb;
-
   // Test of constructor copy
   BacteriaGa myGa_copy(myGa);
   BacteriaGb myGb_copy(myGb);
-
   // Test of getters  
   cout <<"Default proba of death  " <<myGa.PROBA_DEATH()<<endl;
   cout <<"Default proba  "<< myGa.PROBA_MUTE()<<endl;
@@ -54,9 +51,7 @@ int main(int argc, char* argv[]) {
   std::vector<float> update_phenotype = {0,1};
   myGa.set_phenotype(update_phenotype);
   cout <<"Phenotype "<< myGa.phenotype()[1]<< "," <<myGa.phenotype()[2]<<endl;
-
-
-    
+ 
   myGa.toString();
   myGb.toString();
     
@@ -73,51 +68,87 @@ int main(int argc, char* argv[]) {
   */
 
   //TEst of divide
-  /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected					
+  /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected          
   BacteriaGa daughtermyGA = myGa.divide();// Wellcome !
   cout <<"Phenotype "<< daughtermyGA.phenotype()[0]<< "," <<daughtermyGA.phenotype()[1]<<endl;
-	*/
-	
-	//Testeurs de world
-	  
-	//test constructeur
-	
-	// Bacteria** tableau[2][2];
-	
-	
+  */
 
-	
-	World myworld(2, 2, 0.1);
-	
-    cout<<"Display A before diffusion "<<endl;
-    myworld.display(1);
+  //----------------------
+  //Testeurs de World
+  //----------------------
 
+  //test constructeur
+  World myworld(4,3,0.1);
+  
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
+  
+  // Tests de la méthode diffuse
+  /* Tests réalisés en modifiant le constructeur pour avoir une seule case remplie en a_ 
+  Bord g/d : done
+  Bord h/b : done
+  coin hg : done
+  coin hd : done
+  coin bg : done
+  coin bd : done
+  */
 
-    myworld.diffuse_concentration();
-    cout<<"Display A after diffusion "<<endl;
-    myworld.display(1);
+  myworld.diffuse_concentration();
+  cout<< endl;
+
+  cout<< "Après diffusion : " << endl; 
+  
+  cout<< "Pop : " << endl;
+  myworld.display(4);
+  //myworld.pop();  
+  
+  
+  cout<< "a : " << endl;
+  myworld.display(1);
+  cout<< "b : " << endl;
+  myworld.display(2);
+  cout<< "c : " << endl;
+  myworld.display(3);
     
-    cout<<""<<endl;
-    myworld.display(4);
-	
-    myworld.renew(30);
-    myworld.display(1);
-	myworld.display(2);
+  cout<<""<<endl;
+  myworld.display(4);
+  
 
-	 cout<<"genotype "<<endl;
-    myworld.display(4);
-		
-	myworld.display(6);   
-    myworld.competition();
+  
+  myworld.renew(30);
+  myworld.display(1);
+  myworld.display(2);
 
-    int s = 15/4;
-    cout<<s<<endl;
+  cout<<"genotype "<<endl;
+  myworld.display(4);
+    
+  myworld.display(6);   
+  //myworld.competition();
 
-    return EXIT_SUCCESS;
+  int s = 15/4;
+  cout<<s<<endl;
+  
+  
+  myworld.renew(30);
+  myworld.display(1);
+  myworld.display(2);
+  
+
+    
+  //myworld.display(4);
+
+
+  return EXIT_SUCCESS;
 }
 
 
 // ===========================================================================
 //                            Function definitions
 // ===========================================================================
-
