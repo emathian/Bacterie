@@ -42,7 +42,7 @@ void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
 	*a = *a;
 	*b = *b +  phenotype_[1];
 	*c = *c +  phenotype_[2];
-	phenotype_ = {0,0};
+	delete this;
 }
 
 
@@ -54,11 +54,11 @@ Bacteria* BacteriaGb::divide(){
 	Bacteria* daugther;
 	if (rand_mute< this->PROBA_MUTE_)
 	{
-	 	daugther =new BacteriaGb();
+	 	daugther = new BacteriaGb();
 	}
 	else 	
 	{
-		daugther =new BacteriaGa();
+		daugther = new BacteriaGa();
 	}
 	 
 	this -> phenotype_[0] = this-> phenotype_[0]/2;

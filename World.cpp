@@ -351,7 +351,7 @@ void World::competition(){
     pos_best = current_copy.begin()->first;
     
   if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
-   // Find the best bacteria according its key of in the dicionnary
+   // Find the best bacteria according to its key of in the dicionnary
     if (pos_best!=0){
      best_pos_y = pos_best/W_;
        best_pos_x = pos_best%W_;
@@ -404,7 +404,7 @@ void World::update(int tours_max){
       //this->renew();
       }
     this-> diffuse_concentration();
-    //death of the bacteries // Bizzard elles ont une proba de mourir 
+    //death of the bacteries // Bizarre elles ont une proba de mourir ? 
     for(x = 0; x <H_; x++){
       for(y = 0; y< W_; y++){
         random_nb = ((float)(rand()%101))/100.0;

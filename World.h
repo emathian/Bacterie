@@ -66,6 +66,7 @@ class World {
   of a bacteria if the cell is full, otherwise values are settesd equal to the default 
   number -1.  */
   std::map<int,float> find_neighborhood(int i, int j);
+  std::vect 
 
 	private:
   // =========================================================================

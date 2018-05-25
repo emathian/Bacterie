@@ -46,7 +46,7 @@ void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
 	*a = *a +  phenotype_[0];
 	*b = *b +  phenotype_[1];
 	*c = *c; 
-	phenotype_ = {0,0};
+	delete this;
 }
 
 Bacteria* BacteriaGa::divide(){
