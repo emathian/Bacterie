@@ -13,6 +13,8 @@
 //                             "using" statements
 // ===========================================================================
 
+/* Bacteria is a virtual class use by daugthers' classes BacteriaGa and 
+BacteriaGb */
 
 class Bacteria {
 	public:
@@ -20,7 +22,9 @@ class Bacteria {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
+  /*Default constructor*/
   Bacteria();
+  /*Copy constructor */
   Bacteria(const Bacteria& bact); 
 
   // =========================================================================
@@ -31,9 +35,15 @@ class Bacteria {
   // =========================================================================
   //                                  Getters
   // =========================================================================
+  /* Constant attributes */
+  /* PROBA_MUTE_ return the probability that a bacteria mute.This attribute is
+  the same for all individual in the class */
   float PROBA_MUTE() const;
+  /* PROBA_MUTE_ return the probability that a bacteria mute.This attribute is
+  the same for all individual in the class */
   float PROBA_DEATH() const;
   float FITNESS_MIN() const;
+
   std::vector<float> phenotype();
 
   char genotype() const;

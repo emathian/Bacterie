@@ -38,7 +38,12 @@ void BacteriaGa::metabolize(float * a, float * b){
 }
 
 float BacteriaGa::get_fitness(){
-  return phenotype_[1]; 
+	if (phenotype_[1]<this->FITNESS_MIN_){
+		return 0;
+	}
+	else{
+  		return phenotype_[1]; 
+	}	
 }
 
 
@@ -55,20 +60,26 @@ Bacteria* BacteriaGa::divide(){
 	rand_mute = ((double) rand() / (RAND_MAX)); 
 	std::cout << rand_mute <<std::endl; 
 	Bacteria* daugther;
-	if (rand_mute< this->PROBA_MUTE_)
-	{
-	 	daugther =new BacteriaGb();
-	}
-	else 	
-	{
-		daugther =new BacteriaGa();
-	}
-	 
+	if (this->get_fitness() >0){
+		if (rand_mute< this->PROBA_MUTE_)
+		{
+	 		daugther =new BacteriaGb();
+		}
+		else 	
+		{
+			daugther =new BacteriaGa();
+		}
+
 	this -> phenotype_[0] = this-> phenotype_[0]/2;
 	this -> phenotype_[1] = this-> phenotype_[1]/2;
 	std::vector<float> new_phenotype = {this-> phenotype_[0] , this->phenotype_[1] };
 	daugther->set_phenotype(new_phenotype);
-	return daugther;
+	
+	 }else{
+	 	daugther=NULL;
+	 }
+
+	 return daugther;	
 
 }
 

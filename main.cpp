@@ -140,6 +140,8 @@ int main(int argc, char* argv[]) {
   myworld.display(1);
   myworld.display(2);
   
+  myworld.find_neighborhood(1,1);
+  myworld.competition();
 
     
   //myworld.display(4);
