@@ -97,7 +97,8 @@ int main(int argc, char* argv[]) {
   coin bg : done
   coin bd : done
   */
-
+  
+  /*
   myworld.diffuse_concentration();
   cout<< endl;
 
@@ -106,15 +107,14 @@ int main(int argc, char* argv[]) {
   cout<< "Pop : " << endl;
   myworld.display(4);
   //myworld.pop();  
+  */
   
-  
-  cout<< "a : " << endl;
+
   myworld.display(1);
-  cout<< "b : " << endl;
   myworld.display(2);
-  cout<< "c : " << endl;
   myworld.display(3);
-    
+  
+  /*
   cout<<""<<endl;
   myworld.display(4);
   
@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
 
     
   //myworld.display(4);
-
+  */
 
 
   return EXIT_SUCCESS;

@@ -316,33 +316,39 @@ void World::competition(){
  int x;
  int y;
   
- for(x = 0; x< W_; x++){
-   for(y = 0; y< H_; y++){ 
-     if (pop_[x][y]==NULL){// Find gaps
-      current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
+  for(x = 0; x< W_; x++){
+    for(y = 0; y< H_; y++){ 
+      if (pop_[x][y]==NULL){// Find gaps
+        current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     
-    /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
-    int pos_best = current_neighborhood.begin()->first; //initialisation
-    std::map<int,float>::const_iterator it = current_neighborhood.begin();
-     std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
+        /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
+        int pos_best = current_neighborhood.begin()->first; //initialisation
+        std::map<int,float>::const_iterator it = current_neighborhood.begin();
+        std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
     
-     /* Find maximal fitness */
-    std::map<int,float> current_copy = (current_neighborhood);
-    int c= current_neighborhood.size();
-    while(c>=2){
+        /* Find maximal fitness */
+        std::map<int,float> current_copy = (current_neighborhood);
+        int c= current_neighborhood.size();
+        while(c>=2){
      
-    auto it = current_copy.begin();
-    auto next_it = std::next(it); 
-    if (it->second > next_it->second){
-      current_copy.erase(next_it);
-    }
-    else if(it->second < next_it->second){
-      current_copy.erase(it);
-    }
-    else if (it->second == next_it->second){
-      int fight = rand()%2;
-      if (fight >0){
-        current_copy.erase(next_it);
+          auto it = current_copy.begin();
+          auto next_it = std::next(it); 
+          if (it->second > next_it->second){
+            current_copy.erase(next_it);
+          }
+          else if(it->second < next_it->second){
+            current_copy.erase(it);
+          }
+          else if (it->second == next_it->second){
+            int fight = rand()%2;
+          if (fight >0){
+            current_copy.erase(next_it);
+          }
+          else {
+            current_copy.erase(it);
+          }
+        }
+        --c; 
       }
       else {
         current_copy.erase(it);
@@ -352,40 +358,40 @@ void World::competition(){
     }
     pos_best = current_copy.begin()->first;
     
-  if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
-   // Find the best bacteria according to its key of in the dicionnary
-    if (pos_best!=0){
-     best_pos_y = pos_best/W_;
-       best_pos_x = pos_best%W_;
-    best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
+    if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
+    // Find the best bacteria according its key of in the dicionnary
+      if (pos_best!=0){
+        best_pos_y = pos_best/W_;
+        best_pos_x = pos_best%W_;
+        best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
       }
       else{ // Case of impossible operation
-     best_pos_y = 0;
-     best_pos_x = 0;
-     best = pop_[0][0]; // The best one has as coordinate (0,0)
+        best_pos_y = 0;
+        best_pos_x = 0;
+        best = pop_[0][0]; // The best one has as coordinate (0,0)
       }
       // Find available gaps
-    //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
-    for ( std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
-    if (it->second == -1){
-      v_pos.push_back(it->first);
-    }
-     } 
-     // Choose randomly one gap
-     if (v_pos.size()!=0){ // Prevent impossible operation
-    int random_destination = rand()%v_pos.size();
-     int destination = v_pos[random_destination];
-    if (destination !=0){ // Prevent impossible operation
-       int daugther_pos_y = destination/W_;
-      int daugther_pos_x = destination%W_;
-     // Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
-       Bacteria* daugther = best->divide(); 
-       pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
-     }
-     else { 
-       Bacteria* daugther = best->divide(); // Help me problem of 
-       pop_[0][0] = daugther; // Fill the gap in position (0,0)
-     }
+      //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
+      for ( std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
+        if (it->second == -1){
+          v_pos.push_back(it->first);
+        }
+      } 
+      // Choose randomly one gap
+      if (v_pos.size()!=0){ // Prevent impossible operation
+        int random_destination = rand()%v_pos.size();
+        int destination = v_pos[random_destination];
+      if (destination !=0){ // Prevent impossible operation
+        int daugther_pos_y = destination/W_;
+        int daugther_pos_x = destination%W_;
+        // Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
+        Bacteria* daugther = best->divide(); 
+        pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
+      }
+      else { 
+        Bacteria* daugther = best->divide(); // Help me problem of 
+        pop_[0][0] = daugther; // Fill the gap in position (0,0)
+      }
     }
    } // End of condition of the presence
   } // End of gap condition 
@@ -406,7 +412,7 @@ void World::update(int tours_max){
       //this->renew();
       }
     this-> diffuse_concentration();
-    //death of the bacteries // Bizarre elles ont une proba de mourir ? 
+    //death of the bacteries // Bizzard elles ont une proba de mourir 
     for(x = 0; x <H_; x++){
       for(y = 0; y< W_; y++){
         random_nb = ((float)(rand()%101))/100.0;
@@ -497,7 +503,7 @@ void World::display(int choice){ // Just for tests
     }
     
     else if (choice == 6){
-      std::cout <<"concentration of metabolite  : "<<std::endl;
+      std::cout <<"concentration of metabolites  : "<<std::endl;
       std::cout <<'\n';
       for (int i=0; i<H_ ; ++i){
         for (int j=0; j<W_ ; ++j){
