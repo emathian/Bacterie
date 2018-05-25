@@ -10,6 +10,7 @@
 #include <vector>
 #include <string.h> 
 #include <map>
+#include <tuple>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -65,8 +66,9 @@ class World {
   the position of the cell in the grid could be find. Values correspond to the fitness
   of a bacteria if the cell is full, otherwise values are settesd equal to the default 
   number -1.  */
-  std::map<int,float> find_neighborhood(int i, int j);
-  std::vect 
+  map<int,float> find_neighborhood(int i, int j);
+  /**methode pour avoir une liste de coordonnees x,y des cases vides **/
+  vect<tuple<int,int>> get_empty(); 
 
 	private:
   // =========================================================================

@@ -4,12 +4,12 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include "BacteriaGb.h"
 #include "World.h"
-
 
 
 // ===========================================================================
@@ -18,10 +18,8 @@
 
 // ===========================================================================
 //                             "using" statements
-// ===========================================================================
-using std::cout;
-using std::endl;
-
+// ===========================================================================<
+using namespace std;
 
 // ===========================================================================
 //                                    MAIN
@@ -139,6 +137,7 @@ int main(int argc, char* argv[]) {
   myworld.renew(30);
   myworld.display(1);
   myworld.display(2);
+  vect<tuple<int,int>> coord = myworld.find_empty();
   
 
     

@@ -14,7 +14,9 @@
 #include <algorithm>  /*shufle */
 #include <iomanip>     // std::setprecision
 #include <iterator>
+#include <tuple>
 
+using namespace std;
 
 
 
@@ -507,6 +509,21 @@ void World::display(int choice){ // Just for tests
     else {
       std::cout<<"Choice impossible !"<<std::endl;
     }
+}
+
+
+vect<tuple<int,int>> World::get_empty(){
+  vect<tuple<int,int>> coordinates;
+  int i;
+  int j;
+  for(i = 0 ; i < W_ ; i++){
+    for(j = 0; j < H_ ; j++){
+      if(pop[j][i] == NULL){
+        coordinates.pushback(make_tuple(i,j)); //WARNING : beware of the order there !!!
+      }
+    }
+  }
+  return coordinates;
 }
 
 // ===========================================================================
