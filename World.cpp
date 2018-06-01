@@ -305,7 +305,7 @@ void World::competition(){
  std::vector<int> v_pos; // Vector of gaps arround the best bacteria
  int x;
  int y;
-  
+ std::map<int,float> current_copy;
   for(x = 0; x< W_; x++){
     for(y = 0; y< H_; y++){ 
       if (pop_[x][y]==NULL){// Find gaps
@@ -317,7 +317,7 @@ void World::competition(){
         std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
     
         /* Find maximal fitness */
-        std::map<int,float> current_copy = (current_neighborhood);
+        current_copy = current_neighborhood;
         int c= current_neighborhood.size();
         while(c>=2){
      
@@ -331,35 +331,32 @@ void World::competition(){
           }
           else if (it->second == next_it->second){
             int fight = rand()%2;
-          if (fight >0){
-            current_copy.erase(next_it);
+            if (fight >0){
+              current_copy.erase(next_it);
+            }
           }
-          else {
+          else{
             current_copy.erase(it);
           }
+          --c;
         }
-        --c; 
-      }
-      else {
-        current_copy.erase(it);
       }
     }
-    --c; 
-    }
-    pos_best = current_copy.begin()->first;
+  }
+  pos_best = current_copy.begin()->first;
     
   if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
    // Find the best bacteria according its key of in the dicionnary
     if (pos_best!=0){
-     best_pos_y = pos_best/W_; // column
-       best_pos_x = pos_best%W_; //row
-    best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
-      }
-      else{ // Case of impossible operation
+      best_pos_y = pos_best/W_; // column
+      best_pos_x = pos_best%W_; //row
+      best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
+    }
+    else{ // Case of impossible operation
         best_pos_y = 0;
         best_pos_x = 0;
         best = pop_[0][0]; // The best one has as coordinate (0,0)
-      }
+    }
       // Find available gaps
     //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
     for ( std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
