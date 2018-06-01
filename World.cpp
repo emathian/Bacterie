@@ -374,7 +374,6 @@ void World::competition(){
       if (destination !=0){ // Prevent impossible operation
         int daugther_pos_y = destination/W_;
         int daugther_pos_x = destination%W_;
-        // Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
         Bacteria* daugther = best->divide(); 
         pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
       }
