@@ -397,26 +397,26 @@ void World::update(int tours_max){
   float death = pop_[0][0]->PROBA_DEATH();
   float random_nb;
   for( tours = 0; tours < tours_max; tours++){
-    if(tours%7==0){
-      //this->renew();
-      }
     this-> diffuse_concentration();
     //death of the bacteries // Bizzard elles ont une proba de mourir 
-    for(x = 0; x <H_; x++){
-      for(y = 0; y< W_; y++){
+    for(y = 0; y <H_; y++){
+      for(x = 0; x< W_; x++){
         random_nb = ((float)(rand()%101))/100.0;
         if(random_nb < death){
-          pop_[x][y]-> kill_bacteria(&a_[x][y],&b_[x][y],&c_[x][y]);
-          pop_[x][y]= NULL; 
+          pop_[y][x]-> kill_bacteria(&a_[y][x],&b_[y][x],&c_[y][x]);
+          pop_[y][x]= nullptr; 
         }
       }
     }
-    //this-> competition();
+    this-> competition();
     //metabolize
-    for(x = 0; x <H_; x++){
-      for(y = 0; y< W_; y++){
-        pop_[x][y]->metabolize(&a_[x][y],&b_[x][y]);
+    for(y = 0; y <H_; y++){
+      for(x = 0; x< W_; x++){
+        pop_[y][x]->metabolize(&a_[y][x],&b_[y][x]);
       }
+    }
+    if(tours%7==0){
+      //this->renew();
     }
   }
 }
