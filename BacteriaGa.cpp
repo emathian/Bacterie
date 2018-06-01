@@ -11,11 +11,11 @@ static float Rab = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGa::BacteriaGa(){
+BacteriaGa::BacteriaGa() : Bacteria(){
   genotype_ = 'a';
 }
 
-BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
+BacteriaGa::BacteriaGa(const BacteriaGa& bactGa) : Bacteria(bactGa){
 	genotype_ = bactGa.genotype_;
 };
 

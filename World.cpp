@@ -345,9 +345,9 @@ void World::competition(){
   if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
    // Find the best bacteria according its key of in the dicionnary
     if (pos_best!=0){
-     best_pos_y = pos_best/W_;
-       best_pos_x = pos_best%W_;
-    best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
+      best_pos_y = pos_best/W_;
+      best_pos_x = pos_best%W_;
+      best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
       }
       else{ // Case of impossible operation
      best_pos_y = 0;
@@ -408,12 +408,15 @@ void World::update(int tours_max){
     //metabolize
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){
-        pop_[y][x]->metabolize(&a_[y][x],&b_[y][x]);
+        if(pop_[y][x] != nullptr){ // Si elle est pas morte...
+          pop_[y][x]->metabolize(&a_[y][x],&b_[y][x]);
+        }
       }
     }
     if(tours%7==0){
       //this->renew();
     }
+  this->display(2);
   }
 }
 

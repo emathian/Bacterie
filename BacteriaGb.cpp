@@ -11,11 +11,11 @@ static float Rbc = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGb::BacteriaGb(){
+BacteriaGb::BacteriaGb() : Bacteria(){
   genotype_ = 'b';
 }
 
-BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
+BacteriaGb::BacteriaGb(const BacteriaGb& bactGb) : Bacteria(bactGb){
 	genotype_ = bactGb.genotype_;
 };
 // ===========================================================================
@@ -25,7 +25,7 @@ BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
-void BacteriaGb::metabolize(float *a,float * b){
+void BacteriaGb::metabolize(float *a,float *b){
   float dt=0.1; // pas de temps  
   // update B
   phenotype_[0] = (*b*Rbb - phenotype_[0]*Rbc)*dt + phenotype_[0] ;
