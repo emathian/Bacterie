@@ -57,6 +57,35 @@ int main(int argc, char* argv[]) {
   cout << myGb.get_fitness() << endl;
   */
   
+  // Testeurs de metabolize
+  // ------ Ga
+  /*
+  float f=2.0;
+  float* myfloatptr;
+  myfloatptr= &f;
+    
+  BacteriaGa myBact;
+  myBact.metabolize(myfloatptr, myfloatptr);
+  std::vector<float> vectp = myBact.phenotype();
+  
+  cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
+  cout << f << endl; // Ca écrit dans la ptr donné
+  */
+  
+  // ------ Gb
+  /*
+  float f=2.0;
+  float* myfloatptr;
+  myfloatptr= &f;
+    
+  BacteriaGb myBact;
+  myBact.metabolize(myfloatptr, myfloatptr);
+  std::vector<float> vectp = myBact.phenotype();
+  
+  cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
+  cout << f << endl; // Ca écrit dans la ptr donné
+  */
+  
   // Test of KIll
   // Sorry myGa 
   /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected
@@ -74,7 +103,8 @@ int main(int argc, char* argv[]) {
   //----------------------
   //Testeurs de World
   //----------------------
-
+  
+  /*
   //test constructeur
   World myworld(4,3,0.1);
   
@@ -87,6 +117,7 @@ int main(int argc, char* argv[]) {
   myworld.display(2);
   cout<< "c : " << endl;
   myworld.display(3);
+  */
   
   // Tests de la méthode diffuse
   /* Tests réalisés en modifiant le constructeur pour avoir une seule case remplie en a_ 
@@ -109,10 +140,11 @@ int main(int argc, char* argv[]) {
   //myworld.pop();  
   */
   
-
+  /*
   myworld.display(1);
   myworld.display(2);
   myworld.display(3);
+  */
   
   /*
   cout<<""<<endl;
@@ -149,6 +181,7 @@ int main(int argc, char* argv[]) {
   //test empty
   
   //test empty
+  /*
   vector<tuple<int,int>> liste = myworld.get_empty();
   std::cout << "The contents of liste are:";
   for (vector<tuple<int,int>>::iterator it = liste.begin(); it != liste.end(); ++it)
