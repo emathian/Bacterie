@@ -144,11 +144,15 @@ int main(int argc, char* argv[]) {
 
     
   //myworld.display(4);
-  */
+  
   
   //test empty
-  
-  
+  vector<tuple<int,int>> liste = myworld.get_empty();
+  std::cout << "The contents of liste are:";
+  for (vector<tuple<int,int>>::iterator it = liste.begin(); it != liste.end(); ++it)
+    std::cout << ' ' << get<0>(*it);
+  std::cout << '\n';
+  */
 
 
   return EXIT_SUCCESS;
