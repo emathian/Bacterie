@@ -305,10 +305,16 @@ void World::competition(){
  std::vector<int> v_pos; // Vector of gaps arround the best bacteria
  int x;
  int y;
-  
- for(x = 0; x< W_; x++){
-   for(y = 0; y< H_; y++){ 
-     if (pop_[x][y]==NULL){// Find gaps
+vector<tuple<int,int>> gap;
+gap = this->get_empty();
+for (int i=0; i!=gap.size(); ++i)
+{
+  x= std::get<0>(gap[i]);
+  y = std::get<1>(gap[i]);
+
+ //for(x = 0; x< W_; x++){
+  // for(y = 0; y< H_; y++){ 
+   //  if (pop_[y][x]==NULL){// Find gaps
       current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     
     /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
@@ -379,8 +385,7 @@ void World::competition(){
     }
   } // End of condition of the presence
    } // End of gap condition 
-  } // for y
-  } // for x 
+  
 
 }
      
