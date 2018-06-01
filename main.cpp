@@ -4,12 +4,12 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
 #include "BacteriaGb.h"
 #include "World.h"
-
 
 
 // ===========================================================================
@@ -18,10 +18,8 @@
 
 // ===========================================================================
 //                             "using" statements
-// ===========================================================================
-using std::cout;
-using std::endl;
-
+// ===========================================================================<
+using namespace std;
 
 // ===========================================================================
 //                                    MAIN
@@ -99,7 +97,8 @@ int main(int argc, char* argv[]) {
   coin bg : done
   coin bd : done
   */
-
+  
+  /*
   myworld.diffuse_concentration();
   cout<< endl;
 
@@ -108,15 +107,14 @@ int main(int argc, char* argv[]) {
   cout<< "Pop : " << endl;
   myworld.display(4);
   //myworld.pop();  
+  */
   
-  
-  cout<< "a : " << endl;
+
   myworld.display(1);
-  cout<< "b : " << endl;
   myworld.display(2);
-  cout<< "c : " << endl;
   myworld.display(3);
-    
+  
+  /*
   cout<<""<<endl;
   myworld.display(4);
   
@@ -139,12 +137,14 @@ int main(int argc, char* argv[]) {
   myworld.renew(30);
   myworld.display(1);
   myworld.display(2);
+  vect<tuple<int,int>> coord = myworld.find_empty();
   
   myworld.find_neighborhood(1,1);
   myworld.competition();
 
     
   //myworld.display(4);
+  */
 
 
   return EXIT_SUCCESS;

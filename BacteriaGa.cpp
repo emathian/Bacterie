@@ -30,11 +30,12 @@ BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
 // ===========================================================================
 
 void BacteriaGa::metabolize(float * a, float * b){
+  float dt=0.1; // pas de temps  
   // update A  
-  phenotype_[0] = *a*Raa - phenotype_[0]*Rab;
-  *a = *a - *a*Raa;
+  phenotype_[0] = (*a*Raa - phenotype_[0]*Rab)*dt + phenotype_[0];
+  *a = -((*a)*(Raa))*dt + *a; // update medium
   // update B 
-  phenotype_[1] = phenotype_[1]*Rab;
+  phenotype_[1] = (phenotype_[1]*Rab)*dt + phenotype_[1] ;
 }
 
 float BacteriaGa::get_fitness(){
@@ -51,7 +52,7 @@ void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
 	*a = *a +  phenotype_[0];
 	*b = *b +  phenotype_[1];
 	*c = *c; 
-	phenotype_ = {0,0};
+	delete this;
 }
 
 Bacteria* BacteriaGa::divide(){

@@ -14,13 +14,9 @@
 #include <algorithm>  /*shufle */
 #include <iomanip>     // std::setprecision
 #include <iterator>
+#include <tuple>
 
-
-
-
-// ===========================================================================
-//                       Definition of static attributes
-// ===========================================================================
+using namespace std;
 
 // ===========================================================================
 //                                Constructors
@@ -83,10 +79,6 @@ World::World(int width, int height, float diffusion){
 }
 
 
-
-
-  
-  
 // ===========================================================================
 //                                 Destructor
 // ===========================================================================
@@ -314,33 +306,39 @@ void World::competition(){
  int x;
  int y;
   
- for(x = 0; x< W_; x++){
-   for(y = 0; y< H_; y++){ 
-     if (pop_[x][y]==NULL){// Find gaps
-      current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
+  for(x = 0; x< W_; x++){
+    for(y = 0; y< H_; y++){ 
+      if (pop_[x][y]==NULL){// Find gaps
+        current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     
-    /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
-    int pos_best = current_neighborhood.begin()->first; //initialisation
-    std::map<int,float>::const_iterator it = current_neighborhood.begin();
-     std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
+        /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
+        int pos_best = current_neighborhood.begin()->first; //initialisation
+        std::map<int,float>::const_iterator it = current_neighborhood.begin();
+        std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
     
-     /* Find maximal fitness */
-    std::map<int,float> current_copy = (current_neighborhood);
-    int c= current_neighborhood.size();
-    while(c>=2){
+        /* Find maximal fitness */
+        std::map<int,float> current_copy = (current_neighborhood);
+        int c= current_neighborhood.size();
+        while(c>=2){
      
-    auto it = current_copy.begin();
-    auto next_it = std::next(it); 
-    if (it->second > next_it->second){
-      current_copy.erase(next_it);
-    }
-    else if(it->second < next_it->second){
-      current_copy.erase(it);
-    }
-    else if (it->second == next_it->second){
-      int fight = rand()%2;
-      if (fight >0){
-        current_copy.erase(next_it);
+          auto it = current_copy.begin();
+          auto next_it = std::next(it); 
+          if (it->second > next_it->second){
+            current_copy.erase(next_it);
+          }
+          else if(it->second < next_it->second){
+            current_copy.erase(it);
+          }
+          else if (it->second == next_it->second){
+            int fight = rand()%2;
+          if (fight >0){
+            current_copy.erase(next_it);
+          }
+          else {
+            current_copy.erase(it);
+          }
+        }
+        --c; 
       }
       else {
         current_copy.erase(it);
@@ -358,9 +356,9 @@ void World::competition(){
     best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
       }
       else{ // Case of impossible operation
-     best_pos_y = 0;
-     best_pos_x = 0;
-     best = pop_[0][0]; // The best one has as coordinate (0,0)
+        best_pos_y = 0;
+        best_pos_x = 0;
+        best = pop_[0][0]; // The best one has as coordinate (0,0)
       }
       // Find available gaps
     //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
@@ -505,7 +503,7 @@ void World::display(int choice){ // Just for tests
     }
     
     else if (choice == 6){
-      std::cout <<"concentration of metabolite  : "<<std::endl;
+      std::cout <<"concentration of metabolites  : "<<std::endl;
       std::cout <<'\n';
       for (int i=0; i<H_ ; ++i){
         for (int j=0; j<W_ ; ++j){
@@ -524,21 +522,17 @@ void World::display(int choice){ // Just for tests
     }
 }
 
-// ===========================================================================
-//                                 Getters
-// ===========================================================================
 
-void World::pop(){
-  for(int i = 0; i<H_; i++){
-      for(int j = 0; j<W_; j++){
-        std::cout << "Adresse : " << pop_[i][j] << "///";
-        pop_[i][j]->toString();
+vect<tuple<int,int>> World::get_empty(){
+  vect<tuple<int,int>> coordinates;
+  int i;
+  int j;
+  for(i = 0 ; i < W_ ; i++){
+    for(j = 0; j < H_ ; j++){
+      if(pop[j][i] == NULL){
+        coordinates.pushback(make_tuple(i,j)); //WARNING : beware of the order there !!!
       }
+    }
   }
+  return coordinates;
 }
-  
-  
-
-// ===========================================================================
-//                         Protected Function members
-// ===========================================================================

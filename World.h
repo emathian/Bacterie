@@ -10,6 +10,7 @@
 #include <vector>
 #include <string.h> 
 #include <map>
+#include <tuple>
 // ===========================================================================
 //                             "using" statements
 // ===========================================================================
@@ -23,49 +24,83 @@ class World {
   // =========================================================================
 
 
-
+  /* Constructor
+  width : number of columns
+  height : number of rows
+  diffusion : coefficient on diffusion
+  Preconditions: width and height not negative or null.
+  Postconditions : creates 3 2D arrays containing bacterias and metabolites. */
   World(int width, int height, float diffusion);
  
 
   // =========================================================================
   //                                Destructor
   // =========================================================================
- 
+  
+  /* Destructor
+  Frees manually allocated memory. */
  ~World();
-  // =========================================================================
-  //                                  Getters
-  // =========================================================================
-  void pop();
-
-  // =========================================================================
-  //                                  Setters
-  // =========================================================================
-
-  // =========================================================================
-  //                                 Operators
-  // =========================================================================
-
+  
   // =========================================================================
   //                          Public Function members
   // =========================================================================
   
+  /* competition
+  Browses the 2D array of Bacterias and makes the best bacterias divide in empty 
+  adjacent box.
+  Preconditions: none
+  Postconditions: the population is modified, bacterias dividing themselves if they can.
+  */
   void competition();
+
+  /* diffuse_concentration
+  Called at each iteration to perform natural diffusion of metabolites in the medium.
+  Preconditions: none
+  Postconditions: modifies the arrays of concentrations of the metabolites A, B and C.
+  */
   void diffuse_concentration(); // A mettre en privé ?
+
+  /* update
+  Calls all other methods in order to simulate the evolution.
+  Diffuses metabolites, make bacterias fight to survive (kills and divide Bacterias) 
+  and renews medium.
+  Preconditions: none
+  Postconditions: the population is modified. All 7 iterations, the mediump is renewed.
+  */
   void update(int tours_max);
+
+  /* renew
+  Changes the concentration of metabolites in the medium.
+  Preconditions: none
+  Postconditions: metabolite A is set to 50, B and C to 0.
+  */
   void renew(int a_init);
+
+  /* display
+  Displays differents aspects of the world according to the int.
+  Preconditions: none
+  Postconditions: if choice=1: displays medium A.
+  if choice=2: displays medium B.
+  if choice=3: displays medium C.
+  if choice=4: displays genotype of the bacterias.
+  if choice=5: displays fitness of bacterias.
+  if choice=6: displays other metabolites (Ga : B, Gb: C) contained in each bacteria.
+  if choice>6 or <0 : displays "Choice impossible!"
+  */
   void display(int choice);
 
-  /* find_neighborhood is a function allowing to reccord in a dictionnary the neighbor-
-  hood of a cell.
-  Pre-condition : Neighborhood takes as arguments two int that correspond to a po-
-  sition in the grid, by row and by column.  
-  Post-condition : Owing to these coordinates the function fill a dictionnary of 8 
-  elements wich correspond to each cell of the Moore neighborhood. Keys are integers
-  which are the result of the sum of the two coordinates given in argument. Like this
-  the position of the cell in the grid could be find. Values correspond to the fitness
-  of a bacteria if the cell is full, otherwise values are settesd equal to the default 
+  /* find_neighborhood 
+  Allows to record the neighborhood of a cell in a dictionnary.
+  Pre-conditions: Neighborhood takes as arguments i (column) and j (row). 
+  Post-condition : Owing to these coordinates the function fills a dictionnary of 8 
+  elements wich corresponds to each cell of the Moore neighborhood. Keys are integers
+  which are the result of the sum of the two coordinates given in argument. Like this,
+  the position of the cell in the grid can be find. Values corresponds to the fitness
+  of a bacteria if the cell is full, otherwise values are settled to the default 
   number -1.  */
-  std::map<int,float> find_neighborhood(int i, int j);
+  map<int,float> find_neighborhood(int i, int j);
+  /**methode pour avoir une liste de coordonnees x,y des cases vides **/
+  vect<tuple<int,int>> get_empty(); 
 
 	private:
   // =========================================================================
@@ -82,31 +117,14 @@ class World {
   float D_ ; //diffusion coefficient
  
 
-  Bacteria* **pop_;
-
+  Bacteria* **pop_; // Array of population (Bacterias Ga or Gb)
+  
+  // Arrays of metabolites
   float **a_;
   float **b_;
   float **c_;
   
 };
-
-// ===========================================================================
-//                            Getters' definitions
-// ===========================================================================
-
-
-// ===========================================================================
-//                            Setters' definitions
-// ===========================================================================
-
-// ===========================================================================
-//                           Operators' definitions
-// ===========================================================================
-
-// ===========================================================================
-//                        Inline functions' definition
-// ===========================================================================
-
 
 
 #endif
