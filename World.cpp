@@ -308,7 +308,7 @@ void World::competition(){
   
  for(x = 0; x< W_; x++){
    for(y = 0; y< H_; y++){ 
-     if (pop_[x][y]==NULL){// Find gaps
+     if (pop_[y][x]==NULL){// Find gaps
       current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     
     /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
@@ -404,6 +404,7 @@ void World::update(int tours_max){
       }
     }
     this-> competition();
+    
     //metabolize
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){

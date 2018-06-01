@@ -148,8 +148,15 @@ int main(int argc, char* argv[]) {
   
   //test empty
   
-  
+  //----------------------
+  //Testeurs de update
+  //----------------------
+  myworld.update(5);
 
+  myworld.display(1);
+  myworld.display(2);
+  myworld.display(3);
+  myworld.display(4);
 
   return EXIT_SUCCESS;
 }
