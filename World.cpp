@@ -306,39 +306,33 @@ void World::competition(){
  int x;
  int y;
   
-  for(x = 0; x< W_; x++){
-    for(y = 0; y< H_; y++){ 
-      if (pop_[x][y]==NULL){// Find gaps
-        current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
+ for(x = 0; x< W_; x++){
+   for(y = 0; y< H_; y++){ 
+     if (pop_[x][y]==NULL){// Find gaps
+      current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     
-        /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
-        int pos_best = current_neighborhood.begin()->first; //initialisation
-        std::map<int,float>::const_iterator it = current_neighborhood.begin();
-        std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
+    /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
+    int pos_best = current_neighborhood.begin()->first; //initialisation
+    std::map<int,float>::const_iterator it = current_neighborhood.begin();
+     std::map<int ,float>::const_iterator next_it = std::next(current_neighborhood.begin()); 
     
-        /* Find maximal fitness */
-        std::map<int,float> current_copy = (current_neighborhood);
-        int c= current_neighborhood.size();
-        while(c>=2){
+     /* Find maximal fitness */
+    std::map<int,float> current_copy = (current_neighborhood);
+    int c= current_neighborhood.size();
+    while(c>=2){
      
-          auto it = current_copy.begin();
-          auto next_it = std::next(it); 
-          if (it->second > next_it->second){
-            current_copy.erase(next_it);
-          }
-          else if(it->second < next_it->second){
-            current_copy.erase(it);
-          }
-          else if (it->second == next_it->second){
-            int fight = rand()%2;
-          if (fight >0){
-            current_copy.erase(next_it);
-          }
-          else {
-            current_copy.erase(it);
-          }
-        }
-        --c; 
+    auto it = current_copy.begin();
+    auto next_it = std::next(it); 
+    if (it->second > next_it->second){
+      current_copy.erase(next_it);
+    }
+    else if(it->second < next_it->second){
+      current_copy.erase(it);
+    }
+    else if (it->second == next_it->second){
+      int fight = rand()%2;
+      if (fight >0){
+        current_copy.erase(next_it);
       }
       else {
         current_copy.erase(it);
@@ -351,14 +345,14 @@ void World::competition(){
   if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
    // Find the best bacteria according its key of in the dicionnary
     if (pos_best!=0){
-     best_pos_y = pos_best/W_; // column
-       best_pos_x = pos_best%W_; //row
-    best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
+     best_pos_y = pos_best/W_;
+       best_pos_x = pos_best%W_;
+    best = pop_[best_pos_x][best_pos_y]; // Best bacteria found according its position
       }
       else{ // Case of impossible operation
-        best_pos_y = 0;
-        best_pos_x = 0;
-        best = pop_[0][0]; // The best one has as coordinate (0,0)
+     best_pos_y = 0;
+     best_pos_x = 0;
+     best = pop_[0][0]; // The best one has as coordinate (0,0)
       }
       // Find available gaps
     //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
@@ -374,19 +368,19 @@ void World::competition(){
     if (destination !=0){ // Prevent impossible operation
        int daugther_pos_y = destination/W_;
       int daugther_pos_x = destination%W_;
-       //Bacteria* daugther = new BacteriaGa();  // I NEED YOUR HELP ON THIS POINT
+     // Bacteria* daugther = new Bacteria;  // I NEED YOUR HELP ON THIS POINT
        Bacteria* daugther = best->divide(); 
-       pop_[daugther_pos_y][daugther_pos_x] = daugther; // Fill the choosen gap and create a new bacteria
+       pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
      }
      else { 
        Bacteria* daugther = best->divide(); // Help me problem of 
        pop_[0][0] = daugther; // Fill the gap in position (0,0)
      }
     }
-   } // End of condition of the presence
-  } // End of gap condition 
- } // for y
-} // for x 
+  } // End of condition of the presence
+   } // End of gap condition 
+  } // for y
+  } // for x 
 
 }
      
@@ -529,8 +523,8 @@ vector<tuple<int,int>> World::get_empty(){
   int j;
   for(i = 0 ; i < W_ ; i++){
     for(j = 0; j < H_ ; j++){
-      if(pop[j][i] == NULL){
-        coordinates.pushback(make_tuple(i,j)); //WARNING : beware of the order there !!!
+      if(pop_[j][i] == NULL){
+        coordinates.push_back(make_tuple(i,j)); //WARNING : beware of the order there !!!
       }
     }
   }
