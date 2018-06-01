@@ -148,16 +148,15 @@ int main(int argc, char* argv[]) {
   
   //test empty
   
-  //----------------------
-  //Testeurs de update
-  //----------------------
-  myworld.update(5);
-  /*
-  myworld.display(1);
-  myworld.display(2);
-  myworld.display(3);
-  myworld.display(4);
+  //test empty
+  vector<tuple<int,int>> liste = myworld.get_empty();
+  std::cout << "The contents of liste are:";
+  for (vector<tuple<int,int>>::iterator it = liste.begin(); it != liste.end(); ++it)
+    std::cout << ' ' << get<0>(*it);
+  std::cout << '\n';
   */
+
+
   return EXIT_SUCCESS;
 }
 

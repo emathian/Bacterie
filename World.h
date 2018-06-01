@@ -22,7 +22,7 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
-
+  
 
   /* Constructor
   width : number of columns
@@ -112,12 +112,13 @@ class World {
   // =========================================================================
     
   // size of the world
+  Bacteria* **pop_; // Array of population (Bacterias Ga or Gb)
   int W_ ; 
   int H_ ;
   float D_ ; //diffusion coefficient
  
 
-  Bacteria* **pop_; // Array of population (Bacterias Ga or Gb)
+  
   
   // Arrays of metabolites
   float **a_;
