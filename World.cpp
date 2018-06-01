@@ -507,8 +507,8 @@ void World::display(int choice){ // Just for tests
 }
 
 
-vect<tuple<int,int>> World::get_empty(){
-  vect<tuple<int,int>> coordinates;
+vector<tuple<int,int>> World::get_empty(){
+  vector<tuple<int,int>> coordinates;
   int i;
   int j;
   for(i = 0 ; i < W_ ; i++){

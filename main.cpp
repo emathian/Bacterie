@@ -143,6 +143,10 @@ int main(int argc, char* argv[]) {
     
   //myworld.display(4);
   */
+  
+  //test empty
+  
+  
 
 
   return EXIT_SUCCESS;

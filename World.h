@@ -100,7 +100,7 @@ class World {
   number -1.  */
   map<int,float> find_neighborhood(int i, int j);
   /**methode pour avoir une liste de coordonnees x,y des cases vides **/
-  vect<tuple<int,int>> get_empty(); 
+  vector<tuple<int,int>> get_empty(); 
 
 	private:
   // =========================================================================
