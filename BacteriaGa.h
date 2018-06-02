@@ -32,7 +32,7 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                          Public Function members
   // =========================================================================
-  void metabolize(float *a,float * b) override;
+  void metabolize(float * a,float * b) override;
   void kill_bacteria(float *a, float *b, float *c) override;
   
   protected:

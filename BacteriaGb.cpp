@@ -11,11 +11,11 @@ static float Rbc = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGb::BacteriaGb(){
+BacteriaGb::BacteriaGb() : Bacteria(){
   genotype_ = 'b';
 }
 
-BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
+BacteriaGb::BacteriaGb(const BacteriaGb& bactGb) : Bacteria(bactGb){
 	genotype_ = bactGb.genotype_;
 };
 // ===========================================================================
@@ -25,11 +25,11 @@ BacteriaGb::BacteriaGb(const BacteriaGb& bactGb){
 // ===========================================================================
 //                           Public Function members
 // ===========================================================================
-void BacteriaGb::metabolize(float *a,float * b){
+void BacteriaGb::metabolize(float *a,float *b){
   float dt=0.1; // pas de temps  
   // update B
   phenotype_[0] = (*b*Rbb - phenotype_[0]*Rbc)*dt + phenotype_[0] ;
-  *b = ((*b)*(Rbb))*dt + phenotype_[0]  ;
+  *b = (-(*b)*(Rbb))*dt + *b  ;
 
   // update C 
   phenotype_[1] = (*b*phenotype_[1])*dt + phenotype_[1] ;
@@ -56,7 +56,7 @@ Bacteria* BacteriaGb::divide(){
 	srand(time(NULL));
 	double rand_mute;
 	rand_mute = ((double) rand() / (RAND_MAX)); 
-	std::cout << rand_mute <<std::endl; 
+	std::cout << "RANDOM MUTE"<<rand_mute <<std::endl; 
 	Bacteria* daugther;
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)

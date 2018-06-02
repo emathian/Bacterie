@@ -11,11 +11,11 @@ static float Rab = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGa::BacteriaGa(){
+BacteriaGa::BacteriaGa() : Bacteria(){
   genotype_ = 'a';
 }
 
-BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
+BacteriaGa::BacteriaGa(const BacteriaGa& bactGa) : Bacteria(bactGa){
 	genotype_ = bactGa.genotype_;
 };
 
@@ -59,7 +59,7 @@ Bacteria* BacteriaGa::divide(){
 	srand(time(NULL));
 	double rand_mute;
 	rand_mute = ((double) rand() / (RAND_MAX)); 
-	std::cout << rand_mute <<std::endl; 
+	std::cout << "RANDOM MUTE"<<rand_mute <<std::endl; 
 	Bacteria* daugther;
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)
@@ -76,10 +76,10 @@ Bacteria* BacteriaGa::divide(){
 	std::vector<float> new_phenotype = {this-> phenotype_[0] , this->phenotype_[1] };
 	daugther->set_phenotype(new_phenotype);
 	
-	 }else{
-	 	daugther=NULL;
+	 } else{
+	 	daugther=nullptr;
 	 }
-
+		
 	 return daugther;	
 
 }
