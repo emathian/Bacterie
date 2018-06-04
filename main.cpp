@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <ctime>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -25,7 +26,7 @@ using namespace std;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-  srand(time(NULL));
+ srand(std::time(nullptr));
   /*
   //----------------------
   //Testeurs de Bacteria
@@ -193,9 +194,10 @@ int main(int argc, char* argv[]) {
   myworld.display(5);
  
   std::cout<< "After run  :"<<std::endl;
-  myworld.update(40);
+  myworld.update(5);
   std::cout <<"Modif display :" <<std::endl;
- 
+  //std::cout << (int) rand() << std::endl;
+
   
   return EXIT_SUCCESS;
 }
