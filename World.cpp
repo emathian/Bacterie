@@ -17,6 +17,7 @@
 #include <tuple>
 
 
+
 using namespace std;
 
 // ===========================================================================
@@ -25,6 +26,7 @@ using namespace std;
 
 
 World::World(int width, int height, float diffusion){
+  
 
   W_ = width;
   H_ = height;
@@ -45,11 +47,12 @@ World::World(int width, int height, float diffusion){
   std::random_shuffle(rand_v.begin(), rand_v.end() );
 
   // COmportement identique à chaque tour !!
-  /*
+  /*  
   for (int i=0; i!=rand_v.size();++i){
     std::cout<<rand_v[i]<<std::endl;
   }
   */
+  
   int i;
   for(int i = 0; i<H_; i++){
     pop_[i] = new Bacteria* [W_];
@@ -305,6 +308,8 @@ std::map<int,float> World::find_neighborhood(int i, int j){
 }
 
 void World::competition(){
+   pop_[0][0]=nullptr;
+   std::cout<<pop_[0][0]->get_fitness()<<std::endl;
    
  srand(time(NULL)); // On l'enlève ?
  Bacteria* best; // Bacteria with the best fitness in a gap neighborhood
@@ -321,6 +326,7 @@ for (int i=0; i!=gap.size(); ++i)
 {
   x= std::get<0>(gap[i]);
   y = std::get<1>(gap[i]);
+  std::cout<< "pos x   " << x << "pos y   "<<y<<std::endl;
 
   current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
   /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
@@ -421,10 +427,11 @@ void World::update(int tours_max){
     std::cout<<"Before competition"<<std::endl;
 
     this->display(4);
+    this->display(6);
    this->competition();
    std::cout<<"After competition"<<std::endl;
-    this->display(4);
-    this->pop_[0][0]->divide();
+   this->display(4);
+   
     //metabolize
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){
@@ -439,7 +446,7 @@ void World::update(int tours_max){
    
 
   }
-
+  
 }
 
 void World::renew(int a_init){

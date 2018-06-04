@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <ctime>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -25,7 +26,7 @@ using namespace std;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-  srand(time(20));
+ srand(std::time(nullptr));
   /*
   //----------------------
   //Testeurs de Bacteria
@@ -60,27 +61,44 @@ int main(int argc, char* argv[]) {
   // Testeurs de metabolize
   // ------ Ga
   /*
+  std::vector<float> vectp;
+  
   float f=2.0;
   float* myfloatptr;
   myfloatptr= &f;
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
     
   BacteriaGa myBact;
-  myBact.metabolize(myfloatptr, myfloatptr);
-  std::vector<float> vectp = myBact.phenotype();
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  myBact.metabolize(&f, &f0);
   
+  vectp = myBact.phenotype();
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
   */
   
   // ------ Gb
   /*
+  std::vector<float> vectp;
+  
   float f=2.0;
   float* myfloatptr;
   myfloatptr= &f;
-    
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
+  
   BacteriaGb myBact;
-  myBact.metabolize(myfloatptr, myfloatptr);
-  std::vector<float> vectp = myBact.phenotype();
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  
+  myBact.metabolize(myfloatptr, myfloatptr0);
+  vectp = myBact.phenotype();
   
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
@@ -193,9 +211,10 @@ int main(int argc, char* argv[]) {
   myworld.display(5);
  
   std::cout<< "After run  :"<<std::endl;
-  myworld.update(40);
+  myworld.update(5);
   std::cout <<"Modif display :" <<std::endl;
- 
+  //std::cout << (int) rand() << std::endl;
+
   
   return EXIT_SUCCESS;
 }
