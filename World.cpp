@@ -26,7 +26,7 @@ using namespace std;
 
 
 World::World(int width, int height, float diffusion){
-  
+
 
   W_ = width;
   H_ = height;
@@ -308,8 +308,8 @@ std::map<int,float> World::find_neighborhood(int i, int j){
 }
 
 void World::competition(){
-   pop_[0][0]=nullptr;
-   std::cout<<pop_[0][0]->get_fitness()<<std::endl;
+   
+
    
  srand(time(NULL)); // On l'enlève ?
  Bacteria* best; // Bacteria with the best fitness in a gap neighborhood
@@ -388,7 +388,7 @@ for (int i=0; i!=gap.size(); ++i)
         int daugther_pos_y = destination/W_;
         int daugther_pos_x = destination%W_;
         Bacteria* daugther = best->divide(); 
-        pop_[daugther_pos_x][daugther_pos_y] = daugther; // Fill the choosen gap and create a new bacteria
+        pop_[daugther_pos_y][daugther_pos_x] = daugther; // Fill the choosen gap and create a new bacteria
       }
 
       else { 
@@ -426,20 +426,25 @@ void World::update(int tours_max){
     }
     std::cout<<"Before competition"<<std::endl;
 
-    this->display(4);
-    this->display(6);
-   this->competition();
-   std::cout<<"After competition"<<std::endl;
-   this->display(4);
+  this->display(6);
+  this->competition();
+  std::cout<<"After competition"<<std::endl;
+  this->display(5);
+
+
    
     //metabolize
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){
         if(pop_[y][x] != nullptr){ // Si elle est pas morte...
           pop_[y][x]->metabolize(&a_[y][x],&b_[y][x]);
+  
         }
       }
     }
+      std::cout <<"BACT 0 METABO A "<<pop_[0][0]->phenotype()[0]  <<"BACT 0 METABO B "<<pop_[0][0]->phenotype()[1] << std::endl;
+      std::cout <<"A[Ø]"<< a_[0][0] << std::endl;
+      std::cout<<pop_[1][0]->get_fitness()<<std::endl;
     if(tours%7==0){
       //this->renew();
     }

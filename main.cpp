@@ -60,18 +60,18 @@ int main(int argc, char* argv[]) {
   
   // Testeurs de metabolize
   // ------ Ga
-  /*
+  
   float f=2.0;
   float* myfloatptr;
   myfloatptr= &f;
     
   BacteriaGa myBact;
-  myBact.metabolize(myfloatptr, myfloatptr);
+  myBact.metabolize(&f, &f);
   std::vector<float> vectp = myBact.phenotype();
   
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
-  */
+  
   
   // ------ Gb
   /*
