@@ -426,10 +426,11 @@ void World::update(int tours_max){
     }
     std::cout<<"Before competition"<<std::endl;
 
-  this->display(6);
+  this->display(1);
   this->competition();
   std::cout<<"After competition"<<std::endl;
   this->display(5);
+  this->display(4);
 
 
    

@@ -60,32 +60,49 @@ int main(int argc, char* argv[]) {
   
   // Testeurs de metabolize
   // ------ Ga
+  /*
+  std::vector<float> vectp;
   
   float f=2.0;
   float* myfloatptr;
   myfloatptr= &f;
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
     
   BacteriaGa myBact;
-  myBact.metabolize(&f, &f);
-  std::vector<float> vectp = myBact.phenotype();
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  myBact.metabolize(&f, &f0);
   
+  vectp = myBact.phenotype();
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
   
   
   // ------ Gb
-  /*
+  
+  std::vector<float> vectp;
+  
   float f=2.0;
   float* myfloatptr;
   myfloatptr= &f;
-    
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
+  
   BacteriaGb myBact;
-  myBact.metabolize(myfloatptr, myfloatptr);
-  std::vector<float> vectp = myBact.phenotype();
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  
+  myBact.metabolize(myfloatptr, myfloatptr0);
+  vectp = myBact.phenotype();
   
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
-  */
+  
   
   // Test of KIll
   // Sorry myGa 
