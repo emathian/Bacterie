@@ -263,53 +263,53 @@ std::map<int,float> World::find_neighborhood(int i, int j){
           neighborhood.insert ( std::pair<int,float>(yh*W_ +xg, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(yh*W_+xg,pop_[yh][xg]->get_fitness()) );
-          std::cout << "xg  " << xg << "  Yh  " << yh << "result   "<< yh*W_+xg <<std::endl;
+          //std::cout << "xg  " << xg << "  Yh  " << yh << "result   "<< yh*W_+xg <<std::endl;
         
         }
         if (pop_[y][xg] == NULL){
           neighborhood.insert ( std::pair<int,float>(xg+y*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xg+y*W_,pop_[y][xg]->get_fitness()) );
-          std::cout << "xg  " << xg << "  Y  " << y << "result   "<< xg+y*W_  <<std::endl;
+          //std::cout << "xg  " << xg << "  Y  " << y << "result   "<< xg+y*W_  <<std::endl;
      
         }     
          if (pop_[yb][xg] == NULL){
           neighborhood.insert ( std::pair<int,float>(xg+yb*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xg+yb*W_,pop_[yb][xg]->get_fitness()) );
-          std::cout << "xg  " << xg << "  Yb  " << yb << "result   "<< xg+yb*W_<<std::endl;
+          //std::cout << "xg  " << xg << "  Yb  " << yb << "result   "<< xg+yb*W_<<std::endl;
            
         }     
         if (pop_[yh][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+yh*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xd+yh*W_,pop_[yh][xd]->get_fitness()) );
-          std::cout << "xd  " << xd << "  Yh  " << yh << "result   "<< xd+yh*W_ <<std::endl;
+          //std::cout << "xd  " << xd << "  Yh  " << yh << "result   "<< xd+yh*W_ <<std::endl;
          
         } 
         if (pop_[y][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+y*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xd+y*W_,pop_[y][xd]->get_fitness()) );
-          std::cout << "xd  " << xd << "  Y  " << yh << "result   "<< xd+y*W_ <<std::endl;
+          //std::cout << "xd  " << xd << "  Y  " << yh << "result   "<< xd+y*W_ <<std::endl;
         } 
         if (pop_[yb][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+yb*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xd+yb*W_,pop_[yb][xd]->get_fitness()) );
-           std::cout << "xd  " << xd << "  Yb  " << yh << "result   "<< xd+yb*W_ <<std::endl;
+          //std::cout << "xd  " << xd << "  Yb  " << yh << "result   "<< xd+yb*W_ <<std::endl;
         } 
         if (pop_[yh][x] == NULL){
           neighborhood.insert ( std::pair<int,float>(x+yh*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(x+yh*W_,pop_[yh][x]->get_fitness()) );
-            std::cout << "x " << xd << "  Yh  " << yh << "result   "<< x+yh*W_<<std::endl;
+          //std::cout << "x " << xd << "  Yh  " << yh << "result   "<< x+yh*W_<<std::endl;
         } 
        if (pop_[yb][x] == NULL){
           neighborhood.insert ( std::pair<int,float>(x+yb*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(x+yb*W_,pop_[yb][x]->get_fitness()) );
-          std::cout << "x " << xd << "  Yb  " << yh << "result   "<< x+yb*W_<<std::endl;
+          //std::cout << "x " << xd << "  Yb  " << yh << "result   "<< x+yb*W_<<std::endl;
         } 
   return neighborhood;    
 
@@ -339,9 +339,9 @@ for (int i=0; i!=gap.size(); ++i)
 
   current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
 
- for(std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
-  std::cout<< it->first<<std::endl;
- }
+ //for(std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
+ // std::cout<< it->first<<std::endl;
+ //}
   /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
   
     int pos_best = current_neighborhood.begin()->first; //initialisation
@@ -372,7 +372,7 @@ for (int i=0; i!=gap.size(); ++i)
     --c; 
     }
     pos_best = current_copy.begin()->first;
-    std::cout<<pos_best<<std::endl;
+    //std::cout<<pos_best<<std::endl;
  
   
    // Find the best bacteria according its key of in the dicionnary
@@ -443,7 +443,7 @@ void World::update(int tours_max){
     std::cout<<"Before competition"<<std::endl;
 
   //this->display(1);
- // this->competition();
+  this->competition();
   std::cout<<"After competition"<<std::endl;
   //this->display(5);
   this->display(4);
