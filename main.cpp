@@ -211,7 +211,8 @@ int main(int argc, char* argv[]) {
   myworld.display(5);
  
   std::cout<< "After run  :"<<std::endl;
-  myworld.update(5);
+  myworld.update(25);
+
   std::cout <<"Modif display :" <<std::endl;
   //std::cout << (int) rand() << std::endl;
 

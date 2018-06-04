@@ -12,7 +12,7 @@ float Bacteria::FITNESS_MIN_ =0.001;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-Bacteria::Bacteria(): PROBA_DEATH_(0.02), PROBA_MUTE_(0.0){
+Bacteria::Bacteria(): PROBA_DEATH_(0.2), PROBA_MUTE_(0.0){ // PROBA_DEATH= 0.02 !!!!!!!!!!!!
 	phenotype_ = {0., 0.};
 	
 
@@ -40,8 +40,8 @@ float Bacteria::FITNESS_MIN() const{
 }
 
 std::vector<float> Bacteria::phenotype() {
-	std::vector<float> phenotype (phenotype_);
-	return phenotype;
+
+	return phenotype_;
 }
 
 

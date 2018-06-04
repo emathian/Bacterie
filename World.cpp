@@ -260,60 +260,69 @@ std::map<int,float> World::find_neighborhood(int i, int j){
       // ATTENTION XG ET YH... etc A INVERSER (A VERIFIER MAIS JE CROIS)
       // if (pop_[YH][YG] == NULL){
         if (pop_[yh][xg] == NULL){
-          neighborhood.insert ( std::pair<int,float>(xg*H_ +yh, -1) );
+          neighborhood.insert ( std::pair<int,float>(yh*W_ +xg, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(xg*H_+yh,pop_[yh][xg]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(yh*W_+xg,pop_[yh][xg]->get_fitness()) );
+          std::cout << "xg  " << xg << "  Yh  " << yh << "result   "<< yh*W_+xg <<std::endl;
         
         }
         if (pop_[y][xg] == NULL){
-          neighborhood.insert ( std::pair<int,float>(y+xg*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(xg+y*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(y+xg*H_,pop_[y][xg]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(xg+y*W_,pop_[y][xg]->get_fitness()) );
+          std::cout << "xg  " << xg << "  Y  " << y << "result   "<< xg+y*W_  <<std::endl;
      
         }     
          if (pop_[yb][xg] == NULL){
-          neighborhood.insert ( std::pair<int,float>(yb+xg*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(xg+yb*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(yb+xg*H_,pop_[yb][xg]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(xg+yb*W_,pop_[yb][xg]->get_fitness()) );
+          std::cout << "xg  " << xg << "  Yb  " << yb << "result   "<< xg+yb*W_<<std::endl;
            
         }     
         if (pop_[yh][xd] == NULL){
-          neighborhood.insert ( std::pair<int,float>(yh+xd*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(xd+yh*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(yh+xd*H_,pop_[yh][xd]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(xd+yh*W_,pop_[yh][xd]->get_fitness()) );
+          std::cout << "xd  " << xd << "  Yh  " << yh << "result   "<< xd+yh*W_ <<std::endl;
          
         } 
         if (pop_[y][xd] == NULL){
-          neighborhood.insert ( std::pair<int,float>(y+xd*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(xd+y*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(y+xd*H_,pop_[y][xd]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(xd+y*W_,pop_[y][xd]->get_fitness()) );
+          std::cout << "xd  " << xd << "  Y  " << yh << "result   "<< xd+y*W_ <<std::endl;
         } 
         if (pop_[yb][xd] == NULL){
-          neighborhood.insert ( std::pair<int,float>(yb+xd*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(xd+yb*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(yb+xd*H_,pop_[yb][xd]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(xd+yb*W_,pop_[yb][xd]->get_fitness()) );
+           std::cout << "xd  " << xd << "  Yb  " << yh << "result   "<< xd+yb*W_ <<std::endl;
         } 
         if (pop_[yh][x] == NULL){
-          neighborhood.insert ( std::pair<int,float>(yh+x*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(x+yh*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(yh+x*H_,pop_[yh][x]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(x+yh*W_,pop_[yh][x]->get_fitness()) );
+            std::cout << "x " << xd << "  Yh  " << yh << "result   "<< x+yh*W_<<std::endl;
         } 
        if (pop_[yb][x] == NULL){
-          neighborhood.insert ( std::pair<int,float>(yb+x*H_, -1) );
+          neighborhood.insert ( std::pair<int,float>(x+yb*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(yb+x*H_,pop_[yb][x]->get_fitness()) );
+          neighborhood.insert ( std::pair<int,float>(x+yb*W_,pop_[yb][x]->get_fitness()) );
+          std::cout << "x " << xd << "  Yb  " << yh << "result   "<< x+yb*W_<<std::endl;
         } 
   return neighborhood;    
 
 }
 
 void World::competition(){
-   
+    
 
-   
- srand(time(NULL)); // On l'enlève ?
+
  Bacteria* best; // Bacteria with the best fitness in a gap neighborhood
  std::map<int,float> current_neighborhood; // Neighborhood of a gap
+
+
  int pos_best; // Position of the best bacteria according its key in current_neiborhood map
  int best_pos_y; // Column of best bacteria 
  int best_pos_x; // Row of best bacteria
@@ -329,6 +338,10 @@ for (int i=0; i!=gap.size(); ++i)
   std::cout<< "pos x   " << x << "pos y   "<<y<<std::endl;
 
   current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
+
+ for(std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
+  std::cout<< it->first<<std::endl;
+ }
   /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
   
     int pos_best = current_neighborhood.begin()->first; //initialisation
@@ -361,7 +374,7 @@ for (int i=0; i!=gap.size(); ++i)
     pos_best = current_copy.begin()->first;
     std::cout<<pos_best<<std::endl;
  
-  if(current_neighborhood.find(pos_best)->second > -1 ){ // Check if at least one bacteria is present in the neighborhood
+  
    // Find the best bacteria according its key of in the dicionnary
     if (pos_best!=0){
       best_pos_y = pos_best/W_;
@@ -369,10 +382,10 @@ for (int i=0; i!=gap.size(); ++i)
       best = pop_[best_pos_y][best_pos_x]; // Best bacteria found according its position
       }
       else{ // Case of impossible operation
-     best_pos_y = 0;
-     best_pos_x = 0;
+     best_pos_y = 0; // Ligne
+     best_pos_x = 0; //colonne
      best = pop_[0][0]; // The best one has as coordinate (0,0)
-      }
+    }
       // Find available gaps
     //neighborhood_best = find_neighborhood(best_pos_x , best_pos_y);
     for ( std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
@@ -385,8 +398,8 @@ for (int i=0; i!=gap.size(); ++i)
       int random_destination = rand()%v_pos.size();
       int destination = v_pos[random_destination];
       if (destination !=0){ // Prevent impossible operation
-        int daugther_pos_y = destination/W_;
-        int daugther_pos_x = destination%W_;
+        int daugther_pos_y = destination/W_; // Ligne
+        int daugther_pos_x = destination%W_; // Colonne
         Bacteria* daugther = best->divide(); 
         pop_[daugther_pos_y][daugther_pos_x] = daugther; // Fill the choosen gap and create a new bacteria
       }
@@ -398,7 +411,7 @@ for (int i=0; i!=gap.size(); ++i)
     }
   } // End of condition of the presence
   
-   } // End of gap condition 
+ 
   
    
 }
@@ -417,19 +430,22 @@ void World::update(int tours_max){
     //death of the bacteries // Bizzard elles ont une proba de mourir 
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){
+        if(pop_[y][x] != nullptr){ // We could kill only those alieve
         random_nb = ((float)(rand()%101))/100.0;
         if(random_nb < death){
           pop_[y][x]-> kill_bacteria(&a_[y][x],&b_[y][x],&c_[y][x]);
+          //delete[] pop_[y][x];
           pop_[y][x]= nullptr; 
+          }
         }
       }
     }
     std::cout<<"Before competition"<<std::endl;
 
-  this->display(1);
-  this->competition();
+  //this->display(1);
+ // this->competition();
   std::cout<<"After competition"<<std::endl;
-  this->display(5);
+  //this->display(5);
   this->display(4);
 
 
@@ -443,9 +459,6 @@ void World::update(int tours_max){
         }
       }
     }
-      std::cout <<"BACT 0 METABO A "<<pop_[0][0]->phenotype()[0]  <<"BACT 0 METABO B "<<pop_[0][0]->phenotype()[1] << std::endl;
-      std::cout <<"A[Ø]"<< a_[0][0] << std::endl;
-      std::cout<<pop_[1][0]->get_fitness()<<std::endl;
     if(tours%7==0){
       //this->renew();
     }
@@ -467,7 +480,6 @@ void World::renew(int a_init){
 }
 
 void World::display(int choice){ // Just for tests
-
   float **p;
   char which_concentration = '\0';
   
@@ -487,8 +499,8 @@ void World::display(int choice){ // Just for tests
   if (choice == 1|| choice==2||choice==3){
    std::cout <<"Concentration metabolites "<< which_concentration <<" : "<<std::endl;
    std::cout <<'\n';
-    for (int j=0; j<W_ ; ++j){
-      for (int i=0; i<H_ ; ++i){
+    for (int i=0; i<H_ ; ++i){
+      for (int j=0; j<W_ ; ++j){
         if (p[i][j]<10){
         std::cout <<"   "<< std::fixed<< std::setprecision(3)<<p[i][j]<<" |";
        }
@@ -507,54 +519,57 @@ void World::display(int choice){ // Just for tests
   else if (choice ==4){
    std::cout <<"genotype  : "<<std::endl;
    std::cout <<'\n';
-   for (int i=0; i<W_ ; ++i){
-     for (int j=0; j<H_ ; ++j){
-        if (pop_[j][i]==NULL){
+   for (int i=0; i<H_ ; ++i){
+     for (int j=0; j<W_ ; ++j){
+        if (pop_[i][j]==NULL){
           std::cout<<"   "<< 'X'<<"  |";
         }
         else{
-        std::cout <<"   "<<pop_[j][i]->genotype() <<"  |";
+          std::cout <<"   "<<pop_[i][j]->genotype() <<"  |";
         }
+       }
+        std::cout <<'\n';
       }
-      std::cout <<'\n';
     }
-  }
+  
 
    else if (choice==5) {
       std::cout <<"concentration of substrat  : "<<std::endl;
       std::cout <<'\n';
-      for (int i=0; i<W_ ; ++i){
-        for (int j=0; j<H_ ; ++j){
-          if (pop_[j][i]==NULL){
+      for (int i=0; i<H_ ; ++i){
+        for (int j=0; j<W_ ; ++j){
+          if (pop_[i][j]==NULL){
             std::cout<<"      "<< 'X' <<"  |";
+          }else{
+            std::cout <<"   "<<pop_[i][j]->phenotype()[0] <<"  |";
           }
-          else{
-          std::cout <<"   "<< std::fixed<< std::setprecision(3)<<pop_[j][i]->phenotype()[0] <<" |";
-         }
         }
       std::cout <<'\n';
       } 
     }
+  
     
     else if (choice == 6){
-      std::cout <<"Fitness : "<<std::endl;
+      std::cout <<"concentration of metabolites  : "<<std::endl;
       std::cout <<'\n';
-      for (int i=0; i<W_ ; ++i){
-        for (int j=0; j<H_ ; ++j){
-          if (pop_[j][i]==NULL){
+      for (int i=0; i<H_ ; ++i){
+        for (int j=0; j<W_ ; ++j){
+          if (pop_[i][j]==NULL){
             std::cout<<"       "<< 'X' <<"  |";
-        }
-        else{
-          std::cout <<"   "<<pop_[j][i]->phenotype()[1] <<"  |";
-        }
-      }
+           }
+          else{
+            std::cout <<"   "<<pop_[i][j]->phenotype()[1] <<"  |";
+         }
+       }
       std::cout <<'\n';
       }
     }
+  
     else {
-      std::cout<<"impossible choice !"<<std::endl;
+      std::cout<<"Choice impossible !"<<std::endl;
     }
 }
+
 
 
 vector<tuple<int,int>> World::get_empty(){
