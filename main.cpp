@@ -25,7 +25,7 @@ using namespace std;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-  srand(time(NULL));
+  srand(time(20));
   /*
   //----------------------
   //Testeurs de Bacteria
