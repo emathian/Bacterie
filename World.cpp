@@ -309,7 +309,6 @@ std::map<int,float> World::find_neighborhood(int i, int j){
 
 void World::competition(){
    pop_[0][0]=nullptr;
-   std::cout<<pop_[0][0]->get_fitness()<<std::endl;
    
  srand(time(NULL)); // On l'enlève ?
  Bacteria* best; // Bacteria with the best fitness in a gap neighborhood
