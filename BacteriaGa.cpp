@@ -11,11 +11,11 @@ static float Rab = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGa::BacteriaGa(){
+BacteriaGa::BacteriaGa() : Bacteria(){
   genotype_ = 'a';
 }
 
-BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
+BacteriaGa::BacteriaGa(const BacteriaGa& bactGa) : Bacteria(bactGa){
 	genotype_ = bactGa.genotype_;
 };
 
@@ -32,10 +32,13 @@ BacteriaGa::BacteriaGa(const BacteriaGa& bactGa){
 void BacteriaGa::metabolize(float * a, float * b){
   float dt=0.1; // pas de temps  
   // update A  
-  phenotype_[0] = (*a*Raa - phenotype_[0]*Rab)*dt + phenotype_[0];
-  *a = -((*a)*(Raa))*dt + *a; // update medium
+  phenotype_[0] = ((*a)*Raa - phenotype_[0]*Rab)*dt + phenotype_[0];
+  
   // update B 
-  phenotype_[1] = (phenotype_[1]*Rab)*dt + phenotype_[1] ;
+  phenotype_[1] = (phenotype_[0]*Rab)*dt + phenotype_[1] ;
+  
+  // update medium
+  *a = -((*a)*(Raa))*dt + *a; 
 }
 
 float BacteriaGa::get_fitness(){
@@ -43,7 +46,7 @@ float BacteriaGa::get_fitness(){
 		return 0;
 	}
 	else{
-  		return phenotype_[1]; 
+    return phenotype_[1]; 
 	}	
 }
 
@@ -52,14 +55,14 @@ void BacteriaGa::kill_bacteria(float *a, float *b, float *c){
 	*a = *a +  phenotype_[0];
 	*b = *b +  phenotype_[1];
 	*c = *c; 
-	delete this;
+	delete this; // VOIR POUR CHANGER
 }
 
 Bacteria* BacteriaGa::divide(){
 	srand(time(NULL));
 	double rand_mute;
 	rand_mute = ((double) rand() / (RAND_MAX)); 
-	std::cout << rand_mute <<std::endl; 
+	//std::cout << "RANDOM MUTE"<<rand_mute <<std::endl; 
 	Bacteria* daugther;
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)
@@ -76,10 +79,10 @@ Bacteria* BacteriaGa::divide(){
 	std::vector<float> new_phenotype = {this-> phenotype_[0] , this->phenotype_[1] };
 	daugther->set_phenotype(new_phenotype);
 	
-	 }else{
-	 	daugther=NULL;
+	 } else{
+	 	daugther=nullptr;
 	 }
-
+		
 	 return daugther;	
 
 }

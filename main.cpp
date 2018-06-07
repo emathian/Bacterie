@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <ctime>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -25,7 +26,7 @@ using namespace std;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-  srand(time(NULL));
+ srand(std::time(nullptr));
   /*
   //----------------------
   //Testeurs de Bacteria
@@ -57,6 +58,52 @@ int main(int argc, char* argv[]) {
   cout << myGb.get_fitness() << endl;
   */
   
+  // Testeurs de metabolize
+  // ------ Ga
+  /*
+  std::vector<float> vectp;
+  
+  float f=2.0;
+  float* myfloatptr;
+  myfloatptr= &f;
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
+    
+  BacteriaGa myBact;
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  myBact.metabolize(&f, &f0);
+  
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
+  cout << f << endl; // Ca écrit dans la ptr donné
+  
+  
+  // ------ Gb
+  
+  std::vector<float> vectp;
+  
+  float f=2.0;
+  float* myfloatptr;
+  myfloatptr= &f;
+  
+  float f0=.0;
+  float* myfloatptr0;
+  myfloatptr= &f0;
+  
+  BacteriaGb myBact;
+  vectp = myBact.phenotype();
+  cout << vectp[0] << "--" << vectp[1] << endl;
+  
+  myBact.metabolize(myfloatptr, myfloatptr0);
+  vectp = myBact.phenotype();
+  
+  cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
+  cout << f << endl; // Ca écrit dans la ptr donné
+  
+  
   // Test of KIll
   // Sorry myGa 
   /* THIS TEST CANNOT BE EXUCETED ANY MORE BECAUSE kill_bacteria as been protected
@@ -74,10 +121,11 @@ int main(int argc, char* argv[]) {
   //----------------------
   //Testeurs de World
   //----------------------
-
-  //test constructeur
-  World myworld(4,3,0.1);
   
+  
+  //test constructeur
+  World myworld(3,5,0.1);
+  /*
   cout<< "Pop : " << endl;
   myworld.display(4);
   //myworld.pop();  
@@ -87,6 +135,7 @@ int main(int argc, char* argv[]) {
   myworld.display(2);
   cout<< "c : " << endl;
   myworld.display(3);
+  */
   
   // Tests de la méthode diffuse
   /* Tests réalisés en modifiant le constructeur pour avoir une seule case remplie en a_ 
@@ -109,10 +158,11 @@ int main(int argc, char* argv[]) {
   //myworld.pop();  
   */
   
-
+  /*
   myworld.display(1);
   myworld.display(2);
   myworld.display(3);
+  */
   
   /*
   cout<<""<<endl;
@@ -137,36 +187,36 @@ int main(int argc, char* argv[]) {
   myworld.renew(30);
   myworld.display(1);
   myworld.display(2);
-  vect<tuple<int,int>> coord = myworld.find_empty();
+  vector<tuple<int,int>> coord = myworld.get_empty();
   
   myworld.find_neighborhood(1,1);
   myworld.competition();
-
+  */
     
   //myworld.display(4);
   
   
   //test empty
+  
+  //test empty
+  /*
   vector<tuple<int,int>> liste = myworld.get_empty();
   std::cout << "The contents of liste are:";
   for (vector<tuple<int,int>>::iterator it = liste.begin(); it != liste.end(); ++it)
     std::cout << ' ' << get<0>(*it);
   std::cout << '\n';
   */
-  
-  //Main : affichage du diagramme
-  
-  //parametres
-  // Raa = Rbb = Rab = Rbc = 0.1
-  // Pmut = 0.0
-  int W = 32;
-  int H = 32;
-  //
-  vector<tuple<int,int,int,int>>; // T, Ainit, nb Afinal, nb Bfinal
-  //FAIRE GET NB A ET GET NB B
-  //double boucle pour initialiser les mondes avec differents parametres et enregistrer les donnees dans un tuple a la fin
-  
+  std::cout <<"At begining :" <<std::endl;
+  myworld.display(4);
+  myworld.display(5);
+ 
+  std::cout<< "After run  :"<<std::endl;
+  myworld.update(5);
 
+  std::cout <<"Modif display :" <<std::endl;
+  //std::cout << (int) rand() << std::endl;
+
+  
   return EXIT_SUCCESS;
 }
 
