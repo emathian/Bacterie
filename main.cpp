@@ -215,7 +215,11 @@ int main(int argc, char* argv[]) {
 
   std::cout <<"Modif display :" <<std::endl;
   //std::cout << (int) rand() << std::endl;
-
+  
+  tuple<int,int> liste = myworld.count();
+  std::cout << "The contents of liste are:";
+  std::cout << ' ' << get<0>(liste)<<' '<<get<1>(liste);
+  std::cout << '\n';
   
   return EXIT_SUCCESS;
 }

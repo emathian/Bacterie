@@ -586,3 +586,43 @@ vector<tuple<int,int>> World::get_empty(){
   }
   return coordinates;
 }
+
+tuple<int,int> World::count(){
+  int a = 0;
+  int b = 0;
+  int i;
+  int j;
+  for(i = 0; i < W_ ; i++){
+    for(j = 0; j < H_ ; j++){
+      if(pop_[j][i]->genotype() == 'a'){
+        a++;
+      }
+      if(pop_[j][i]->genotype() == 'b'){
+        b++;
+      }
+    }
+  }
+  tuple<int,int> result (a,b);
+  return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
