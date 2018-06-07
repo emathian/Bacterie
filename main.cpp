@@ -153,7 +153,19 @@ int main(int argc, char* argv[]) {
     std::cout << ' ' << get<0>(*it);
   std::cout << '\n';
   */
-
+  
+  //Main : affichage du diagramme
+  
+  //parametres
+  // Raa = Rbb = Rab = Rbc = 0.1
+  // Pmut = 0.0
+  int W = 32;
+  int H = 32;
+  //
+  vector<tuple<int,int,int,int>>; // T, Ainit, nb Afinal, nb Bfinal
+  //FAIRE GET NB A ET GET NB B
+  //double boucle pour initialiser les mondes avec differents parametres et enregistrer les donnees dans un tuple a la fin
+  
 
   return EXIT_SUCCESS;
 }

@@ -11,10 +11,11 @@
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <stdio.h>
-#include <algorithm>  /*shufle */
+#include <algorithm>  /*shuffle */
 #include <iomanip>     // std::setprecision
 #include <iterator>
 #include <tuple>
+#include <fstream>
 
 using namespace std;
 
