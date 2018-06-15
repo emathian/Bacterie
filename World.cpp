@@ -25,12 +25,13 @@ using namespace std;
 // ===========================================================================
 
 
-World::World(int width, int height, float diffusion){
+World::World(int width, int height, float a_init , int T_renew ,float diffusion){
 
-
+  a_init_ = a_init;
   W_ = width;
   H_ = height;
   D_ = diffusion;
+  T_renew_ = T_renew;
   pop_ = new Bacteria** [H_];
   a_ = new float *[H_];
   b_ = new float *[H_];
@@ -79,7 +80,7 @@ World::World(int width, int height, float diffusion){
         pop_[i][j] = p_add_b;
       }
         
-      a_[i][j] = 50.0;
+      a_[i][j] = a_init_;
       b_[i][j] = 0.0;
       c_[i][j] = 0.0;
       ++k;
@@ -459,8 +460,8 @@ void World::update(int tours_max){
         }
       }
     }
-    if(tours%7==0){
-      //this->renew();
+    if(tours%T_renew_==0){
+      this->renew();
     }
    
 
@@ -468,12 +469,12 @@ void World::update(int tours_max){
   
 }
 
-void World::renew(int a_init){
+void World::renew(){
   for (int i=0; i<H_ ; ++i){
     for (int j=0; j<W_ ; ++j){
       b_[i][j]=0;
       c_[i][j]=0;
-      a_[i][j]= a_init;
+      a_[i][j]= this -> a_init_;
     }
   }
  
