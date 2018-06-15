@@ -62,7 +62,6 @@ Bacteria* BacteriaGa::divide(){
 	srand(time(NULL));
 	double rand_mute;
 	rand_mute = ((double) rand() / (RAND_MAX)); 
-	//std::cout << "RANDOM MUTE"<<rand_mute <<std::endl; 
 	Bacteria* daugther;
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)
