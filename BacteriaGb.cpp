@@ -55,7 +55,7 @@ void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
 
 
 Bacteria* BacteriaGb::divide(){
-	srand(time(NULL));
+
 	double rand_mute;
 	rand_mute = ((double) rand() / (RAND_MAX)); 
 	std::cout << "RANDOM MUTE"<<rand_mute <<std::endl; 

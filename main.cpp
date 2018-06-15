@@ -124,7 +124,7 @@ int main(int argc, char* argv[]) {
   
   
   //test constructeur
-  World myworld(4,3,0.1);
+  World myworld(3,5,0.1);
   /*
   cout<< "Pop : " << endl;
   myworld.display(4);
@@ -211,7 +211,8 @@ int main(int argc, char* argv[]) {
   myworld.display(5);
  
   std::cout<< "After run  :"<<std::endl;
-  myworld.update(50);
+  myworld.update(5);
+
   std::cout <<"Modif display :" <<std::endl;
   //std::cout << (int) rand() << std::endl;
 
