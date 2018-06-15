@@ -33,9 +33,11 @@ int main(int argc, char* argv[]) {
   int t[] = {5,50,500,1000,1500};
   int a;
   int a_init = 0;
-  int a_end = 10;
+  int a_end = 50;
   int i;
   int state;
+  
+  int trenew=t[4];
   
   string nomcsv;
 
@@ -46,8 +48,8 @@ int main(int argc, char* argv[]) {
   std::ofstream outfile (nomcsv,ios::out);
   
   for (a = a_init ; a < a_end ; a++){
-    for(i = 0 ; i < 5 ; i++){
-      World myworld(32,32,0.1);
+      World myworld(32,32,0.1); // trenew = trenew
+      myworld.update(5000);
       tuple<int,int> liste = myworld.count();
       // write to outfile
       if (get<0>(liste)==0 && get<1>(liste)==0){        
@@ -60,8 +62,6 @@ int main(int argc, char* argv[]) {
         state=2; // cohabitation
       }
       outfile << state << ";" << i << ";" << a << endl;
-
-    }
   }
   
   return EXIT_SUCCESS;
