@@ -101,7 +101,13 @@ class World {
   map<int,float> find_neighborhood(int i, int j);
   /**methode pour avoir une liste de coordonnees x,y des cases vides **/
   vector<tuple<int,int>> get_empty(); 
-
+  
+  /* count
+  Count the number of bacterias of genotype a and b in the population
+  Gives a tuple <nb of a, nb of b>
+  */
+  tuple<int,int> count(); 
+  
 	private:
   // =========================================================================
   //                        Private Function members
