@@ -223,7 +223,7 @@ void World::diffuse_concentration(){
   }
   delete[] stockC;
 }
-
+/*
 std::map<int,float> World::find_neighborhood(int i, int j){ 
     int x = i; // column position
     int y = j; // row, position
@@ -232,8 +232,10 @@ std::map<int,float> World::find_neighborhood(int i, int j){
     int yh;
     int yb;
     std::map<int,float> neighborhood;   // Initialisation of the returned map
+    */
     /* Find indexes of cell contained in the Moore Neighborhood according Toroid
     grid's constraints. */ 
+/*
     if(x == 0){
       xg = W_ - 1;
       xd = x + 1;
@@ -310,7 +312,115 @@ std::map<int,float> World::find_neighborhood(int i, int j){
   return neighborhood;    
 
 }
+*/
 
+void World::competition(){
+	map<Bacteria *,float> neighborhood;// Initialisation of the returned ma
+	int x;
+	int y;
+    vector<tuple<int,int>> gap;
+	gap = this->get_empty();
+	if (gap.empty() ==  false){
+	std::random_shuffle(gap.begin(), gap.end() );
+	for (int i=0; i!=gap.size(); ++i)
+	{
+  	  x= std::get<0>(gap[i]);
+  	  y = std::get<1>(gap[i]);
+      int xg;
+      int xd;
+      int yh;
+      int yb;
+  
+    /* Find indexes of cell contained in the Moore Neighborhood according Toroid
+    grid's constraints. */ 
+    if(x == 0){
+      xg = W_ - 1;
+      xd = x + 1;
+      }else{
+        if(x == W_-1){
+          xg = x - 1;
+          xd = 0;
+        }else{
+          xg = x - 1;
+          xd = x + 1;
+        }
+      }
+      if(y == 0){
+         yh = H_ - 1;
+         yb = y + 1;        
+        }else{
+          if(y == H_-1){
+            yh = y - 1;
+            yb = 0; 
+        }else{
+          yh = y - 1;
+          yb = y + 1;    
+        }
+      }
+    if (pop_[yh][xg] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yh][xg], pop_[yh][xg]->get_fitness()) );
+    }
+    if (pop_[y][xg] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[y][xg],pop_[y][xg]->get_fitness()) );
+    }
+    if (pop_[yb][xg] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yb][xg], pop_[yb][xg]->get_fitness()) );
+    }
+    if (pop_[yh][xd] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yh][xd],pop_[yh][xd]->get_fitness()) );
+    }
+    if (pop_[y][xd] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[y][xd],pop_[y][xd]->get_fitness()) );
+    }
+    if (pop_[yb][xd] != NULL){
+      neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yb][xd], pop_[yb][xd]->get_fitness()) );
+    }
+    if (pop_[yh][x] != NULL){
+          neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yh][x] ,pop_[yh][x]->get_fitness()) );
+    }
+    if (pop_[yb][x] != NULL){
+          neighborhood.insert ( std::pair<Bacteria*,float>(pop_[yb][x], pop_[yb][x]->get_fitness()) );
+    }
+
+    /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
+    if (neighborhood.empty()==false){
+    Bacteria* best = neighborhood.begin()->first; //initialisation
+    
+    /* Find maximal fitness */
+
+    //std::map<Bacteria*,float> current_copy = (neighborhood);
+    int c= neighborhood.size();
+    while(c>=2){
+     
+    auto it = neighborhood.begin();
+    auto next_it = std::next(it); 
+    if (it->second > next_it->second){
+      neighborhood.erase(next_it);
+    }
+    else if(it->second < next_it->second){
+      neighborhood.erase(it);
+    }
+    else if (it->second == next_it->second){
+      int fight = rand()%2;
+      if (fight >0){
+        neighborhood.erase(next_it);
+      }
+      else {
+        neighborhood.erase(it);
+      }
+    }
+    --c; 
+    }
+    
+    best = neighborhood.begin()->first; 
+    Bacteria* daugther = best->divide(); 
+    pop_[y][x] = daugther;  
+ 
+  } // end for
+  } // no bacteria in neighboorhood
+ } // end no gap
+}
+/*
 void World::competition(){
     
 
@@ -327,6 +437,7 @@ void World::competition(){
  int y; //Ligne
 vector<tuple<int,int>> gap;
 gap = this->get_empty();
+std::random_shuffle(gap.begin(), gap.end() );
 for (int i=0; i!=gap.size(); ++i)
 {
   x= std::get<0>(gap[i]);
@@ -337,15 +448,16 @@ for (int i=0; i!=gap.size(); ++i)
  //for(std::map<int,float>::const_iterator it= current_neighborhood.begin(); it!=current_neighborhood.end();++it){
  // std::cout<< it->first<<std::endl;
  //}
+ */
   /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
   
-    current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
+  //  current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
     /* Search the best bacteria in the neighborhood or choose randomly the best one in case of equality*/
     
-    int pos_best = current_neighborhood.begin()->first; //initialisation
+   // int pos_best = current_neighborhood.begin()->first; //initialisation
     
     /* Find maximal fitness */
-
+/*
     std::map<int,float> current_copy = (current_neighborhood);
     int c= current_neighborhood.size();
     while(c>=2){
@@ -412,7 +524,7 @@ for (int i=0; i!=gap.size(); ++i)
  
   
    
-}
+}*/
      
 
 void World::update(int tours_max){
@@ -583,12 +695,14 @@ tuple<int,int> World::count(){
   int j;
   for(i = 0; i < W_ ; i++){
     for(j = 0; j < H_ ; j++){
+      if (pop_[j][i] != NULL){ 		
       if(pop_[j][i]->genotype() == 'a'){
         a++;
       }
       if(pop_[j][i]->genotype() == 'b'){
         b++;
       }
+     }
     }
   }
   tuple<int,int> result (a,b);

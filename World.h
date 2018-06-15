@@ -89,16 +89,7 @@ class World {
   */
   void display(int choice);
 
-  /* find_neighborhood 
-  Allows to record the neighborhood of a cell in a dictionnary.
-  Pre-conditions: Neighborhood takes as arguments i (column) and j (row). 
-  Post-condition : Owing to these coordinates the function fills a dictionnary of 8 
-  elements wich corresponds to each cell of the Moore neighborhood. Keys are integers
-  which are the result of the sum of the two coordinates given in argument. Like this,
-  the position of the cell in the grid can be find. Values corresponds to the fitness
-  of a bacteria if the cell is full, otherwise values are settled to the default 
-  number -1.  */
-  map<int,float> find_neighborhood(int i, int j);
+
   /**methode pour avoir une liste de coordonnees x,y des cases vides **/
   vector<tuple<int,int>> get_empty(); 
   
