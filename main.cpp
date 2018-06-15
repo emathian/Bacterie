@@ -28,22 +28,20 @@ using namespace std;
 // ===========================================================================
 int main(int argc, char* argv[]) {
   srand(std::time(nullptr));
+  //Parameters
+  int t[] = {5,50,500,1000,1500};
+  int a;
+  int a_init = 0;
+  int a_end = 10;
+  int i;
   
-  std::cout <<"At begining :" <<std::endl;
-  myworld.display(4);
-  myworld.display(5);
- 
-  std::cout<< "After run  :"<<std::endl;
-  myworld.update(5);
-
-  std::cout <<"Modif display :" <<std::endl;
-  //std::cout << (int) rand() << std::endl;
-  
-  tuple<int,int> liste = myworld.count();
-  std::cout << "The contents of liste are:";
-  std::cout << ' ' << get<0>(liste)<<' '<<get<1>(liste);
-  std::cout << '\n';
-  
+  for (a = a_init ; a < a_end ; a++){
+    for(i = 0 ; i < 5 ; i++){
+      World myworld(32,32,0.1);
+      tuple<int,int> liste = myworld.count();
+    }
+  }
+    
   return EXIT_SUCCESS;
 }
 
