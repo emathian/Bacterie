@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
   std::ofstream outfile (nomcsv,ios::out);
   
   for (a = a_init ; a < a_end ; a++){
-      World myworld(32,32,0.1); // trenew = trenew
+      World myworld(32,32,0 , 1500,0.1); // trenew = trenew
       myworld.update(5000);
       tuple<int,int> liste = myworld.count();
       // write to outfile
