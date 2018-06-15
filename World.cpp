@@ -285,33 +285,27 @@ std::map<int,float> World::find_neighborhood(int i, int j){
         if (pop_[yh][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+yh*W_, -1) );
         }else{
-          neighborhood.insert ( std::pair<int,float>(xd+yh*W_,pop_[yh][xd]->get_fitness()) );
-          //std::cout << "xd  " << xd << "  Yh  " << yh << "result   "<< xd+yh*W_ <<std::endl;
-         
+          neighborhood.insert ( std::pair<int,float>(xd+yh*W_,pop_[yh][xd]->get_fitness()) );   
         } 
         if (pop_[y][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+y*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xd+y*W_,pop_[y][xd]->get_fitness()) );
-          //std::cout << "xd  " << xd << "  Y  " << yh << "result   "<< xd+y*W_ <<std::endl;
         } 
         if (pop_[yb][xd] == NULL){
           neighborhood.insert ( std::pair<int,float>(xd+yb*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(xd+yb*W_,pop_[yb][xd]->get_fitness()) );
-          //std::cout << "xd  " << xd << "  Yb  " << yh << "result   "<< xd+yb*W_ <<std::endl;
         } 
         if (pop_[yh][x] == NULL){
           neighborhood.insert ( std::pair<int,float>(x+yh*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(x+yh*W_,pop_[yh][x]->get_fitness()) );
-          //std::cout << "x " << xd << "  Yh  " << yh << "result   "<< x+yh*W_<<std::endl;
         } 
        if (pop_[yb][x] == NULL){
           neighborhood.insert ( std::pair<int,float>(x+yb*W_, -1) );
         }else{
           neighborhood.insert ( std::pair<int,float>(x+yb*W_,pop_[yb][x]->get_fitness()) );
-          //std::cout << "x " << xd << "  Yb  " << yh << "result   "<< x+yb*W_<<std::endl;
         } 
   return neighborhood;    
 
@@ -337,7 +331,6 @@ for (int i=0; i!=gap.size(); ++i)
 {
   x= std::get<0>(gap[i]);
   y = std::get<1>(gap[i]);
-  std::cout<< "pos x   " << x << "pos y   "<<y<<std::endl;
 
   current_neighborhood = find_neighborhood(x,y); // Find neighborhood around a gap
 
@@ -376,10 +369,9 @@ for (int i=0; i!=gap.size(); ++i)
     }
     --c; 
     }
+    if (current_copy.begin()->second !=-1){
     pos_best = current_copy.begin()->first;
-    //std::cout<<pos_best<<std::endl;
- 
-  
+  	
    // Find the best bacteria according its key of in the dicionnary
     if (pos_best!=0){
       best_pos_y = pos_best/W_;
@@ -414,6 +406,7 @@ for (int i=0; i!=gap.size(); ++i)
         pop_[0][0] = daugther; // Fill the gap in position (0,0)
       }
     }
+   }
   } // End of condition of the presence
   
  
@@ -445,16 +438,8 @@ void World::update(int tours_max){
         }
       }
     }
-    std::cout<<"Before competition"<<std::endl;
-
-  //this->display(1);
   this->competition();
-  std::cout<<"After competition"<<std::endl;
-  //this->display(5);
-  this->display(4);
 
-
-   
     //metabolize
     for(y = 0; y <H_; y++){
       for(x = 0; x< W_; x++){

@@ -28,42 +28,38 @@ using namespace std;
 //                                    MAIN
 // ===========================================================================
 int main(int argc, char* argv[]) {
-  srand(std::time(nullptr));
+  srand(std::time(nullptr));  
+  int t[] = {5,50,500,1000,1500};
+  int trenew=t[4];
+  World myworld(32,32,1,trenew,0.1);
+  myworld.update(5000);
+  //myworld.display(4);
   //Parameters
+  /*
   int t[] = {5,50,500,1000,1500};
   int a;
   int a_init = 0;
-  int a_end = 50;
+  int a_end = 17;
   int i;
   int state;
   
   int trenew=t[4];
-  
+
   string nomcsv;
 
   cout << "Nom du fichier csv:";
 
   cin >> nomcsv;
-
+  World myworld(32,32,1,trenew,0.1);
+  myworld.update(5000);
   std::ofstream outfile (nomcsv,ios::out);
+  tuple<int,int> liste = myworld.count();
+  cout << get<0>(liste);
+  */
+
+ 
   
-  for (a = a_init ; a < a_end ; a++){
-      World myworld(32,32,0 , 1500,0.1); // trenew = trenew
-      myworld.update(5000);
-      tuple<int,int> liste = myworld.count();
-      // write to outfile
-      if (get<0>(liste)==0 && get<1>(liste)==0){        
-        state =0; // extinction
-      }
-      else if (get<0>(liste)==0 || get<1>(liste)==0){ 
-        state =1; // exclusion
-      }
-      else{
-        state=2; // cohabitation
-      }
-      outfile << state << ";" << i << ";" << a << endl;
-  }
-  
+
   return EXIT_SUCCESS;
 }
 
