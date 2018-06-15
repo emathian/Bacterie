@@ -37,18 +37,16 @@ int main(int argc, char* argv[]) {
   int i;
   int state;
   
-  int trenew=t[4];
+  int trenew=t[0];
 
   string nomcsv;
 
   cout << "Nom du fichier csv:";
 
   cin >> nomcsv;
-  World myworld(32,32,1,trenew,0.1);
-  myworld.update(5000);
+  
   std::ofstream outfile (nomcsv,ios::out);
-  tuple<int,int> liste = myworld.count();
-  cout << get<0>(liste);
+
 
   for (a = a_init ; a < a_end ; a++){
       World myworld(32,32,a,trenew,0.1);
