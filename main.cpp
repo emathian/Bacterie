@@ -79,10 +79,10 @@ int main(int argc, char* argv[]) {
   vectp = myBact.phenotype();
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
-  */
+  
   
   // ------ Gb
-  /*
+  
   std::vector<float> vectp;
   
   float f=2.0;
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
   
   cout << vectp[0] << "--" << vectp[1] << endl; // Ca marche sur les concentrations internes
   cout << f << endl; // Ca écrit dans la ptr donné
-  */
+  
   
   // Test of KIll
   // Sorry myGa 
@@ -211,11 +211,10 @@ int main(int argc, char* argv[]) {
   myworld.display(5);
  
   std::cout<< "After run  :"<<std::endl;
-  myworld.update(5);
+  myworld.update(50);
   std::cout <<"Modif display :" <<std::endl;
   //std::cout << (int) rand() << std::endl;
 
-  
   return EXIT_SUCCESS;
 }
 

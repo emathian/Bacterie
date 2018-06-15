@@ -48,8 +48,8 @@ float BacteriaGb::get_fitness(){
 
 void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
 	*a = *a;
-	*b = *b +  phenotype_[1];
-	*c = *c +  phenotype_[2];
+	*b = *b +  phenotype_[0];
+	*c = *c +  phenotype_[1];
 	delete this;
 }
 

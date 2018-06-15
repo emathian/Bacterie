@@ -40,8 +40,7 @@ float Bacteria::FITNESS_MIN() const{
 }
 
 std::vector<float> Bacteria::phenotype() {
-	std::vector<float> phenotype (phenotype_);
-	return phenotype;
+	return phenotype_;
 }
 
 
