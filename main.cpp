@@ -7,6 +7,7 @@
 #include <tuple>
 #include <ctime>
 #include <fstream>
+#include <string>
 
 #include "Bacteria.h"
 #include "BacteriaGa.h"
@@ -34,14 +35,35 @@ int main(int argc, char* argv[]) {
   int a_init = 0;
   int a_end = 10;
   int i;
+  int state;
+  
+  string nomcsv;
+
+  cout << "Nom du fichier csv:";
+
+  cin >> nomcsv;
+
+  std::ofstream outfile (nomcsv,ios::out);
   
   for (a = a_init ; a < a_end ; a++){
     for(i = 0 ; i < 5 ; i++){
       World myworld(32,32,0.1);
       tuple<int,int> liste = myworld.count();
+      // write to outfile
+      if (get<0>(liste)==0 && get<1>(liste)==0){        
+        state =0; // extinction
+      }
+      else if (get<0>(liste)==0 || get<1>(liste)==0){ 
+        state =1; // exclusion
+      }
+      else{
+        state=2; // cohabitation
+      }
+      outfile << state << ";" << i << ";" << a << endl;
+
     }
   }
-    
+  
   return EXIT_SUCCESS;
 }
 
