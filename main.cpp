@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
   for (a = a_init ; a <= a_end ; a++){
     for (int i= 0 ; i< t.size(); ++i){
       trenew = t[i];
-      World myworld(32,32,a,trenew,0.1,0);
+      World myworld(32,32,a,trenew,0.1,0.001);
       myworld.update(5000);
       tuple<int,int> liste = myworld.count();
       if (get<1>(liste)+get<0>(liste) !=0 ){
