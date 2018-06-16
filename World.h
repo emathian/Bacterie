@@ -30,7 +30,7 @@ class World {
   diffusion : coefficient on diffusion
   Preconditions: width and height not negative or null.
   Postconditions : creates 3 2D arrays containing bacterias and metabolites. */
-  World(int width, int height, float a_init, int T_renew,float diffusion);
+  World(int width, int height, float a_init, int T_renew,float diffusion, float pmute);
  
 
   // =========================================================================

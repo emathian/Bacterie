@@ -11,8 +11,9 @@ static float Rbc = 0.1;
 // ===========================================================================
 //                                Constructors
 // ===========================================================================
-BacteriaGb::BacteriaGb() : Bacteria(){
+BacteriaGb::BacteriaGb(float proba_mute) : Bacteria(){
   genotype_ = 'b';
+  PROBA_MUTE_ = proba_mute;
 }
 
 BacteriaGb::BacteriaGb(const BacteriaGb& bactGb) : Bacteria(bactGb){
@@ -62,11 +63,11 @@ Bacteria* BacteriaGb::divide(){
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)
 		{
-	 		daugther =new BacteriaGb();
+	 		daugther =new BacteriaGb(this->PROBA_MUTE_);
 		}
 		else 	
 		{
-			daugther =new BacteriaGa();
+			daugther =new BacteriaGa(this->PROBA_MUTE_);
 		}
 
 	this -> phenotype_[0] = this-> phenotype_[0]/2;

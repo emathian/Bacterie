@@ -30,40 +30,78 @@ using namespace std;
 int main(int argc, char* argv[]) {
   srand(std::time(nullptr));
   //Parameters
-  int t[] = {5,50,500,1000,1500};
+
+  std::vector<int> t;
+  for (int i=0; i<=1500 ; i=i+50){
+    t.push_back(i);
+  }
+ 
+
+
   int a;
   int a_init = 0;
   int a_end = 17;
   int i;
   int state;
-  
-  int trenew=t[0];
-
+  float pB;
+  int trenew;
   string nomcsv;
-
   cout << "Nom du fichier csv:";
 
   cin >> nomcsv;
   
   std::ofstream outfile (nomcsv,ios::out);
+  
 
 
   for (a = a_init ; a < a_end ; a++){
-      World myworld(32,32,a,trenew,0.1);
+    for (int i= 0 ; i< t.size(); ++i){
+      trenew = t[i];
+      World myworld(32,32,a,trenew,0.1,0);
       myworld.update(5000);
       tuple<int,int> liste = myworld.count();
-      // write to outfile
-      if (get<0>(liste)==0 && get<1>(liste)==0){        
-        state =0; // extinction
-      }
-      else if (get<0>(liste)==0 || get<1>(liste)==0){ 
-        state =1; // exclusion
-      }
-      else{
-        state=2; // cohabitation
-      }
-      outfile << state << ";" << i << ";" << a << endl;
+      
+      pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
+     
+      outfile << pB << ";" << trenew << ";" << a << endl;
   }
+}
+/*
+  outfile.close();
+  
+  std::ofstream outfile ("pm0.001_a017",ios::out);
+   for (a = a_init ; a < a_end ; a++){
+    for (int i= 0 ; i< t.size(); ++i){
+      trenew = t[i];
+      World myworld(32,32,a,trenew,0.1,0.001);
+      myworld.update(5000);
+      tuple<int,int> liste = myworld.count();
+      
+      pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
+     
+      outfile << pB << ";" << trenew << ";" << a << endl;
+  }
+}
+ outfile.close();
+
+  std::ofstream outfile ("diff_a017",ios::out);
+   for (a = a_init ; a < a_end ; a++){
+    for (int i= 0 ; i< t.size(); ++i){
+      for (int j= 0 ; j< d.size(); ++j){
+      trenew = t[i];
+      diff = d[i];
+      World myworld(32,32,a,trenew,diff,0);
+      myworld.update(5000);
+      tuple<int,int> liste = myworld.count();
+      
+      pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
+     
+      outfile << pB << ";" << trenew << ";" << a << ";"<< diff<< endl;
+  }
+ }
+}
+ outfile.close();
+ */
   return EXIT_SUCCESS;
 }
 
