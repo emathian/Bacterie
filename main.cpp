@@ -36,6 +36,13 @@ int main(int argc, char* argv[]) {
     t.push_back(i);
   }
  
+ 
+ std::vector<float> d;
+  for (float k=0; k<=0.1 ; k=k+0.01){
+    d.push_back(k);
+  }
+  
+ 
 
 
   int a;
@@ -46,6 +53,7 @@ int main(int argc, char* argv[]) {
   float pB;
   float pA ;
   int trenew;
+  float diff;
   string nomcsv;
   cout << "Nom du fichier csv:";
 
@@ -57,8 +65,10 @@ int main(int argc, char* argv[]) {
 
   for (a = a_init ; a <= a_end ; a++){
     for (int i= 0 ; i< t.size(); ++i){
+      for (int j=0 ; j<d.size(); ++j){
       trenew = t[i];
-      World myworld(32,32,a,trenew,0.1,0.001);
+      diff = d[j];
+      World myworld(32,32,a,trenew,diff,0);
       myworld.update(5000);
       tuple<int,int> liste = myworld.count();
       if (get<1>(liste)+get<0>(liste) !=0 ){
@@ -69,8 +79,9 @@ int main(int argc, char* argv[]) {
       pB = 0;
       pA = 0;
      }
-      outfile << pB << ";" << pA << ";" <<trenew << ";" << a << endl;
+      outfile << pB << ";" << pA << ";" <<trenew << ";" << a <<";"<< diff<< endl;
   }
+}
 }
 /*
   outfile.close();
