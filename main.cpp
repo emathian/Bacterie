@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
   int i;
   int state;
   float pB;
+  float pA ;
   int trenew;
   string nomcsv;
   cout << "Nom du fichier csv:";
@@ -54,16 +55,21 @@ int main(int argc, char* argv[]) {
   
 
 
-  for (a = a_init ; a < a_end ; a++){
+  for (a = a_init ; a <= a_end ; a++){
     for (int i= 0 ; i< t.size(); ++i){
       trenew = t[i];
       World myworld(32,32,a,trenew,0.1,0);
       myworld.update(5000);
       tuple<int,int> liste = myworld.count();
-      
+      if (get<1>(liste)+get<0>(liste) !=0 ){
       pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
-     
-      outfile << pB << ";" << trenew << ";" << a << endl;
+      pA = float(get<0>(liste))/(get<1>(liste)+get<0>(liste));
+     }
+     else{
+      pB = 0;
+      pA = 0;
+     }
+      outfile << pB << ";" << pA << ";" <<trenew << ";" << a << endl;
   }
 }
 /*
