@@ -35,13 +35,15 @@ int main(int argc, char* argv[]) {
   int a_end = 10;
   int i;
   
-  for (a = a_init ; a < a_end ; a++){
-    for(i = 0 ; i < 5 ; i++){
-      World myworld(32,32,0.1);
-      tuple<int,int> liste = myworld.count();
-    }
-  }
+  if(fichier){
+   for (a = a_init ; a < a_end ; a++){
+     for(i = 0 ; i < 5 ; i++){
+       World myworld(32,32,0.1);
+       tuple<int,int> liste = myworld.count();
+     }
+   }
     
+  }
   return EXIT_SUCCESS;
 }
 
