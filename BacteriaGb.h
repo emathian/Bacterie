@@ -16,7 +16,7 @@ class BacteriaGb: public Bacteria {
   // =========================================================================
   //                               Constructors
   // =========================================================================
-  BacteriaGb();
+  BacteriaGb(float proba_mute);
   BacteriaGb(const BacteriaGb& bactGb);
   // =========================================================================
   //                                Destructor

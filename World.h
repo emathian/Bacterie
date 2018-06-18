@@ -30,7 +30,7 @@ class World {
   diffusion : coefficient on diffusion
   Preconditions: width and height not negative or null.
   Postconditions : creates 3 2D arrays containing bacterias and metabolites. */
-  World(int width, int height, float diffusion);
+  World(int width, int height, float a_init, int T_renew,float diffusion, float pmute);
  
 
   // =========================================================================
@@ -74,7 +74,7 @@ class World {
   Preconditions: none
   Postconditions: metabolite A is set to 50, B and C to 0.
   */
-  void renew(int a_init);
+  void renew();
 
   /* display
   Displays differents aspects of the world according to the int.
@@ -89,16 +89,7 @@ class World {
   */
   void display(int choice);
 
-  /* find_neighborhood 
-  Allows to record the neighborhood of a cell in a dictionnary.
-  Pre-conditions: Neighborhood takes as arguments i (column) and j (row). 
-  Post-condition : Owing to these coordinates the function fills a dictionnary of 8 
-  elements wich corresponds to each cell of the Moore neighborhood. Keys are integers
-  which are the result of the sum of the two coordinates given in argument. Like this,
-  the position of the cell in the grid can be find. Values corresponds to the fitness
-  of a bacteria if the cell is full, otherwise values are settled to the default 
-  number -1.  */
-  map<int,float> find_neighborhood(int i, int j);
+
   /**methode pour avoir une liste de coordonnees x,y des cases vides **/
   vector<tuple<int,int>> get_empty(); 
   
@@ -130,6 +121,8 @@ class World {
   float **a_;
   float **b_;
   float **c_;
+  float a_init_;
+  int T_renew_;
   
 };
 
