@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
   //Parameters
 
   std::vector<int> t;
-  for (int i=0; i<=1500 ; i=i+100){
+  for (int i=0; i<=1500 ; i=i+50){
     t.push_back(i);
   }
  
