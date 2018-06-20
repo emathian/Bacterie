@@ -22,13 +22,15 @@ class World {
 	// =========================================================================
   //                               Constructors
   // =========================================================================
-  
 
   /* Constructor
   width : number of columns
   height : number of rows
+  a_init : initial concantration of substrate a (glc)
+  T_renew : interval of renewal of a
   diffusion : coefficient on diffusion
-  Preconditions: width and height not negative or null.
+  pmute : probability of mutation 
+  Preconditions: all parameters are not negative or null.
   Postconditions : creates 3 2D arrays containing bacterias and metabolites. */
   World(int width, int height, float a_init, int T_renew,float diffusion, float pmute);
  
@@ -90,7 +92,7 @@ class World {
   void display(int choice);
 
 
-  /**methode pour avoir une liste de coordonnees x,y des cases vides **/
+  /** Function that allows to get a vector of position all gaps in the 3D grid **/
   vector<tuple<int,int>> get_empty(); 
   
   /* count
@@ -100,22 +102,17 @@ class World {
   tuple<int,int> count(); 
   
 	private:
-  // =========================================================================
-  //                        Private Function members
-  // =========================================================================
+
 
   // =========================================================================
   //                               Data members
   // =========================================================================
-    
-  // size of the world
-  Bacteria* **pop_; // Array of population (Bacterias Ga or Gb)
-  int W_ ; 
-  int H_ ;
-  float D_ ; //diffusion coefficient
- 
-
   
+  Bacteria* **pop_; // Array of population (Bacterias Ga or Gb)
+  int W_ ;   // width  world
+  int H_ ; // Height of world
+  float D_ ; //coefficient of diffusion 
+ 
   
   // Arrays of metabolites
   float **a_;

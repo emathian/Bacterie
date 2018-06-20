@@ -56,22 +56,24 @@ void BacteriaGb::kill_bacteria(float *a, float *b, float *c){
 
 
 Bacteria* BacteriaGb::divide(){
-
-	double rand_mute;
-	rand_mute = ((double) rand() / (RAND_MAX)); 
+	float rand_mute;
+	rand_mute = (float) rand()/(float)RAND_MAX;
 	Bacteria* daugther;
 	if (this->get_fitness() >0){
 		if (rand_mute< this->PROBA_MUTE_)
 		{
 	 		daugther =new BacteriaGb(this->PROBA_MUTE_);
+	 		this -> phenotype_[0] = this-> phenotype_[0]/2;
+			this -> phenotype_[1] = this-> phenotype_[1]/2;
 		}
 		else 	
 		{
 			daugther =new BacteriaGa(this->PROBA_MUTE_);
+			this -> phenotype_[0] =0;
+			this -> phenotype_[1] = this -> phenotype_[0]/2;
 		}
 
-	this -> phenotype_[0] = this-> phenotype_[0]/2;
-	this -> phenotype_[1] = this-> phenotype_[1]/2;
+
 	std::vector<float> new_phenotype = {this-> phenotype_[0] , this->phenotype_[1] };
 	daugther->set_phenotype(new_phenotype);
 	

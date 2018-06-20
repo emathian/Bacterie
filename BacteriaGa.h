@@ -16,7 +16,10 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                               Constructors
   // =========================================================================
+  /* Constructor of Bacteria A takes as parameter the probability of mutation 
+  wich is common with B bacterias */  
   BacteriaGa(float proba_mute);
+  // copy constructor
   BacteriaGa(const BacteriaGa& bactGa);
 
   // =========================================================================
@@ -27,12 +30,23 @@ class BacteriaGa : public Bacteria {
   // =========================================================================
   //                                  Getters
   // =========================================================================
+
   float get_fitness() override;  
 
   // =========================================================================
   //                          Public Function members
   // =========================================================================
+  /* For bacteria Ga this method takes as parameter the concentration of substrat 
+  A present in the environement. BacteriasGa could use a certain quatity of this
+  substrat and use this one to produce energy. This reaction  increases the
+  quantity of B in cell. 
+  Precondition : quantity of available A, quantities of substrat and product present in
+  the bacteria must be known.
+  Post-condition : The phenotype of a bacteria is updated after the execution and also
+  concentrations in the environment.
+  */
   void metabolize(float * a,float * b) override;
+
   void kill_bacteria(float *a, float *b, float *c) override;
   
   protected:
@@ -40,20 +54,12 @@ class BacteriaGa : public Bacteria {
   //                        Protected Function members
   // =========================================================================
 
-/* The method kill_bacteria allows to update metabolites concentration in a cell
-after the death of a bacteria. Like this the concentration in a cell are setted 
-equal to the old one more those contained in the bacteria who is dying.
-Pre-conditions : kill_bacteria's arguments are three pointer to each metabolites
- in a cell of world.
-Post-conditions: This concentration are updated and the phenotype of bacteria is 
-setted to null.
-*/
 
-/* Th function divide allows to create a new bateria whith a phenotype setted 
-equal to her parent. (WARNING) This function must be use after decided if the daug-
-ther'll be mutated or not. 
-*/
-  
+  /* For bacteria Ga the method divide allows to create a bacteria A if a random
+  number is over its probability of mutation, a B otherwise.
+  Precondition : The phenotype of a bacteria Ga must be known and also its probability
+  of mutation
+  Postcondition : A bacteria Ga or Gb is generated, and bacterias' phenotypes are updated.  */
   Bacteria* divide() override;
  
 
