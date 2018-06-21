@@ -86,7 +86,7 @@ Bacteria* BacteriaGa::divide(){
 	 	daugther=nullptr;
 	 }
 		
-	 return daugther;	
+	return daugther;	
 
 }
 

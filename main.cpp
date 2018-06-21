@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
   srand(std::time(nullptr));
   // Time step 
   std::vector<int> t;
-  for (int i=0; i<=1500 ; i=i+100){
+  for (int i=0; i<=1500 ; i=i+50){
     t.push_back(i);
   }
   // Diffusion step 
@@ -67,6 +67,7 @@ int main(int argc, char* argv[]) {
         if (get<1>(liste)+get<0>(liste) !=0 ){
           pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
           pA = float(get<0>(liste))/(get<1>(liste)+get<0>(liste));
+         //cout << pA << endl;
         }
         else{
           pB = 0;
