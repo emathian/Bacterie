@@ -6,8 +6,8 @@ rm(list=ls())
 # --------------------- D=0
 
 p <- read.table("./csv/sm_a017_DT_50_Diff",sep=";",dec=".")
-p2 <- read.table("./csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
-p3 <- read.table("./csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
+p2 <- read.table("./csv/A_18_33_Dvarie.csv",sep=";",dec=".")
+p3 <- read.table("./csv/mut34a50.csv",sep=";",dec=".")
 
 p <- rbind(p,p2)
 p <- rbind(p,p3)
