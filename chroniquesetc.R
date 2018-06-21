@@ -1,8 +1,8 @@
 
 rm(list=ls())
-d <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/chr/30_700_pm0.csv",sep=";",dec=".")
-d2 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/chr/30_700_pm02.csv",sep=";",dec=".")
-d3 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/chr/30_700_pm03.csv",sep=";",dec=".")
+d <- read.table("./csv/chr/30_700_pm0.csv",sep=";",dec=".")
+d2 <- read.table("./csv/chr/30_700_pm02.csv",sep=";",dec=".")
+d3 <- read.table("./csv/chr/30_700_pm03.csv",sep=";",dec=".")
 
 
 names(d)[names(d)=="V1"] <- "T"

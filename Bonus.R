@@ -5,9 +5,9 @@ rm(list=ls())
 
 # --------------------- D=0
 
-p <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/sm_a017_DT_50_Diff",sep=";",dec=".")
-p2 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
-p3 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
+p <- read.table("./csv/sm_a017_DT_50_Diff",sep=";",dec=".")
+p2 <- read.table("./csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
+p3 <- read.table("./csv/A_18_33_Dvarie_pas50.csv",sep=";",dec=".")
 
 p <- rbind(p,p2)
 p <- rbind(p,p3)

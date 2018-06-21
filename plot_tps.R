@@ -1,4 +1,4 @@
-d <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/chr/30_300_pm02.csv",sep=";",dec=".")
+d <- read.table("./csv/chr/30_300_pm02.csv",sep=";",dec=".")
 
 names(d)[names(d)=="V1"] <- "T"
 names(d)[names(d)=="V2"] <- "popB"

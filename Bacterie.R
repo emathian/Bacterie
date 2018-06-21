@@ -7,9 +7,9 @@ rm(list=ls())
 #----------------------
 # p0
 # ---------------------
-p0 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/SM_A017_DT50_PA_PB",sep=";",dec=".")
-p02 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/a_18_33_pmute0.csv",sep=";",dec=".")
-p03 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/mut34a50.csv",sep=";",dec=".")
+p0 <- read.table("./csv/SM_A017_DT50_PA_PB",sep=";",dec=".")
+p02 <- read.table("./csv/a_18_33_pmute0.csv",sep=";",dec=".")
+p03 <- read.table("./csv/mut34a50.csv",sep=";",dec=".")
 
 p02 <- p02[1:4]
 
