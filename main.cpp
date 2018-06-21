@@ -46,8 +46,8 @@ int main(int argc, char* argv[]) {
 
 
   int a;
-  int a_init = 0;
-  int a_end = 17;
+  int a_init = 34;
+  int a_end = 51;
   int i;
   int state;
   float pB;
