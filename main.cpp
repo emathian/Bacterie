@@ -44,24 +44,24 @@ int main(int argc, char* argv[]) {
 
 
 
-  int a;
-  int a_init = 34;
-  int a_end = 50;
+  int a =30;
+  int a_init = 18;
+  int a_end = 33;
   int i;
   int state;
   float pB;
   float pA ;
-  int trenew;
-  float diff;
+  int trenew = 300;
+  float diff = 0.1;
   string nomcsv;
-  cout << "Nom du fichier csv:";
+  //cout << "Nom du fichier csv:";
 
-  cin >> nomcsv;
+  //cin >> nomcsv;
   
-  std::ofstream outfile (nomcsv,ios::out);
+  //std::ofstream outfile (nomcsv,ios::out);
   
 
-
+  /*
   for (a = a_init ; a <= a_end ; a++){
     for (int i= 0 ; i< t.size(); ++i){
       for (int j=0 ; j<d.size(); ++j){
@@ -81,7 +81,10 @@ int main(int argc, char* argv[]) {
         outfile << pB << ";" << pA << ";" <<trenew << ";" << a <<";"<< diff<< endl;
       }
     }
-  }
+  }*/
+  
+  World myworld(32,32,a,trenew,diff,0.000);
+  myworld.update(5000);
 /*
   outfile.close();
   

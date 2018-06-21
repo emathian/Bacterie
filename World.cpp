@@ -341,7 +341,17 @@ void World::update(int tours_max){
   float death = pop_[0][0]->PROBA_DEATH();
   float random_nb;
 
+  
   for( tours = 0; tours < tours_max; tours++){
+    
+    tuple<int,int> liste = this->count();
+  
+  float pB =float(get<1>(liste));
+  float pA = float(get<0>(liste));
+          
+  std::ofstream outfile ("30_300_pm0.csv",ios::app);
+  
+  outfile <<tours << ';'<< pB << ";" << pA << endl;
      
     this-> diffuse_concentration();
     //death of the bacteries // Bizzard elles ont une proba de mourir 
@@ -374,9 +384,11 @@ void World::update(int tours_max){
     }
    
 	}
-  }
   
+  }
 }
+  
+
 
 void World::renew(){
   for (int i=0; i<H_ ; ++i){
@@ -478,6 +490,7 @@ void World::display(int choice){ // Just for tests
     else {
       std::cout<<"Choice impossible !"<<std::endl;
     }
+    
 }
 
 
