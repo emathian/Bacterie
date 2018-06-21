@@ -43,9 +43,9 @@ legend('topright',col=c('red','orange','yellow','green'),pch=c(15,15,15,15),lege
 # ---------------------
 rm(list=ls())
 
-p00001 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/pM_0001_A017_DT50",sep=";",dec=".")
-p000012 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/a_18_33_pmute00001.csv",sep=";",dec=".")
-p000013 <- read.table("/Users/lisa/Documents/Cours/3-BiM/Projet_DevLog/Bacterie/csv/mut34a50.csv",sep=";",dec=".")
+p00001 <- read.table("./csv/pM_0001_A017_DT50",sep=";",dec=".")
+p000012 <- read.table("./csv/a_18_33_pmute00001.csv",sep=";",dec=".")
+p000013 <- read.table("./csv/mut34a50.csv",sep=";",dec=".")
 
 
 p000012 <- p000012[1:4]
