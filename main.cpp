@@ -45,44 +45,48 @@ int main(int argc, char* argv[]) {
  
 
 
-  int a;
-  int a_init = 34;
-  int a_end = 51;
+
+  int a =30;
+  int a_init = 18;
+  int a_end = 33;
   int i;
   int state;
   float pB;
   float pA ;
-  int trenew;
-  float diff;
+  int trenew = 300;
+  float diff = 0.1;
   string nomcsv;
-  cout << "Nom du fichier csv:";
+  //cout << "Nom du fichier csv:";
 
-  cin >> nomcsv;
+  //cin >> nomcsv;
   
-  std::ofstream outfile (nomcsv,ios::out);
+  //std::ofstream outfile (nomcsv,ios::out);
   
 
-
+  /*
   for (a = a_init ; a <= a_end ; a++){
     for (int i= 0 ; i< t.size(); ++i){
       for (int j=0 ; j<d.size(); ++j){
-      trenew = t[i];
-      diff = d[j];
-      World myworld(32,32,a,trenew,diff,0);
-      myworld.update(5000);
-      tuple<int,int> liste = myworld.count();
-      if (get<1>(liste)+get<0>(liste) !=0 ){
-      pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
-      pA = float(get<0>(liste))/(get<1>(liste)+get<0>(liste));
-     }
-     else{
-      pB = 0;
-      pA = 0;
-     }
-      outfile << pB << ";" << pA << ";" <<trenew << ";" << a <<";"<< diff<< endl;
-  }
-}
-}
+        trenew = t[i];
+        diff = d[j];
+        World myworld(32,32,a,trenew,diff,0.000);
+        myworld.update(5000);
+        tuple<int,int> liste = myworld.count();
+        if (get<1>(liste)+get<0>(liste) !=0 ){
+          pB =float(get<1>(liste))/(get<1>(liste)+get<0>(liste));
+          pA = float(get<0>(liste))/(get<1>(liste)+get<0>(liste));
+        }
+        else{
+          pB = 0;
+          pA = 0;
+         }
+        outfile << pB << ";" << pA << ";" <<trenew << ";" << a <<";"<< diff<< endl;
+      }
+    }
+  }*/
+  
+  World myworld(32,32,a,trenew,diff,0.000);
+  myworld.update(5000);
 /*
   outfile.close();
   
